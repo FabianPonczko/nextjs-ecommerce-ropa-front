@@ -11,16 +11,17 @@ const ProductWrapper = styled.div`
 
 const WhiteBox = styled(Link)`
   background-color: #fff;
-  padding: 10px;
-  height: 120px;
+  padding: 10px ;
+  height: 210px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  img{
+    img{
     max-width: 100%;
-    max-height: 100px;
+    max-height: 200px;
+    border-radius: 10px;
   }
 `;
 
