@@ -15,21 +15,28 @@ export default function CategoriesPage({products,categories}) {
     const[filtrados,setFiltrados]=useState("")
     const[catfiltrados,setCatFiltrados]=useState("")
     const[properties,setProperties]=useState([])
+    
+
   useEffect(()=>{
-    setFiltrados(products.filter(e=>{
-      if(properties){
-        console.log("e.properties",e.properties , "properties",properties)
+    
+    
+    setFiltrados(products.filter(prod=>{
+
+      if(properties?.length && properties[1] !=="All" ){
+        // console.log("e.properties",prod.properties , "properties",properties)
         return(
-          e.category === selected   && e.properties[properties[0]] === properties[1]
+            prod.category === selected   &&  prod.properties[properties[0]] === properties[1]
         )
+        
       }
       return(
-        e.category === selected
+    
+        prod.category === selected
       )
     }))
-    setCatFiltrados(categories.filter(e=>{
+    setCatFiltrados(categories.filter(cat=>{
       return(
-        e._id === selected
+        cat._id === selected
       )
     }))
   },[selected,properties])
@@ -46,7 +53,7 @@ export default function CategoriesPage({products,categories}) {
           
           onChange={e=>(
             setSelected(e.target.value),
-            setProperties(null)
+            setProperties([]),
             )}>
         <option value="" >All</option>
             {categories.length > 0 && categories.map(category => (
@@ -65,7 +72,7 @@ export default function CategoriesPage({products,categories}) {
                 <select value={properties? properties[e.name]:e.name}
                 onChange={ev=>setProperties([e.name,ev.target.value])}
                 >
-                <option value="" >All</option>
+                <option value="All" >All</option>
                   {e.values?.map(v=>(
                     <option key={v}>{v}</option>
                   ))}
