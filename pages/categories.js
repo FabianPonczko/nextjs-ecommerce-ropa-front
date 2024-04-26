@@ -53,6 +53,10 @@ export default function CategoriesPage({products,categories}) {
               <option key={category._id} value={category._id}>{category.name}</option>))}
        </select>
        
+        
+
+      
+          
         {catfiltrados.length >0 && catfiltrados.map(filtro =>(
           <div style={{display:"flex", gap:"15px" }}>
             {filtro.properties.map(e=>(
