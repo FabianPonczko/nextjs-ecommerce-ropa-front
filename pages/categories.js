@@ -14,9 +14,15 @@ export default function CategoriesPage({products,categories}) {
     const[selected,setSelected]=useState("")
     const[filtrados,setFiltrados]=useState("")
     const[catfiltrados,setCatFiltrados]=useState("")
-    const[properties,setProperties]=useState("")
+    const[properties,setProperties]=useState([])
   useEffect(()=>{
     setFiltrados(products.filter(e=>{
+      if(properties){
+        console.log("e.properties",e.properties , "properties",properties)
+        return(
+          e.category === selected   && e.properties[properties[0]] === properties[1]
+        )
+      }
       return(
         e.category === selected
       )
@@ -26,9 +32,9 @@ export default function CategoriesPage({products,categories}) {
         e._id === selected
       )
     }))
-  },[selected])
-
-
+  },[selected,properties])
+  
+    
     return (
     <>
       <Header />
@@ -38,22 +44,24 @@ export default function CategoriesPage({products,categories}) {
         <label>Category </label>
         <select  value={selected}
           
-          onChange={e=>setSelected(e.target.value)}>
+          onChange={e=>(
+            setSelected(e.target.value),
+            setProperties(null)
+            )}>
         <option value="" >All</option>
             {categories.length > 0 && categories.map(category => (
               <option key={category._id} value={category._id}>{category.name}</option>))}
        </select>
        
-        
-
-      
-          
         {catfiltrados.length >0 && catfiltrados.map(filtro =>(
           <div style={{display:"flex", gap:"15px" }}>
             {filtro.properties.map(e=>(
               <div style={{display:"flex", gap:"5px" }}>
                 <label>{e.name}</label>
-                <select>
+                <select value={properties? properties[e.name]:e.name}
+                onChange={ev=>setProperties([e.name,ev.target.value])}
+                >
+                <option value="" >All</option>
                   {e.values?.map(v=>(
                     <option key={v}>{v}</option>
                   ))}
