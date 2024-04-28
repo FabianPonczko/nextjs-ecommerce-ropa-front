@@ -10,27 +10,16 @@ import Input from "@/components/Input";
 import { useEffect, useState } from "react";
 
 
+
 export default function CategoriesPage({products,categories}) {
-    const[selected,setSelected]=useState("")
-    const[filtrados,setFiltrados]=useState("")
+    const[selected,setSelected]=useState("All")
+    const[filtrados,setFiltrados]=useState(products)
     const[catfiltrados,setCatFiltrados]=useState("")
     const[properties,setProperties]=useState([])
-    
 
   useEffect(()=>{
-    
-    
     setFiltrados(products.filter(prod=>{
-
-      if(properties?.length && properties[1] !=="All" ){
-        // console.log("e.properties",prod.properties , "properties",properties)
-        return(
-            prod.category === selected   &&  prod.properties[properties[0]] === properties[1]
-        )
-        
-      }
       return(
-    
         prod.category === selected
       )
     }))
@@ -39,7 +28,26 @@ export default function CategoriesPage({products,categories}) {
         cat._id === selected
       )
     }))
-  },[selected,properties])
+  },[selected])
+
+  useEffect(()=>{
+    setFiltrados(products.filter(prod=>{
+      if(properties?.length && properties[1] !=="All" ){
+        return(
+          console.log(prod.category === selected   &&  prod.properties[properties[0]] === properties[1]),
+            prod.category === selected   &&  prod.properties[properties[0]] === properties[1]
+          )
+      }
+      return(
+        prod.category === selected
+      )
+    }))
+    setCatFiltrados(categories.filter(cat=>{
+      return(
+        cat._id === selected
+      )
+    }))
+  },[properties])
   
     
     return (
@@ -52,18 +60,13 @@ export default function CategoriesPage({products,categories}) {
         <select  value={selected}
           
           onChange={e=>(
-            setSelected(e.target.value),
-            setProperties([]),
+            setSelected(e.target.value)
             )}>
-        <option value="" >All</option>
+        <option value="All" >All</option>
             {categories.length > 0 && categories.map(category => (
               <option key={category._id} value={category._id}>{category.name}</option>))}
        </select>
-       
-        
 
-      
-          
         {catfiltrados.length >0 && catfiltrados.map(filtro =>(
           <div style={{display:"flex", gap:"15px" }}>
             {filtro.properties.map(e=>(
@@ -83,28 +86,7 @@ export default function CategoriesPage({products,categories}) {
         ))}
       
       </div>  
-      
-          {/* // console.log("filtro ",filtro)
-          // filtro.properties.map(e=>(
-            //   //  <select>
-            //   // console.log("filtro.propiedad ",e.name) 
-            
-            //   // </select>
-            // ))
-          */}
-      
-
-      
-
-          
-            {/* <option value="" >All</option>
-            {categories.length > 0 && categories.map(category => (
-            <option key={category._id} value={category._id}>{category.name}</option>))}
-          </select> */}
-            
-        
-        
-      <ProductsGrid  products= {filtrados.length ? filtrados: products}/>
+      <ProductsGrid  products= {filtrados.length ? filtrados: properties[1] ==="All" || selected==="All" ? products :[{_id:"",title:"Sin STOCK",description:"",price:"",images:["img/logo.jpg"]}]}/>
       </Center>
     </>
   );

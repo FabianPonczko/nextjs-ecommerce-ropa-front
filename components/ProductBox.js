@@ -61,7 +61,7 @@ const Price = styled.div`
 
 export default function ProductBox({_id,title,description,price,images}) {
   const {addProduct} = useContext(CartContext);
-  const url = '/product/'+_id;
+  const url = title!=="Sin STOCK"? '/product/'+_id:"";
   return (
     <ProductWrapper>
       <WhiteBox href={url}>
@@ -70,12 +70,16 @@ export default function ProductBox({_id,title,description,price,images}) {
         </div>
       </WhiteBox>
       <ProductInfoBox>
-        <Title href={url}>{title}</Title>
+        
+        {title==="Sin STOCK"
+        ?<Title href={url} style={{color: "#FF0000"}}>{title}</Title>
+        :<Title href={url}>{title}</Title>}
+        
         <PriceRow>
           <Price>
             ${price}
           </Price>
-          <Button block onClick={() => addProduct(_id)} primary outline>
+          <Button block onClick={() => title!=="Sin STOCK"?addProduct(_id):null} primary outline>
             Add to cart
           </Button>
         </PriceRow>
