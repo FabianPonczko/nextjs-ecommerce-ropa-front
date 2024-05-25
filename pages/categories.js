@@ -15,7 +15,9 @@ export default function CategoriesPage({products,categories}) {
     const[selected,setSelected]=useState("All")
     const[filtrados,setFiltrados]=useState(products)
     const[catfiltrados,setCatFiltrados]=useState("")
-    const[properties,setProperties]=useState([])
+    const[propertiesfound,setPropertiesfound]=useState([])
+
+    const prop =[];
 
   useEffect(()=>{
     setFiltrados(products.filter(prod=>{
@@ -28,16 +30,17 @@ export default function CategoriesPage({products,categories}) {
         cat._id === selected
       )
     }))
+    setPropertiesfound("")
+
   },[selected])
 
   useEffect(()=>{
     setFiltrados(products.filter(prod=>{
-      if(properties?.length && properties[1] !=="All" ){
+      if(propertiesfound?.length && propertiesfound[0] !=="All"){
         return(
-          console.log(prod.category === selected   &&  prod.properties[properties[0]] === properties[1]),
-            prod.category === selected   &&  prod.properties[properties[0]] === properties[1]
-          )
-      }
+          prod.category === selected && (prod.properties?.color === propertiesfound[0] || prod.properties?.talle === propertiesfound[0])
+        ) 
+    }
       return(
         prod.category === selected
       )
@@ -47,9 +50,13 @@ export default function CategoriesPage({products,categories}) {
         cat._id === selected
       )
     }))
-  },[properties])
+  },[propertiesfound])
   
-    
+  const groupedValues = {};
+    {for (const i in filtrados) {
+      prop.push(filtrados[i].properties)
+    }}
+
     return (
     <>
       <Header />
@@ -67,26 +74,39 @@ export default function CategoriesPage({products,categories}) {
               <option key={category._id} value={category._id}>{category.name}</option>))}
        </select>
 
-        {catfiltrados.length >0 && catfiltrados.map(filtro =>(
-          <div style={{display:"flex", gap:"15px" }}>
-            {filtro.properties.map(e=>(
-              <div style={{display:"flex", gap:"5px" }}>
-                <label>{e.name}</label>
-                <select value={properties? properties[e.name]:e.name}
-                onChange={ev=>setProperties([e.name,ev.target.value])}
-                >
-                <option value="All" >All</option>
-                  {e.values?.map(v=>(
-                    <option key={v}>{v}</option>
-                  ))}
-                </select>
-              </div>
-            ))}
-          </div>
-        ))}
-      
+      {prop.length > 0 && prop.map((ind, index) => {
+         // Objeto para agrupar valores por clave
+          // Iterar sobre las entradas del objeto para agrupar los valores
+          ind && Object.entries(ind).forEach(([key, value]) => {
+          
+            // no incluira la key stock
+            if (!groupedValues[key]) {
+              key!=="stock" ? groupedValues[key] = [value]:null; // Inicializar el array si la clave no existe
+            } else {
+              !groupedValues[key].includes(value) ? groupedValues[key].push(value):null // Agregar el valor al array existente
+            }
+          });
+        
+        })
+      }
+    <div  style={{display:"flex", gap:"15px" }}>
+             {Object.entries(groupedValues).map(([key, values], innerIndex) => (
+               <div style={{ display: "flex", gap: "5px" }}>
+                 <label>{key}</label>
+                 <select 
+                   onChange={ev => setPropertiesfound([ev.target.value])}
+                   value={propertiesfound[0]}
+                 >
+                   <option value="All">All</option>
+                   {values.map((value, valueIndex) => (
+                     <option key={valueIndex} value={value}>{value}</option>
+                   ))}
+                 </select>
+               </div>
+             ))}
+           </div>
       </div>  
-      <ProductsGrid  products= {filtrados.length ? filtrados: properties[1] ==="All" || selected==="All" ? products :[{_id:"",title:"Sin STOCK",description:"",price:"",images:["img/logo.jpg"]}]}/>
+      <ProductsGrid  products= {filtrados.length ? filtrados: propertiesfound ==="All" || selected==="All" ? products :[{_id:"",title:"Sin STOCK",description:"",price:"",images:["img/logo.jpg"]}]}/>
       </Center>
     </>
   );
