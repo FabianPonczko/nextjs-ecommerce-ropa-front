@@ -38,7 +38,7 @@ export default function CategoriesPage({products,categories}) {
     setFiltrados(products.filter(prod=>{
       if(propertiesfound?.length && propertiesfound[0] !=="All"){
         return(
-          prod.category === selected && (prod.properties?.color === propertiesfound[0] || prod.properties?.talle === propertiesfound[0])
+          prod.category === selected && Object.values(prod.properties).includes(propertiesfound[0])
         ) 
     }
       return(
