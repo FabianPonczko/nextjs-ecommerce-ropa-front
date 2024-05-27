@@ -62,10 +62,10 @@ export default function CategoriesPage({products,categories}) {
       <Header />
       <Center>
         <Title>Categories </Title>
-      <div style={{display:"flex", gap:"15px" }}>
+      <div style={{display:"flex", gap:"15px" , alignItems:"center" }}>
         <label>Category </label>
-        <select  value={selected}
-          
+        <select style={{backgroundColor:"#fafaf3", borderRadius:"5px" , padding:"1px"}}
+          value ={selected}
           onChange={e=>(
             setSelected(e.target.value)
             )}>
@@ -89,11 +89,11 @@ export default function CategoriesPage({products,categories}) {
         
         })
       }
-    <div  style={{display:"flex", gap:"15px" }}>
+    <div  style={{display:"flex", gap:"15px"}}>
              {Object.entries(groupedValues).map(([key, values], innerIndex) => (
-               <div style={{ display: "flex", gap: "5px" }}>
+               <div style={{ display: "flex", gap: "5px", alignItems:"center" }}>
                  <label>{key}</label>
-                 <select 
+                 <select style={{backgroundColor:"#fafaf3", borderRadius:"5px", padding:"1px"}}
                    onChange={ev => setPropertiesfound([ev.target.value])}
                    value={propertiesfound[0]}
                  >
