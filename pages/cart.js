@@ -8,77 +8,84 @@ import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
 
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+initMercadoPago("TEST-aa2ea063-b130-4c69-a965-10519fe23bf9")
+
+
+
 const ColumnsWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  @media screen and (min-width: 768px) {
-    grid-template-columns: 1.2fr .8fr;
-  }
-  gap: 40px;
-  margin-top: 40px;
+display: grid;
+grid-template-columns: 1fr;
+@media screen and (min-width: 768px) {
+  grid-template-columns: 1.2fr .8fr;
+}
+gap: 40px;
+margin-top: 40px;
 `;
 
 const Box = styled.div`
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 30px;
+background-color: #fff;
+border-radius: 10px;
+padding: 30px;
 `;
 
 const ProductInfoCell = styled.td`
-  padding: 10px 0;
+padding: 10px 0;
 `;
 
 const ProductImageBox = styled.div`
-  width: 70px;
+width: 70px;
+height: 100px;
+padding: 2px;
+border: 1px solid rgba(0, 0, 0, 0.1);
+display:flex;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+img{
+  max-width: 60px;
+  max-height: 60px;
+}
+@media screen and (min-width: 768px) {
+  padding: 10px;
+  width: 100px;
   height: 100px;
-  padding: 2px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
   img{
-    max-width: 60px;
-    max-height: 60px;
+    max-width: 80px;
+    max-height: 80px;
   }
-  @media screen and (min-width: 768px) {
-    padding: 10px;
-    width: 100px;
-    height: 100px;
-    img{
-      max-width: 80px;
-      max-height: 80px;
-    }
   }
-`;
+  `;
 
-const QuantityLabel = styled.span`
+  const QuantityLabel = styled.span`
   padding: 0 15px;
   display: block;
   @media screen and (min-width: 768px) {
     display: inline-block;
     padding: 0 10px;
   }
-`;
-
-const CityHolder = styled.div`
+  `;
+  
+  const CityHolder = styled.div`
   display:flex;
   gap: 5px;
-`;
+  `;
+  
+  export default function CartPage() {
+    const {cartProducts,addProduct,removeProduct,clearCart} = useContext(CartContext);
+    const [products,setProducts] = useState([]);
+    const [name,setName] = useState('');
+    const [email,setEmail] = useState('');
+    const [city,setCity] = useState('');
+    const [postalCode,setPostalCode] = useState('');
+    const [streetAddress,setStreetAddress] = useState('');
+    const [country,setCountry] = useState('');
+    const [isSuccess,setIsSuccess] = useState(false);
+    const [mpReference,setMPreference] = useState(false);
 
-export default function CartPage() {
-  const {cartProducts,addProduct,removeProduct,clearCart} = useContext(CartContext);
-  const [products,setProducts] = useState([]);
-  const [name,setName] = useState('');
-  const [email,setEmail] = useState('');
-  const [city,setCity] = useState('');
-  const [postalCode,setPostalCode] = useState('');
-  const [streetAddress,setStreetAddress] = useState('');
-  const [country,setCountry] = useState('');
-  const [isSuccess,setIsSuccess] = useState(false);
-  useEffect(() => {
-    if (cartProducts.length > 0) {
-      axios.post('/api/cart', {ids:cartProducts})
+    useEffect(() => {
+      if (cartProducts.length > 0) {
+        axios.post('/api/cart', {ids:cartProducts})
         .then(response => {
           setProducts(response.data);
         })
@@ -86,6 +93,20 @@ export default function CartPage() {
       setProducts([]);
     }
   }, [cartProducts]);
+  //mercadopago
+  useEffect(() => {
+    if (cartProducts.length > 0) {
+        axios.post('/api/checkoutMercadopago', {
+        name,email,city,postalCode,streetAddress,country,
+        cartProducts,
+      }).then(response => {
+        setMPreference(response.data.id);
+      })
+  } else {
+    setMPreference(null);
+  }
+  
+}, []);
   useEffect(() => {
     if (typeof window === 'undefined') {
       return;
@@ -95,12 +116,14 @@ export default function CartPage() {
       clearCart();
     }
   }, []);
+
   function moreOfThisProduct(id) {
     addProduct(id);
   }
   function lessOfThisProduct(id) {
     removeProduct(id);
   }
+  
   async function goToPayment() {
     const response = await axios.post('/api/checkout', {
       name,email,city,postalCode,streetAddress,country,
@@ -110,6 +133,7 @@ export default function CartPage() {
       window.location = response.data.url;
     }
   }
+
   let total = 0;
   for (const productId of cartProducts) {
     const price = products.find(p => p._id === productId)?.price || 0;
@@ -221,6 +245,9 @@ export default function CartPage() {
                       onClick={goToPayment}>
                 Continue to payment
               </Button>
+              
+              {mpReference?.length > 0 && <Wallet initialization={{ preferenceId: mpReference }} customization={{ texts:{ valueProp: 'smart_option'}}} />}
+
             </Box>
           )}
         </ColumnsWrapper>
