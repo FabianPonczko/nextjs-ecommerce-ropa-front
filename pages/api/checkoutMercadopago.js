@@ -48,7 +48,7 @@ export default async function handler(req,res) {
       MPitem.push({
         quantity,
         title:productInfo.title,
-        price: quantity * productInfo.price ,
+        price: productInfo.price ,
     });
     }
   }
@@ -63,13 +63,13 @@ console.log({MPitem})
   const preference =  new Preference(client);
   MPitem.length > 0 && preference.create({
     body: {
-      items: [
-        {
-          title: MPitem[0].title,
-          quantity: Number(MPitem[0].quantity),
-          unit_price:Number(MPitem[0].price)
-        }
-      ],
+      items: 
+        MPitem.map(item=>({
+          title: item.title,
+          quantity: item.quantity,
+          unit_price:item.price
+        })
+      ),
       back_urls:{
         success: "https://youtube.com",
         failure: "https://youtube.com",

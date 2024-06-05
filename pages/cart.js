@@ -1,3 +1,4 @@
+'use client'
 import Header from "@/components/Header";
 import styled from "styled-components";
 import Center from "@/components/Center";
@@ -10,7 +11,6 @@ import Input from "@/components/Input";
 
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 initMercadoPago("TEST-aa2ea063-b130-4c69-a965-10519fe23bf9")
-
 
 
 const ColumnsWrapper = styled.div`
@@ -95,18 +95,16 @@ img{
   }, [cartProducts]);
   //mercadopago
   useEffect(() => {
-    if (cartProducts.length > 0) {
-        axios.post('/api/checkoutMercadopago', {
-        name,email,city,postalCode,streetAddress,country,
-        cartProducts,
-      }).then(response => {
-        setMPreference(response.data.id);
-      })
-  } else {
-    setMPreference(null);
-  }
-  
+    
+
+
 }, []);
+useEffect(() => {
+  return () => {
+    // Limpieza del estado de mpReference
+    setMPreference(null);
+  };
+}, [cartProducts]);
   useEffect(() => {
     if (typeof window === 'undefined') {
       return;
@@ -133,7 +131,19 @@ img{
       window.location = response.data.url;
     }
   }
-
+  async function goToPaymentMP(e) {
+    e.preventDefault()
+    if (cartProducts.length > 0) {
+      axios.post('/api/checkoutMercadopago', {
+      name,email,city,postalCode,streetAddress,country,
+      cartProducts,
+    }).then(response => {
+      setMPreference(response.data.id);
+    })
+} else {
+  setMPreference(null);
+}
+  }
   let total = 0;
   for (const productId of cartProducts) {
     const price = products.find(p => p._id === productId)?.price || 0;
@@ -209,6 +219,7 @@ img{
           {!!cartProducts?.length && (
             <Box>
               <h2>Order information</h2>
+              <form onSubmit={goToPaymentMP}>
               <Input type="text"
                      placeholder="Name"
                      value={name}
@@ -242,11 +253,14 @@ img{
                      name="country"
                      onChange={ev => setCountry(ev.target.value)}/>
               <Button black block
-                      onClick={goToPayment}>
+                      type="submit" value="submit"
+                      // onClick={goToPaymentMP}
+                      >
                 Continue to payment
               </Button>
+            </form>
               
-              {mpReference?.length > 0 && <Wallet initialization={{ preferenceId: mpReference }} customization={{ texts:{ valueProp: 'smart_option'}}} />}
+              {mpReference && <Wallet initialization={{ preferenceId: mpReference }} customization={{ texts:{ valueProp: 'smart_option'}}} />}
 
             </Box>
           )}
