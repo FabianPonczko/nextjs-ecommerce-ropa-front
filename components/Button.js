@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import {primary} from "@/lib/colors";
+import {primary,azulMP} from "@/lib/colors";
 
 export const ButtonStyle = css`
   border:0;
@@ -41,6 +41,13 @@ export const ButtonStyle = css`
     background-color: ${primary};
     border: 1px solid ${primary};
     color:#fff;
+  `}
+  ${props => props.azulMP && !props.outline && css`
+    background-color: ${azulMP};
+    border: 1px solid ${primary};
+    color:#fff;
+    margin-top:10px;
+    height: 60px;
   `}
   ${props => props.primary && props.outline && css`
     background-color: transparent;

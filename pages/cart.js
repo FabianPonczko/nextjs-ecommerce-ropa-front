@@ -8,9 +8,11 @@ import {CartContext} from "@/components/CartContext";
 import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
+import Link from "next/link";
 
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-initMercadoPago("TEST-aa2ea063-b130-4c69-a965-10519fe23bf9")
+
+// import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+// initMercadoPago("TEST-aa2ea063-b130-4c69-a965-10519fe23bf9")
 
 
 const ColumnsWrapper = styled.div`
@@ -138,11 +140,15 @@ useEffect(() => {
       name,email,city,postalCode,streetAddress,country,
       cartProducts,
     }).then(response => {
-      setMPreference(response.data.id);
+      console.log({response})
+      setMPreference(response.data);
     })
 } else {
   setMPreference(null);
 }
+  }
+  async function pagar(){
+    href=mpReference
   }
   let total = 0;
   for (const productId of cartProducts) {
@@ -242,7 +248,7 @@ useEffect(() => {
                        name="postalCode"
                        onChange={ev => setPostalCode(ev.target.value)}/>
               </CityHolder>
-              <Input type="text"
+              <Input type="text" 
                      placeholder="Street Address"
                      value={streetAddress}
                      name="streetAddress"
@@ -260,10 +266,17 @@ useEffect(() => {
               </Button>
             </form>
               
-              {mpReference && <Wallet initialization={{ preferenceId: mpReference }} customization={{ texts:{ valueProp: 'smart_option'}}} />}
+              {mpReference && 
+                <a href ={mpReference} style={{textDecoration:"none"}}>
+                  <Button azulMP block >
+                    Pagar con Mercado Pago
+                </Button>
+                </a>
+              }
 
             </Box>
           )}
+        
         </ColumnsWrapper>
       </Center>
     </>

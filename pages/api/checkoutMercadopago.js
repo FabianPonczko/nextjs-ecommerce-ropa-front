@@ -81,7 +81,11 @@ console.log({MPitem})
   
   })
   .then((e)=>{
-    res.json({id:e.id})
+    const a = e.sandbox_init_point
+    console.log(a)
+    res.json(e.sandbox_init_point)
+    
+    // res.json({respuesta:e.body.init_point})
   })    
   .catch(console.log);
   
