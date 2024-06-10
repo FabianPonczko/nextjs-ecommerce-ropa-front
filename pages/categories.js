@@ -91,7 +91,7 @@ export default function CategoriesPage({products,categories}) {
       }
     <div  style={{display:"flex", gap:"15px"}}>
              {Object.entries(groupedValues).map(([key, values], innerIndex) => (
-               <div style={{ display: "flex", gap: "5px", alignItems:"center" }}>
+               <div key={key} style={{ display: "flex", gap: "5px", alignItems:"center" }}>
                  <label>{key}</label>
                  <select style={{backgroundColor:"#fafaf3", borderRadius:"5px", padding:"1px"}}
                    onChange={ev => setPropertiesfound([ev.target.value])}
