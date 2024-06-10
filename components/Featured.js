@@ -66,7 +66,7 @@ export default function Featured({product}) {
       <Center>
         <ColumnsWrapper>
           <Column>
-            <div>
+            <div key={product.id}>
               <Title>{product.title}</Title>
               <Desc>{product.description}</Desc>
               <ButtonsWrapper>
