@@ -1,4 +1,4 @@
-'use client'
+
 import Header from "@/components/Header";
 import styled from "styled-components";
 import Center from "@/components/Center";
@@ -8,11 +8,6 @@ import {CartContext} from "@/components/CartContext";
 import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
-import Link from "next/link";
-
-
-// import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-// initMercadoPago("TEST-aa2ea063-b130-4c69-a965-10519fe23bf9")
 
 
 const ColumnsWrapper = styled.div`

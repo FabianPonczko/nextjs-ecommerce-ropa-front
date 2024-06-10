@@ -8,59 +8,62 @@ import {Order} from "@/models/Order";
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from 'mercadopago';
+import { useState } from "react";
 
 // Agrega credenciales
-const client = new MercadoPagoConfig({ accessToken: "TEST-2349342480298440-060209-c46b3fa83ac057f355cc32ce144c2d94-54468045" });
+const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN });
 
-
-
-export default async function handler(req,res) {
+export default async function MP(req,res) {
+  const[id_MP,sertId_MP]=useState([])  
   if (req.method !== 'POST') {
     res.json('should be a POST request');
     return;
-  }
-  const {
-    name,email,city,
-    postalCode,streetAddress,country,
-    cartProducts,
-  } = req.body;
-  await mongooseConnect();
-  const productsIds = cartProducts;
-  const uniqueIds = [...new Set(productsIds)];
-  const productsInfos = await Product.find({_id:uniqueIds});
-
-  let line_items = [];
-  const MPitem=[];
-  for (const productId of uniqueIds) {
-    const productInfo = productsInfos.find(p => p._id.toString() === productId);
-    const quantity = productsIds.filter(id => id === productId)?.length || 0;
-    if (quantity > 0 && productInfo) {
+    }
+    const {
+      name,email,city,
+      postalCode,streetAddress,country,
+      cartProducts,
+      } = req.body;
+      await mongooseConnect();
+      const productsIds = cartProducts;
+      const uniqueIds = [...new Set(productsIds)];
+      const productsInfos = await Product.find({_id:uniqueIds});
+      
+      let line_items = [];
+      const MPitem=[];
+      const MP_id=null;
+      for (const productId of uniqueIds) {
+        const productInfo = productsInfos.find(p => p._id.toString() === productId);
+        const quantity = productsIds.filter(id => id === productId)?.length || 0;
+        if (quantity > 0 && productInfo) {
       line_items.push({
         quantity,
         price_data: {
-          currency: 'USD',
+          currency: 'AR',
           product_data: {name:productInfo.title},
-          unit_amount: quantity * productInfo.price * 100,
-        },
-      });
-    }
-    if (quantity > 0 && productInfo) {
-      MPitem.push({
-        quantity,
-        title:productInfo.title,
-        price: productInfo.price ,
-    });
-    }
-  }
+          unit_amount: quantity * productInfo.price,
+          },
+          });
+          }
+          if (quantity > 0 && productInfo) {
+            MPitem.push({
+              quantity,
+              title:productInfo.title,
+              price: productInfo.price ,
+              });
+              }
+              }
+            
 
-  const orderDoc = await Order.create({
-    line_items,name,email,city,postalCode,
-    streetAddress,country,paid:false,
-  });
+  // const orderDoc = await Order.create({
+  //   line_items,name,email,city,postalCode,
+  //   streetAddress,country,paid:false,id_MP
+  // });
 console.log({MPitem})
 
 // MERCADO PAGO 
-  const preference =  new Preference(client);
+
+const preference = new Preference(client);
   MPitem.length > 0 && preference.create({
     body: {
       items: 
@@ -71,9 +74,9 @@ console.log({MPitem})
         })
       ),
       back_urls:{
-        success: "https://youtube.com",
-        failure: "https://youtube.com",
-        pending: "https://youtube.com"
+        success: "https://foxxcomputacion.netlify.app/",
+        failure: "https://foxxcomputacion.netlify.app/",
+        pending: "https://foxxcomputacion.netlify.app/"
       },
       auto_return:"approved"
       
@@ -81,16 +84,19 @@ console.log({MPitem})
   
   })
   .then((e)=>{
+    sertId_MP(e.id)
     const a = e.sandbox_init_point
-    console.log(a)
     res.json(e.sandbox_init_point)
     
     // res.json({respuesta:e.body.init_point})
   })    
   .catch(console.log);
-  
-  
-  
+
+    const orderDoc = await Order.create({
+      line_items,name,email,city,postalCode,
+    streetAddress,country,paid:false,id_MP
+  });
+
   // ---------------------
 
   // const session = await stripe.checkout.sessions.create({
