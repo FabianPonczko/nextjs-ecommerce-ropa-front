@@ -5,6 +5,7 @@ import ButtonLink from "@/components/ButtonLink";
 import CartIcon from "@/components/icons/CartIcon";
 import {useContext} from "react";
 import {CartContext} from "@/components/CartContext";
+import Image from "next/image";
 
 const Bg = styled.div`
   background-color: #222;
@@ -79,7 +80,7 @@ export default function Featured({product}) {
             </div>
           </Column>
           <Column>
-            <img src="https://firebasestorage.googleapis.com/v0/b/next-ecommerce-ropa-admin.appspot.com/o/images%2Fbanner.webp?alt=media&token=bd4fd67a-b209-4321-9051-1b8ab970c3bd" alt="banner"/>
+            <Image src="https://firebasestorage.googleapis.com/v0/b/next-ecommerce-ropa-admin.appspot.com/o/images%2Fbanner.webp?alt=media&token=bd4fd67a-b209-4321-9051-1b8ab970c3bd" alt="banner"/>
           </Column>
         </ColumnsWrapper>
       </Center>

@@ -8,6 +8,7 @@ import {CartContext} from "@/components/CartContext";
 import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
+import Image from "next/image";
 
 
 const ColumnsWrapper = styled.div`
@@ -185,7 +186,7 @@ useEffect(() => {
                     <tr key={product._id}>
                       <ProductInfoCell>
                         <ProductImageBox>
-                          <img src={product.images[0]} alt=""/>
+                          <Image src={product.images[0]} alt=""/>
                         </ProductImageBox>
                         {product.title}
                       </ProductInfoCell>
