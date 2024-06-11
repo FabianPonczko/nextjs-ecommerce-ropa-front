@@ -32,7 +32,7 @@ export default function CategoriesPage({products,categories}) {
     }))
     setPropertiesfound("")
 
-  },[selected])
+  },[selected,categories,products])
 
   useEffect(()=>{
     setFiltrados(products.filter(prod=>{
@@ -50,7 +50,7 @@ export default function CategoriesPage({products,categories}) {
         cat._id === selected
       )
     }))
-  },[propertiesfound])
+  },[propertiesfound,categories,products,selected])
   
   const groupedValues = {};
     {for (const i in filtrados) {
