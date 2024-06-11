@@ -79,8 +79,10 @@ img{
     const [country,setCountry] = useState('');
     const [isSuccess,setIsSuccess] = useState(false);
     const [mpReference,setMPreference] = useState(false);
+    const [loading,setLoading] = useState(false)
 
     useEffect(() => {
+      setLoading(true)
       if (cartProducts.length > 0) {
         axios.post('/api/cart', {ids:cartProducts})
         .then(response => {
@@ -89,6 +91,7 @@ img{
     } else {
       setProducts([]);
     }
+    setLoading(false)
   }, [cartProducts]);
   
 useEffect(() => {
@@ -146,6 +149,21 @@ useEffect(() => {
     total += price;
   }
 
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <Center>
+          <ColumnsWrapper>
+            <Box>
+              <h1>Cargando valores</h1>
+              <p>Por favor espere,</p>
+            </Box>
+          </ColumnsWrapper>
+        </Center>
+      </>
+    );
+  }
   if (isSuccess) {
     return (
       <>
@@ -161,6 +179,7 @@ useEffect(() => {
       </>
     );
   }
+
   return (
     <>
       <Header />
