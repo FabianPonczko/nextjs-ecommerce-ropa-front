@@ -4,7 +4,6 @@ import CartIcon from "@/components/icons/CartIcon";
 import Link from "next/link";
 import {useContext} from "react";
 import {CartContext} from "@/components/CartContext";
-import Image from "next/image";
 
 const ProductWrapper = styled.div`
   
@@ -67,7 +66,7 @@ export default function ProductBox({_id,title,description,price,images}) {
     <ProductWrapper>
       <WhiteBox href={url}>
         <div key={_id}>
-          <Image src={images?.[0]} alt=""/>
+          <img src={images?.[0]}  alt="imagen"/>
         </div>
       </WhiteBox>
       <ProductInfoBox>
