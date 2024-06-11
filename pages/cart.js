@@ -90,12 +90,7 @@ img{
       setProducts([]);
     }
   }, [cartProducts]);
-  //mercadopago
-  useEffect(() => {
-    
-
-
-}, []);
+  
 useEffect(() => {
   return () => {
     // Limpieza del estado de mpReference
@@ -110,7 +105,7 @@ useEffect(() => {
       setIsSuccess(true);
       clearCart();
     }
-  }, []);
+  }, [clearCart]);
 
   function moreOfThisProduct(id) {
     addProduct(id);
