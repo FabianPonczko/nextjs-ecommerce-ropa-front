@@ -74,9 +74,9 @@ const preference = new Preference(client);
         })
       ),
       back_urls:{
-        success: "https://foxxcomputacion.netlify.app/",
-        failure: "https://foxxcomputacion.netlify.app/",
-        pending: "https://foxxcomputacion.netlify.app/"
+        success: "https://nextjs-ecommerce-ropa-front.vercel.app/",
+        failure: "https://nextjs-ecommerce-ropa-front.vercel.app/",
+        pending: "https://nextjs-ecommerce-ropa-front.vercel.app/"
       },
       auto_return:"approved"
       
