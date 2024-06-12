@@ -1,4 +1,5 @@
 'use client';
+import crypto from 'crypto';
 export default async function handler(req, res) {
     const headers = req.headers
    // Obtain the x-signature value from the header
@@ -42,7 +43,8 @@ const secret = process.env.SECRET;
 const manifest = `id:${dataID};request-id:${xRequestId};ts:${ts};`;
 
 // Create an HMAC signature
-const hmac = crypto.createHmac('sha256', secret);
+
+const hmac = crypto.createHmac('sha256', "data");
 hmac.update(manifest);
 
 // Obtain the hash result as a hexadecimal string
