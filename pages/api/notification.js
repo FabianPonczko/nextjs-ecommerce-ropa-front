@@ -44,7 +44,7 @@ const manifest = `id:${dataID};request-id:${xRequestId};ts:${ts};`;
 
 // Create an HMAC signature
 
-const hmac = crypto.createHmac('sha256', secret);
+const hmac = crypto.createHmac('sha256', "ac277b8713e8bed60c1c0f9a39b1b8c41d73287238acea88e6a4b94bf7bad671");
 hmac.update(manifest);
 
 // Obtain the hash result as a hexadecimal string
