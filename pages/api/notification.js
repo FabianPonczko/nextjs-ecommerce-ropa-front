@@ -1,3 +1,4 @@
+'use client';
 export default async function handler(req, res) {
     const headers = req.headers
    // Obtain the x-signature value from the header
@@ -5,18 +6,22 @@ const xSignature = headers['x-signature']; // Assuming headers is an object cont
 const xRequestId = headers['x-request-id']; // Assuming headers is an object containing request headers
 
 // Obtain Query params related to the request URL
-const urlParams = new URLSearchParams(window.location.search);
-const dataID = urlParams.get('data.id');
+
+    const urlParams =  new  URLSearchParams() 
+    //  const urlParams = new URLSearchParams(window.location.urlParams);
+     const dataID = urlParams.get('data.id');
+     console.log(dataID)
+
 
 // Separating the x-signature into parts
-const parts = xSignature.split(',');
+const parts = xSignature?.split(',');
 
 // Initializing variables to store ts and hash
 let ts;
 let hash;
 
 // Iterate over the values to obtain ts and v1
-parts.forEach(part => {
+parts?.forEach(part => {
     // Split each part into key and value
     const [key, value] = part.split('=');
     if (key && value) {
@@ -50,6 +55,7 @@ if (sha === hash) {
     // HMAC verification failed
     console.log("HMAC verification failed");
 }
+
 res.status(200)
 
 }
