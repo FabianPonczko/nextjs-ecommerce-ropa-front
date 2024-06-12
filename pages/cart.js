@@ -110,7 +110,7 @@ useEffect(() => {
     }
   }, [clearCart]);
 
-  function moreOfThisProduct(id) {
+   function moreOfThisProduct(id) {
     addProduct(id);
   }
   function lessOfThisProduct(id) {
