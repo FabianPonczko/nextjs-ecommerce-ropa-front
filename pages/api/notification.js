@@ -1,17 +1,21 @@
 'use client';
 import crypto from 'crypto';
 export default async function handler(req, res) {
-    const headers = req.headers
+    if (req.method !== 'POST') {
+        res.json('should be a POST request');
+        return;
+        }
+const headers = req.headers
    // Obtain the x-signature value from the header
 const xSignature = headers['x-signature']; // Assuming headers is an object containing request headers
 const xRequestId = headers['x-request-id']; // Assuming headers is an object containing request headers
 
+console.log(dataID)
 // Obtain Query params related to the request URL
 
     const urlParams =  new  URLSearchParams() 
     //  const urlParams = new URLSearchParams(window.location.urlParams);
      const dataID = urlParams.get('data.id');
-     console.log(dataID)
 
 
 // Separating the x-signature into parts
@@ -44,7 +48,7 @@ const manifest = `id:${dataID};request-id:${xRequestId};ts:${ts};`;
 
 // Create an HMAC signature
 
-const hmac = crypto.createHmac('sha256', "ac277b8713e8bed60c1c0f9a39b1b8c41d73287238acea88e6a4b94bf7bad671");
+const hmac = crypto.createHmac('sha256', secret);
 hmac.update(manifest);
 
 // Obtain the hash result as a hexadecimal string
@@ -52,13 +56,13 @@ const sha = hmac.digest('hex');
 
 if (sha === hash) {
     // HMAC verification passed
-    console.log("HMAC verification passed");
+    res.json("HMAC verification passed");
+    
 } else {
     // HMAC verification failed
-    console.log("HMAC verification failed");
+    res.json("HMAC verification failed");
 }
 
-res.status(200)
 
 }
   
