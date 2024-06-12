@@ -1,5 +1,12 @@
 'use client';
 import crypto from 'crypto';
+"use client";
+
+import { useSearchParams } from "next/navigation";
+
+
+
+
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         res.json('should be a POST request');
@@ -10,13 +17,17 @@ const headers = req.headers
 const xSignature = headers['x-signature']; // Assuming headers is an object containing request headers
 const xRequestId = headers['x-request-id']; // Assuming headers is an object containing request headers
 
-console.log(dataID)
 // Obtain Query params related to the request URL
 
-    const urlParams =  new  URLSearchParams() 
-    //  const urlParams = new URLSearchParams(window.location.urlParams);
-     const dataID = urlParams.get('data.id');
+ const urlParams = new  URLSearchParams() 
+//  const searchParams = useSearchParams();
+//  const myParam = searchParams.get("myParam");
+//  const urlParams = new URLSearchParams(window.location.urlParams);
+const dataID = urlParams.get("data.id");
 
+
+
+console.log(dataID)
 
 // Separating the x-signature into parts
 const parts = xSignature?.split(',');
@@ -56,11 +67,11 @@ const sha = hmac.digest('hex');
 
 if (sha === hash) {
     // HMAC verification passed
-    res.json("HMAC verification passed");
+    res.status(200).end("Hello HMAC verification passed");
     
 } else {
     // HMAC verification failed
-    res.json("HMAC verification failed");
+    res.status(200).end("Hello HMAC verification failed");
 }
 
 
