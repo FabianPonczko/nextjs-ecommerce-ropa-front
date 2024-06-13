@@ -22,7 +22,6 @@ const xRequestId = headers['x-request-id']; // Assuming headers is an object con
 // const dataID = urlParams.get("data.id");
 const dataID = req.query
 
-
 // Separating the x-signature into parts
 const parts = xSignature?.split(',');
 
