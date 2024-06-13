@@ -1,7 +1,7 @@
 'use client';
 import crypto from 'crypto';
+import {Order} from "@/models/Order";
 
-import { useSearchParams } from "next/navigation";
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -15,11 +15,6 @@ const xRequestId = headers['x-request-id']; // Assuming headers is an object con
 
 // Obtain Query params related to the request URL
 
-//  const urlParams = new  URLSearchParams() 
-//  const searchParams = useSearchParams();
-//  const myParam = searchParams.get("myParam");
-//  const urlParams = new URLSearchParams(window.location.urlParams);
-// const dataID = urlParams.get("data.id");
 const dataID = req.query
 
 // Separating the x-signature into parts
@@ -60,6 +55,9 @@ const sha = hmac.digest('hex');
 
 if (sha === hash) {
     // HMAC verification passed
+   await Order.findByIdAndUpdate(dataID,{
+        paid:true,
+      })
     res.status(200).end("Hello HMAC verification passed");
     
 } else {

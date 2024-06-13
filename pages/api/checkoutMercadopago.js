@@ -1,20 +1,20 @@
 import {mongooseConnect} from "@/lib/mongoose";
 import {Product} from "@/models/Product";
 import {Order} from "@/models/Order";
+import { useState } from "react";
 // const stripe = require('stripe')(process.env.STRIPE_SK);
-
 
 
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from 'mercadopago';
-import { useState } from "react";
+
 
 // Agrega credenciales
 const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN });
 
 export default async function MP(req,res) {
-  // const[id_MP,sertId_MP]=useState([])  
+  const[id_MP,sertId_MP]=useState([])  
   if (req.method !== 'POST') {
     res.json('should be a POST request');
     return;
@@ -85,7 +85,7 @@ const preference = new Preference(client);
   
   })
   .then((e)=>{
-    // sertId_MP(e.id)
+    sertId_MP(e.id)
     const a = e.sandbox_init_point
     res.json(e.sandbox_init_point)
     
@@ -96,7 +96,7 @@ const preference = new Preference(client);
     const orderDoc = await Order.create({
       line_items,name,email,city,postalCode,
     streetAddress,country,paid:false,
-    // id_MP
+    id_MP:id_MP
   });
 
   // ---------------------
