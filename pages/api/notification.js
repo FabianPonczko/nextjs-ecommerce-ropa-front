@@ -17,6 +17,7 @@ const xRequestId = headers['x-request-id']; // Assuming headers is an object con
 
 const dataID = req.query
 
+console.log(dataID)
 // Separating the x-signature into parts
 const parts = xSignature?.split(',');
 
@@ -55,9 +56,11 @@ const sha = hmac.digest('hex');
 
 if (sha === hash) {
     // HMAC verification passed
-   await Order.findByIdAndUpdate(dataID,{
-        paid:true,
-      })
+    if (dataID.status==="approved"){
+        await Order.findByIdAndUpdate(dataID.id,{
+            paid:true,
+        })
+    }
     res.status(200).end("Hello HMAC verification passed");
     
 } else {
