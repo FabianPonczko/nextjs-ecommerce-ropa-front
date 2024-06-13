@@ -1,11 +1,7 @@
 'use client';
 import crypto from 'crypto';
-"use client";
 
 import { useSearchParams } from "next/navigation";
-
-
-
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -19,15 +15,13 @@ const xRequestId = headers['x-request-id']; // Assuming headers is an object con
 
 // Obtain Query params related to the request URL
 
- const urlParams = new  URLSearchParams() 
+//  const urlParams = new  URLSearchParams() 
 //  const searchParams = useSearchParams();
 //  const myParam = searchParams.get("myParam");
 //  const urlParams = new URLSearchParams(window.location.urlParams);
-const dataID = urlParams.get("data.id");
+// const dataID = urlParams.get("data.id");
+const dataID = req.query
 
-
-
-console.log(dataID)
 
 // Separating the x-signature into parts
 const parts = xSignature?.split(',');
