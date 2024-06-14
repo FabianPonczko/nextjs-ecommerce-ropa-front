@@ -82,20 +82,22 @@ const preference = new Preference(client);
   
   })
   .then((e)=>{
-    MP_id=e;
-    console.log(MP_id.collector_id)
-    id_mp.push(MP_id)
+    MP_id=e.collector_id
+    console.log(MP_id)
+    createOrder(MP_id)
     res.json(e.sandbox_init_point)
     
     // res.json({respuesta:e.body.init_point})
     })    
     .catch(console.log);
-    
-   await Order.create({
-      line_items,name,email,city,postalCode,
-    streetAddress,country,paid:false,
-    mp_id:id_mp.collector_id
-    });
+
+    async function createOrder(MP_id){
+      await Order.create({
+        line_items,name,email,city,postalCode,
+        streetAddress,country,paid:false,
+        mp_id:MP_id
+      });
+    }
 
 
   // ---------------------
