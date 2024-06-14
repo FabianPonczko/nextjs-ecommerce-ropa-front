@@ -82,7 +82,8 @@ const preference = new Preference(client);
   
   })
   .then((e)=>{
-    MP_id=e.id;
+    MP_id=e;
+    console.log(MP_id.collector_id)
     id_mp.push(MP_id)
     res.json(e.sandbox_init_point)
     
@@ -93,8 +94,9 @@ const preference = new Preference(client);
    await Order.create({
       line_items,name,email,city,postalCode,
     streetAddress,country,paid:false,
-    id:id_mp
-  });
+    mp_id:id_mp.collector_id
+    });
+
 
   // ---------------------
 
