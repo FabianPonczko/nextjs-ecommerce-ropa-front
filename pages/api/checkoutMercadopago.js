@@ -59,6 +59,13 @@ export default async function Mp(req,res) {
 console.log({MPitem})
 
 // MERCADO PAGO 
+async function createOrder(MP_id){
+  await Order.create({
+    line_items,name,email,city,postalCode,
+    streetAddress,country,paid:false,
+    id:MP_id
+  });
+}
 
 const preference = new Preference(client);
   MPitem.length > 0 && preference.create({
@@ -91,13 +98,6 @@ const preference = new Preference(client);
     })    
     .catch(console.log);
 
-    async function createOrder(MP_id){
-      await Order.create({
-        line_items,name,email,city,postalCode,
-        streetAddress,country,paid:false,
-        id:MP_id
-      });
-    }
 
 
   // ---------------------
