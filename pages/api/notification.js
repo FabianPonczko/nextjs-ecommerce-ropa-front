@@ -17,7 +17,7 @@ const xRequestId = headers['x-request-id']; // Assuming headers is an object con
 
 const dataID = req.query
 
-console.log(dataID)
+console.log({dataID})
 // Separating the x-signature into parts
 const parts = xSignature?.split(',');
 
@@ -55,10 +55,11 @@ hmac.update(manifest);
 const sha = hmac.digest('hex');
 
 if (sha === hash) {
+    console.log("Hello HMAC verification passed")
     // HMAC verification passed
     if (dataID.status==="approved"){
         const id = dataID.preference_id
-        alert.log({id})
+        console.log({id})
         await Order.findByIdAndUpdate(id,{
             paid:true,
         })
@@ -67,6 +68,7 @@ if (sha === hash) {
     
 } else {
     // HMAC verification failed
+    console.log("Hello HMAC verification failed")
     res.status(200).end("Hello HMAC verification failed");
 }
 
