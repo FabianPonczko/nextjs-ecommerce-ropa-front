@@ -57,7 +57,7 @@ const sha = hmac.digest('hex');
 if (sha === hash) {
     // HMAC verification passed
     if (dataID.status==="approved"){
-        await Order.findByIdAndUpdate({id:dataID.preference_id},{
+        await Order.findByIdAndUpdate(dataID.preference_id,{
             paid:true,
         })
     }
