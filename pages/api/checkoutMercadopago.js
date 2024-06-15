@@ -83,6 +83,7 @@ const preference = new Preference(client);
         pending: process.env.PUBLIC_URL + '/cart?pending=1',
         // metadata: {orderId:orderDoc._id.toString(),test:'ok'},
       },
+      auto_return:"approved",
       notification_url: "https://nextjs-ecommerce-ropa-front.vercel.app/api/notification"
     }
   
