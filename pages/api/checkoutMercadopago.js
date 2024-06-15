@@ -89,7 +89,7 @@ const preference = new Preference(client);
   })
   .then((e)=>{
     MP_id=e.id
-    console.log(e.id)
+    console.log({e})
     createOrder(MP_id)
     res.json(e.sandbox_init_point)
     
