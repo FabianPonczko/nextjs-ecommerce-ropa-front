@@ -83,7 +83,7 @@ const preference = new Preference(client);
   })
   .then((e)=>{
     MP_id=e.id
-    console.log(e)
+    console.log(e.id)
     createOrder(MP_id)
     res.json(e.sandbox_init_point)
     
@@ -95,7 +95,7 @@ const preference = new Preference(client);
       await Order.create({
         line_items,name,email,city,postalCode,
         streetAddress,country,paid:false,
-        mp_id:MP_id
+        id:MP_id
       });
     }
 
