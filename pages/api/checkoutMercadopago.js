@@ -78,7 +78,7 @@ const preference = new Preference(client);
         })
       ),
       back_urls:{
-        success: process.env.PUBLIC_URL + '/cart?success=1',
+        success: "https://nextjs-ecommerce-ropa-front.vercel.app/api/notification" ,
         failure: process.env.PUBLIC_URL + '/cart?failure=1',
         pending: process.env.PUBLIC_URL + '/cart?pending=1',
         // metadata: {orderId:orderDoc._id.toString(),test:'ok'},
