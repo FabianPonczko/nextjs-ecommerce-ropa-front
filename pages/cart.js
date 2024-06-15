@@ -100,15 +100,15 @@ useEffect(() => {
     setMPreference(null);
   };
 }, [cartProducts]);
-  // useEffect(() => {
-  //   if (typeof window === 'undefined') {
-  //     return;
-  //   }
-  //   if (window?.location.href.includes('success')) {
-  //     setIsSuccess(true);
-  //     clearCart();
-  //   }
-  // }, [clearCart]);
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    if (window?.location.href.includes('success')) {
+      setIsSuccess(true);
+      clearCart();
+    }
+  }, [clearCart]);
 
    function moreOfThisProduct(id) {
     addProduct(id);
