@@ -59,7 +59,7 @@ if (sha === hash) {
     if (dataID.status==="approved"){
         const id = dataID.preference_id
         console.log({id})
-        await Order.findByIdAndUpdate({id},{
+        await Order.findOneAndUpdate({mp_id:id},{
             paid:true,
         })
     }

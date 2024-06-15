@@ -63,7 +63,7 @@ async function createOrder(MP_id){
   await Order.create({
     line_items,name,email,city,postalCode,
     streetAddress,country,paid:false,
-    id:MP_id
+    mp_id:MP_id
   });
 }
 
@@ -83,8 +83,7 @@ const preference = new Preference(client);
         pending: process.env.PUBLIC_URL + '/cart?pending=1',
         // metadata: {orderId:orderDoc._id.toString(),test:'ok'},
       },
-      auto_return:"approved"
-      
+      notification_url: "https://nextjs-ecommerce-ropa-front.vercel.app/api/notification"
     }
   
   })
