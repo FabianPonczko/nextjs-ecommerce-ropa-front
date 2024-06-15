@@ -1,12 +1,8 @@
 import crypto from 'crypto';
 import {Order} from "@/models/Order";
 
-
 export default async function handler(req, res) {
-    if (req.method !== 'POST') {
-        res.json('should be a POST request');
-        return;
-        }
+   
 const headers = req.headers
    // Obtain the x-signature value from the header
 const xSignature = headers['x-signature']; // Assuming headers is an object containing request headers
