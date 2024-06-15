@@ -1,4 +1,3 @@
-'use client';
 import crypto from 'crypto';
 import {Order} from "@/models/Order";
 
@@ -60,7 +59,7 @@ if (sha === hash) {
     if (dataID.status==="approved"){
         const id = dataID.preference_id
         console.log({id})
-        await Order.findByIdAndUpdate(id,{
+        await Order.findByIdAndUpdate({id},{
             paid:true,
         })
     }
