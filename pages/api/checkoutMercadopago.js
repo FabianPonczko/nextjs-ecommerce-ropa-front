@@ -86,7 +86,6 @@ const preference = new Preference(client);
       auto_return:"approved",
       notification_url: "https://nextjs-ecommerce-ropa-front.vercel.app/api/notification"
     }
-  
   })
   .then((e)=>{
     MP_id=e.id
