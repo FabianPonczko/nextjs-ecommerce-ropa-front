@@ -82,8 +82,8 @@ const preference = new Preference(client);
   
   })
   .then((e)=>{
-    MP_id=e.collector_id
-    console.log(MP_id)
+    MP_id=e.id
+    console.log(e)
     createOrder(MP_id)
     res.json(e.sandbox_init_point)
     
