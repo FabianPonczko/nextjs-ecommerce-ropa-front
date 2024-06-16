@@ -4,7 +4,7 @@ import {Order} from "@/models/Order";
 
 
 // SDK de Mercado Pago
-import { MercadoPagoConfig, Payment } from 'mercadopago';
+import { MercadoPagoConfig, Payment } from '@mercadopago/sdk-react';
 
 
 // Agrega credenciales
