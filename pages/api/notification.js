@@ -62,9 +62,7 @@ const sha = hmac.digest('hex');
 
 async function getdata(id){
     console.log("id con id: ", id)
-    
-    console.log("data id:  ",  )
-    await Order.findById({_id:id[0]},{
+    await Order.findById({_id:id},{
         paid:true,
     })
 }
@@ -75,7 +73,7 @@ if (sha === hash) {
     if (dataID.type==="payment"){
         const payment =  new Payment(client)
         payment.get({id:dataID["data.id"]}).then((data=>{
-            const id = data.external_reference
+            const id = data.external_reference.order_id
              getdata(id)
         })
         )
