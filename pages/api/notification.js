@@ -79,8 +79,7 @@ if (sha === hash) {
             const id = data.external_reference
             console.log("encontro: ", id)
             getdata(id)
-        }).catch(err=>{console.log(err)})
-        )
+        })).catch(err=>{console.log(err)})
          
         res.status(200).end("Hello HMAC verification passed");
     }
