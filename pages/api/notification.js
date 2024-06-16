@@ -62,8 +62,8 @@ const sha = hmac.digest('hex');
 
 async function getdata(id){
     console.log("llego id: ", id)
-    const {order_id}= id
-    console.log("data id: ", order_id)
+    const data = Object.entries(id)
+    console.log("data id: ", data)
 
     await Order.findById({_id:data},{
         paid:true,
