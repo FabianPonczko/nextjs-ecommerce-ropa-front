@@ -64,7 +64,7 @@ if (sha === hash) {
     // HMAC verification passed
     if (dataID.type==="payment"){
         const id = dataID["data.id"]
-        const payment = await new Payment(client).get({id:dataID["data.id"]})
+        const payment = await new Payment(client).get({id})
         console.log({payment})
         await Order.findOneAndUpdate({mp_id:id},{
             paid:true,
