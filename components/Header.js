@@ -69,9 +69,11 @@ export default function Header() {
     <StyledHeader>
       <Center>
         <Wrapper>
-          <Logo href={'/'}>Tienda golden !</Logo>
+          <Logo href={'/'}>Tienda Quetop !
+            Donde encontraras las mejores Carteras
+          </Logo>
             <StyledNav mobileNavActive={mobileNavActive}>
-            <NavLink href={'/'}>Home</NavLink>
+            <NavLink href={'/'}>Inicio</NavLink>
             <NavLink href={'/products'}>Productos</NavLink>
             <NavLink href={'/categories'}>Categorias</NavLink>
             <NavLink href={'/account'}>Datos de Usuario</NavLink>
