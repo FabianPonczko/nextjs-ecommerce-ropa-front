@@ -52,9 +52,8 @@ const sha = hmac.digest('hex');
 if (sha === hash) {
     console.log("Hello HMAC verification passed")
     // HMAC verification passed
-    if (dataID.status==="approved"){
-        const id = dataID.preference_id
-        console.log({id})
+    if (dataID.type==="payment"){
+        const id = dataID["data.id"]
         await Order.findOneAndUpdate({mp_id:id},{
             paid:true,
         })
