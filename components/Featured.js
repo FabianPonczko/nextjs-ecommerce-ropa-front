@@ -80,6 +80,7 @@ export default function Featured({product}) {
           </Column>
           <Column>
             <img src={product.images[0]} alt={product.title}/>
+            
           </Column>
         </ColumnsWrapper>
       </Center>
