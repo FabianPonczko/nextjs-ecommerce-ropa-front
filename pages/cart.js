@@ -174,9 +174,8 @@ useEffect(() => {
         <Center>
           <ColumnsWrapper>
             <Box>
-              <h1>Thanks for your order!</h1>
-              <p>We will email you when your order will be sent.</p>
-              <p>Notificado: {noti}</p>
+              <h1>Gracias por su compra!</h1>
+              <p>Le enviaremos un email cuando su orden este en camino.</p>
             </Box>
           </ColumnsWrapper>
         </Center>
@@ -190,9 +189,9 @@ useEffect(() => {
       <Center>
         <ColumnsWrapper>
           <Box>
-            <h2>Cart</h2>
+            <h2>Carrito de compras</h2>
             {!cartProducts?.length && (
-              <div>Your cart is empty</div>
+              <div>Su carrito esta vacio!</div>
             )}
             {products?.length > 0 && (
               <Table>
@@ -237,7 +236,7 @@ useEffect(() => {
           </Box>
           {!!cartProducts?.length && (
             <Box>
-              <h2>Order information</h2>
+              <h2>Información para el pedido</h2>
               <form onSubmit={goToPaymentMP}>
               <Input type="text"
                      placeholder="Name"
@@ -275,7 +274,7 @@ useEffect(() => {
                       type="submit" value="submit"
                       // onClick={goToPaymentMP}
                       >
-                Continue to payment
+                Continuar para el pago
               </Button>
             </form>
               
