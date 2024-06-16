@@ -60,6 +60,7 @@ hmac.update(manifest);
 // Obtain the hash result as a hexadecimal string
 const sha = hmac.digest('hex');
 
+
 async function getdata(id){
     console.log("llego id: ", id)
     await Order.findByIdAndUpdate({_id:id},{
@@ -71,10 +72,10 @@ if (sha === hash) {
     console.log("Hola HMAC verification passed")
     // HMAC verification passed
     if (dataID.type==="payment"){
-        const id = data.external_reference
-        getdata(id)
         const payment =  new Payment(client)
         payment.get({id:dataID["data.id"]}).then((data=>{
+            const id = data.external_reference
+            getdata(id)
             console.log("encontro: ", id)
         })
         )
