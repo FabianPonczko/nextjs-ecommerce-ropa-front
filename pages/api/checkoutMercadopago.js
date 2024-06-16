@@ -59,11 +59,10 @@ export default async function Mp(req,res) {
 console.log({MPitem})
 
 // MERCADO PAGO 
-async function createOrder(MP_id){
+const orderDoc = async function createOrder(MP_id){
   await Order.create({
     line_items,name,email,city,postalCode,
     streetAddress,country,paid:false,
-    mp_id:MP_id
   });
 }
 
@@ -77,20 +76,17 @@ const preference = new Preference(client);
           unit_price:item.price
         })
       ),
+      metadata: {orderId:orderDoc._id.toString(),test:'ok'},
       back_urls:{
         success: process.env.PUBLIC_URL + '/cart?success=1',
         failure: process.env.PUBLIC_URL + '/cart?failure=1',
         pending: process.env.PUBLIC_URL + '/cart?pending=1',
-        // metadata: {orderId:orderDoc._id.toString(),test:'ok'},
       },
       auto_return:"approved",
       notification_url: "https://nextjs-ecommerce-ropa-front.vercel.app/api/notification"
     }
   })
   .then((e)=>{
-    MP_id=e.id
-    console.log({e})
-    createOrder(MP_id)
     res.json(e.sandbox_init_point)
     
     // res.json({respuesta:e.body.init_point})
