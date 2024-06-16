@@ -9,10 +9,18 @@ const StyledHeader = styled.header`
   background-color: #222;
 `;
 const Logo = styled(Link)`
-  color:#fff;
+  text-decoration:none;
+   color:#fff;
+   font-Size: 12px;
+   position: relative;
+   padding: 5px 0;
+  @media screen and (min-width: 768px) {
+   color:#fff;
   text-decoration:none;
   position: relative;
   z-index: 3;
+  padding: 0;
+  }
 `;
 const Wrapper = styled.div`
   display: flex;

@@ -6,11 +6,16 @@ import {CartContext} from "@/components/CartContext";
 import BarsIcon from "@/components/icons/Bars";
 
 const StyledHeader = styled.header`
-  margin-top:50px;
-  height: 210px;
-  background-color: #222;
-  color:#fff;
-
+  display: block;
+  font-Size: 10px;
+  justify-content: space-between;
+  padding: 0px;
+@media screen and (min-width: 768px) {
+   margin-top:50px;
+    height: 210px;
+    background-color: #222;
+    color:#fff;
+  }
 `;
 const Logo = styled(Link)`
   color:#fff;
