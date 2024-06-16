@@ -106,9 +106,6 @@ useEffect(() => {
     if (window?.location.href.includes('success')) {
       setIsSuccess(true);
       clearCart();
-      setTimeout(() => {
-        axios.post('/')
-      }, 10000);
     }
   }, [clearCart]);
 

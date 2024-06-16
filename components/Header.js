@@ -4,7 +4,6 @@ import Center from "@/components/Center";
 import {useContext, useState} from "react";
 import {CartContext} from "@/components/CartContext";
 import BarsIcon from "@/components/icons/Bars";
-import { BsCart2 } from "react-icons/bs";
 
 const StyledHeader = styled.header`
   background-color: #222;
@@ -78,9 +77,7 @@ export default function Header() {
             <NavLink href={'/products'}>Productos</NavLink>
             <NavLink href={'/categories'}>Categorias</NavLink>
             <NavLink href={'/account'}>Datos de Usuario</NavLink>
-            <NavLink href={'/cart'}>Carrito ({cartProducts.length})
-            <BsCart2 />
-            </NavLink>
+            <NavLink href={'/cart'}>Carrito ({cartProducts.length})</NavLink>
           </StyledNav>
           <NavButton onClick={() => setMobileNavActive(prev => !prev)}>
             <BarsIcon />
