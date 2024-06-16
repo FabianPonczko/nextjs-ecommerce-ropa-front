@@ -88,6 +88,7 @@ export default function Header() {
             <p>Formas de envío</p>
             <img src="img/correo.png" style={{width:"40px"}}></img>
           </div>
+          
           <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
             <p>Contactos</p>
             <div>
@@ -97,6 +98,7 @@ export default function Header() {
               quetop@gmail.com
             </div>
           </div>
+          
                    
       </div>
       <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"50px"}}>
