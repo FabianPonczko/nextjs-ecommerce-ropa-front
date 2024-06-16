@@ -60,10 +60,10 @@ hmac.update(manifest);
 // Obtain the hash result as a hexadecimal string
 const sha = hmac.digest('hex');
 
-async function getdata(id){
-    const data = id["orderId"]
-    console.log("data id:  ", data  )
-    await Order.findById({_id:{data}},{
+async function getdata({id}){
+    
+    console.log("data id:  ", id  )
+    await Order.findById({_id:id},{
         paid:true,
     })
 }
