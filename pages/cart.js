@@ -108,7 +108,7 @@ useEffect(() => {
       return;
     }
     if (window?.location.href.includes('success')) {
-      setNoti(window.location.href)
+      setNoti(external_reference)
       setIsSuccess(true);
       clearCart();
     }
