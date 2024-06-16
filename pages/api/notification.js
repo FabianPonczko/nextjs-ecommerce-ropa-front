@@ -60,9 +60,9 @@ hmac.update(manifest);
 // Obtain the hash result as a hexadecimal string
 const sha = hmac.digest('hex');
 
-async function getdata(id){
-    console.log("id con id: ", id)
-    await Order.findById({_id:id},{
+async function getdata({order_id}){
+    console.log("order_id: ", order_id)
+    await Order.findById({_id:order_id},{
         paid:true,
     })
 }
@@ -73,7 +73,8 @@ if (sha === hash) {
     if (dataID.type==="payment"){
         const payment =  new Payment(client)
         payment.get({id:dataID["data.id"]}).then((data=>{
-            const id = data.external_reference.order_id
+            const id = data.external_reference
+            console.log("mando id: ", id)
              getdata(id)
         })
         )
