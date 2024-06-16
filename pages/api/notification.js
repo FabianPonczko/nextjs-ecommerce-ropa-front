@@ -69,7 +69,7 @@ async function getdata(id){
 }
 
 if (sha === hash) {
-    console.log("Hola HMAC verification passed")
+    console.log("en inicio verification passed")
     // HMAC verification passed
     if (dataID.type==="payment"){
         console.log("pagado, buscando pago")
@@ -81,8 +81,8 @@ if (sha === hash) {
             getdata(id)
         })).catch(err=>{console.log(err)})
          
-        res.status(200).end("Hello HMAC verification passed");
     }
+    res.status(200).end("Hello HMAC verification passed");
     
 } else {
     // HMAC verification failed
