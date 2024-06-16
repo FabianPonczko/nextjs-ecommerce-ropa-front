@@ -29,6 +29,7 @@ export function CartContextProvider({children}) {
   }
   function clearCart() {
     setCartProducts([]);
+    ls.clear('cart')
   }
   return (
     <CartContext.Provider value={{cartProducts,setCartProducts,addProduct,removeProduct,clearCart}}>
