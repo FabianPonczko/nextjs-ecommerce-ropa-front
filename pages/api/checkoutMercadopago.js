@@ -76,14 +76,14 @@ const preference = new Preference(client);
           unit_price:item.price
         })
       ),
-      metadata: {orderId:orderDoc._id.toString(),test:'ok'},
       back_urls:{
         success: process.env.PUBLIC_URL + '/cart?success=1',
         failure: process.env.PUBLIC_URL + '/cart?failure=1',
         pending: process.env.PUBLIC_URL + '/cart?pending=1',
       },
       auto_return:"approved",
-      notification_url: "https://nextjs-ecommerce-ropa-front.vercel.app/api/notification"
+      notification_url: "https://nextjs-ecommerce-ropa-front.vercel.app/api/notification",
+      metadata: {orderId:orderDoc._id.toString(),test:'ok'},
     }
   })
   .then((e)=>{
