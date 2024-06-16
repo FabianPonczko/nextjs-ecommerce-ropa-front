@@ -7,7 +7,7 @@ import BarsIcon from "@/components/icons/Bars";
 
 const StyledHeader = styled.header`
   margin-top:50px;
-  height: 200px;
+  height: 210px;
   background-color: #222;
   color:#fff;
 
@@ -101,7 +101,7 @@ export default function Header() {
           
                    
       </div>
-      <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"50px"}}>
+      <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"40px"}}>
             <span>Todos los derechos reservados - COPYRIGHT tiendagolden.com 2024</span>
       </div>
     </StyledHeader>
