@@ -1,6 +1,16 @@
 import crypto from 'crypto';
 import {Order} from "@/models/Order";
 
+
+
+// SDK de Mercado Pago
+import { MercadoPagoConfig, Payment } from 'mercadopago';
+
+
+// Agrega credenciales
+const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN });
+
+
 export default async function handler(req, res) {
    
 const headers = req.headers
@@ -50,10 +60,12 @@ hmac.update(manifest);
 const sha = hmac.digest('hex');
 
 if (sha === hash) {
-    console.log("Hello HMAC verification passed")
+    console.log("Hola HMAC verification passed")
     // HMAC verification passed
     if (dataID.type==="payment"){
         const id = dataID["data.id"]
+        const payment = await new Payment(client).get(id)
+        console.log({payment})
         await Order.findOneAndUpdate({mp_id:id},{
             paid:true,
         })
