@@ -75,7 +75,7 @@ if (sha === hash) {
         console.log("pagado, buscando pago")
         console.log("id de pago",dataID["data.id"])
         const payment = new Payment(client)
-        payment.get({id:dataID["data.id"],}).then((data=>{
+        payment.get({id:dataID["data.id"].toString(),}).then((data=>{
             const id = data.external_reference
             console.log("encontro: ", id)
             getdata(id)
