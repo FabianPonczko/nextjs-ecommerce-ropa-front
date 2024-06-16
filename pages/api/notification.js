@@ -75,9 +75,10 @@ if (sha === hash) {
         const payment =  new Payment(client)
         payment.get({id:dataID["data.id"]}).then((data=>{
             const id = data.external_reference
-            const order = id["order.id"]
-            console.log("id : ",order)
-             getdata(order)
+            console.log(id)
+            
+            
+            
         })
         )
          
