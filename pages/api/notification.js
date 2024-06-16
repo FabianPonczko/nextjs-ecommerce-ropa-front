@@ -14,6 +14,7 @@ const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN });
 export default async function handler(req, res) {
    
 const headers = req.headers
+const metaId = req.metadata
    // Obtain the x-signature value from the header
 const xSignature = headers['x-signature']; // Assuming headers is an object containing request headers
 const xRequestId = headers['x-request-id']; // Assuming headers is an object containing request headers
@@ -63,14 +64,13 @@ if (sha === hash) {
     console.log("Hola HMAC verification passed")
     // HMAC verification passed
     if (dataID.type==="payment"){
-        const metadata_id = dataID.metadata._id
         const id = dataID["data.id"]
         const payment =  new Payment(client)
         payment.get({id:dataID["data.id"]}).then((data=>{
             console.log({data})
         })
         )
-        await Order.findById({metadata_id},{
+        await Order.findById({_id:metaId.orderId},{
             paid:true,
         })
     }
