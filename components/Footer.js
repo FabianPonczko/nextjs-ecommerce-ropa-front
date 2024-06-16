@@ -102,8 +102,8 @@ export default function Header() {
                    
       </div>
       <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"50px"}}>
-            <span>Todos los derechos reservados - tiendagolden.com</span>
-          </div>
+            <span>Todos los derechos reservados - COPYRIGHT tiendagolden.com 2024</span>
+      </div>
     </StyledHeader>
   );
 }
