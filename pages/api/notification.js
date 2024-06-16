@@ -70,9 +70,9 @@ if (sha === hash) {
             console.log({data})
         })
         )
-        await Order.findById({_id:metaId.orderId},{
-            paid:true,
-        })
+        // await Order.findById({_id:metaId.orderId},{
+        //     paid:true,
+        // })
     }
     res.status(200).end("Hello HMAC verification passed");
     
