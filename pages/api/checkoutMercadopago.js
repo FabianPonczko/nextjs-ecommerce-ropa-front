@@ -82,7 +82,7 @@ const preference = new Preference(client);
         pending: process.env.PUBLIC_URL + '/cart?pending=1',
       },
       auto_return:"approved",
-      notification_url: "https://nextjs-ecommerce-ropa-front.vercel.app/api/notification",
+      notification_url: process.env.PUBLIC_URL + "/api/notification",
     }
   })
   .then((e)=>{

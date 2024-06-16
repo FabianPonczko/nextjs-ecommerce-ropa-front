@@ -274,7 +274,7 @@ useEffect(() => {
                       type="submit" value="submit"
                       // onClick={goToPaymentMP}
                       >
-                Continuar para el pago
+                Continuar con el pago
               </Button>
             </form>
               
