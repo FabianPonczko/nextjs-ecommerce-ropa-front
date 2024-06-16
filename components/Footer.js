@@ -71,10 +71,37 @@ export default function Header() {
   const [mobileNavActive,setMobileNavActive] = useState(false);
   return (
     <StyledHeader>
-          <p>Lorem ipsum dolor sit amet
-             consectetur adipisicing elit. //L Assumenda, sequi incidunt vel modi minima repellendus quae dicta dolore veritatis! Dicta earum, placeat delectus quas nihil illo esse! Voluptas, nesciunt cupiditate!
-          </p>
-          
+      <div style={{display:"flex", flexDirection:"row",justifyContent:"space-around",marginTop:"90px"}}>
+           <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+              <p>Navegación</p>
+              <div>
+                <NavLink href={'/'}>Inicio</NavLink>
+                <NavLink href={'/products'}>Productos</NavLink>
+                <NavLink href={'/categories'}>Categorias</NavLink>
+              </div>
+           </div>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+            <p>Medios de pago</p>
+            <img src="img/mercadopago@2x.png" style={{width:"50px"}}></img>
+          </div>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+            <p>Formas de envío</p>
+            <img src="img/correo.png" style={{width:"40px"}}></img>
+          </div>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+            <p>Contactos</p>
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" height={"20px"} >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25" />
+              </svg>
+              quetop@gmail.com
+            </div>
+          </div>
+                   
+      </div>
+      <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"50px"}}>
+            <span>Todos los derechos reservados - tiendagolden.com</span>
+          </div>
     </StyledHeader>
   );
 }

@@ -8,7 +8,7 @@ import ProductsGrid from "@/components/ProductsGrid";
 import Title from "@/components/Title";
 import Input from "@/components/Input";
 import { useEffect, useState } from "react";
-
+import Footer from "@/components/Footer"
 
 
 export default function CategoriesPage({products,categories}) {
@@ -108,6 +108,7 @@ export default function CategoriesPage({products,categories}) {
       </div>  
       <ProductsGrid  products= {filtrados.length ? filtrados: propertiesfound ==="All" || selected==="All" ? products :[{_id:"",title:"Sin STOCK",description:"",price:"",images:["img/logo.jpg"]}]}/>
       </Center>
+      <Footer />
     </>
   );
 }
