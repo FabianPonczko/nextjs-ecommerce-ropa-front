@@ -83,7 +83,7 @@ const preference = new Preference(client);
       },
       auto_return:"approved",
       notification_url: "https://nextjs-ecommerce-ropa-front.vercel.app/api/notification",
-      metadata: {orderId:orderDoc._id.toString(),test:'ok'},
+      metadata: {orderId:orderDoc._id,test:'ok'},
     }
   })
   .then((e)=>{
