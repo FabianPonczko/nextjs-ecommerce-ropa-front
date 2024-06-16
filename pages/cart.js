@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import styled from "styled-components";
 import Center from "@/components/Center";
@@ -8,8 +7,6 @@ import {CartContext} from "@/components/CartContext";
 import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
-import { redirect } from "next/dist/server/api-utils";
-
 
 const ColumnsWrapper = styled.div`
 display: grid;
@@ -110,7 +107,7 @@ useEffect(() => {
       setIsSuccess(true);
       clearCart();
       setTimeout(() => {
-        axios.post('/index')
+        axios.post('/')
       }, 10000);
     }
   }, [clearCart]);
