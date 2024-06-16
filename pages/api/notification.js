@@ -73,6 +73,7 @@ if (sha === hash) {
     // HMAC verification passed
     if (dataID.type==="payment"){
         console.log("pagado, buscando pago")
+        console.log("id de pago",dataID["data.id"])
         const payment = new Payment(client)
         payment.get({id:dataID["data.id"]}).then((data=>{
             const id = data.external_reference
