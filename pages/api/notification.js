@@ -14,7 +14,7 @@ const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN });
 export default async function handler(req, res) {
    
 const headers = req.headers
-const metaId = req.metadata
+
    // Obtain the x-signature value from the header
 const xSignature = headers['x-signature']; // Assuming headers is an object containing request headers
 const xRequestId = headers['x-request-id']; // Assuming headers is an object containing request headers
@@ -60,6 +60,12 @@ hmac.update(manifest);
 // Obtain the hash result as a hexadecimal string
 const sha = hmac.digest('hex');
 
+async function getdata(id){
+    await Order.findById({_id:id},{
+        paid:true,
+    })
+}
+
 if (sha === hash) {
     console.log("Hola HMAC verification passed")
     // HMAC verification passed
@@ -67,12 +73,11 @@ if (sha === hash) {
         const id = dataID["data.id"]
         const payment =  new Payment(client)
         payment.get({id:dataID["data.id"]}).then((data=>{
-            console.log({data})
+            console.log({data}),
+            getdata(data.external_reference["orderId"])
         })
         )
-        // await Order.findById({_id:metaId.orderId},{
-        //     paid:true,
-        // })
+         
     }
     res.status(200).end("Hello HMAC verification passed");
     
