@@ -80,7 +80,7 @@ export default function ProductBox({_id,title,description,price,images}) {
             ${price}
           </Price>
           <Button block onClick={() => title!=="Sin STOCK"?addProduct(_id):null} primary outline>
-            Add to cart
+            Agregar
           </Button>
         </PriceRow>
       </ProductInfoBox>
