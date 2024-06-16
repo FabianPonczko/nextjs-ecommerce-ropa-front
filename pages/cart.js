@@ -8,6 +8,7 @@ import {CartContext} from "@/components/CartContext";
 import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
+import { redirect } from "next/dist/server/api-utils";
 
 
 const ColumnsWrapper = styled.div`
@@ -80,8 +81,6 @@ img{
     const [isSuccess,setIsSuccess] = useState(false);
     const [mpReference,setMPreference] = useState(false);
     const [loading,setLoading] = useState(false)
-    const [noti,setNoti] = useState("")
-
     
 
     useEffect(() => {
@@ -110,6 +109,9 @@ useEffect(() => {
     if (window?.location.href.includes('success')) {
       setIsSuccess(true);
       clearCart();
+      setTimeout(() => {
+        redirect("https://tiendagolden.vercel.app")
+      }, 10000);
     }
   }, [clearCart]);
 
