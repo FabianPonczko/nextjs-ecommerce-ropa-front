@@ -60,7 +60,7 @@ hmac.update(manifest);
 // Obtain the hash result as a hexadecimal string
 const sha = hmac.digest('hex');
 
-async function getdata(id){
+async function getdata({id}){
     console.log("!llego *id* con {}: ",{id} , " y *id* sin {} ",id)
     await Order.findById({_id:{id}},{
         paid:true,
@@ -74,6 +74,7 @@ if (sha === hash) {
         const payment =  new Payment(client)
         payment.get({id:dataID["data.id"]}).then((data=>{
             const id = data.external_reference["orderId"]
+            console.log("este id esta dentro del payment",id)
             getdata(id)
         })
         )
