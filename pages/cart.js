@@ -110,7 +110,7 @@ useEffect(() => {
       setIsSuccess(true);
       clearCart();
       setTimeout(() => {
-        redirect("https://tiendagolden.vercel.app")
+        axios.post('/index')
       }, 10000);
     }
   }, [clearCart]);
