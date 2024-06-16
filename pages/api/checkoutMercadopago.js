@@ -75,7 +75,7 @@ const preference = new Preference(client);
           unit_price:item.price
         })
       ),
-      external_reference: {'order.id':orderDoc._id.toString(),test:'ok'},
+      external_reference: {'order.id':orderDoc._id.toString()},
       back_urls:{
         success: process.env.PUBLIC_URL + '/cart?success=1',
         failure: process.env.PUBLIC_URL + '/cart?failure=1',
