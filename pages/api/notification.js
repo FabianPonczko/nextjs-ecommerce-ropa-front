@@ -4,7 +4,7 @@ import {Order} from "@/models/Order";
 
 
 // SDK de Mercado Pago
-import { MercadoPagoConfig, Payment } from '@mercadopago/sdk-react';
+import { MercadoPagoConfig, Payment } from 'mercadopago';
 
 
 // Agrega credenciales
@@ -64,8 +64,11 @@ if (sha === hash) {
     // HMAC verification passed
     if (dataID.type==="payment"){
         const id = dataID["data.id"]
-        const payment = await new Payment(client).get({id})
-        console.log({payment})
+        const payment =  new Payment(client)
+        payment.get({id:dataID["data.id"]}).then((data=>{
+            console.log({data})
+        })
+        )
         await Order.findOneAndUpdate({mp_id:id},{
             paid:true,
         })
