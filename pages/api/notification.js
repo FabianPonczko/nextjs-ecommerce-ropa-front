@@ -63,13 +63,14 @@ if (sha === hash) {
     console.log("Hola HMAC verification passed")
     // HMAC verification passed
     if (dataID.type==="payment"){
+        const metadata_id = dataID.metadata._id
         const id = dataID["data.id"]
         const payment =  new Payment(client)
         payment.get({id:dataID["data.id"]}).then((data=>{
             console.log({data})
         })
         )
-        await Order.findOneAndUpdate({mp_id:id},{
+        await Order.findById({metadata_id},{
             paid:true,
         })
     }
