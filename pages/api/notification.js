@@ -72,7 +72,8 @@ if (sha === hash) {
     console.log("Hola HMAC verification passed")
     // HMAC verification passed
     if (dataID.type==="payment"){
-        const payment =  new Payment(client)
+        console.log("paso")
+        const payment = new Payment(client)
         payment.get({id:dataID["data.id"]}).then((data=>{
             const id = data.external_reference
             console.log("encontro: ", id)
@@ -80,8 +81,8 @@ if (sha === hash) {
         })
         )
          
+        res.status(200).end("Hello HMAC verification passed");
     }
-    res.status(200).end("Hello HMAC verification passed");
     
 } else {
     // HMAC verification failed
