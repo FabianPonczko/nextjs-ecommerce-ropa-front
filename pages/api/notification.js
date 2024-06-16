@@ -61,7 +61,7 @@ hmac.update(manifest);
 const sha = hmac.digest('hex');
 
 async function getdata(id){
-    const {data} = id
+    const data = id["order.id"].toString()
     console.log("data id:  ", data )
     await Order.findById({_id:data},{
         paid:true,
