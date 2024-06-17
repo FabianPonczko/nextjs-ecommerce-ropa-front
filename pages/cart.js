@@ -7,12 +7,14 @@ import {CartContext} from "@/components/CartContext";
 import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
+import Footer from "@/components/Footer"
 
 const ColumnsWrapper = styled.div`
 display: grid;
 grid-template-columns: 1fr;
 @media screen and (min-width: 768px) {
   grid-template-columns: 1.2fr .8fr;
+  min-height: 400px
 }
 gap: 40px;
 margin-top: 40px;
@@ -287,6 +289,7 @@ useEffect(() => {
         
         </ColumnsWrapper>
       </Center>
+      <Footer />
     </>
   );
 }
