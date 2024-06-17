@@ -52,6 +52,10 @@ export default function ProductPage({product}) {
                 </Button>
               </div>
             </PriceRow>
+              <div style={{marginTop:"50px",height:"50px",backgroundColor:"orange"}}>
+                
+              Envío gratis superando los $150.000
+              </div>
           </div>
         </ColWrapper>
       </Center>
