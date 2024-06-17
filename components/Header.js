@@ -20,6 +20,7 @@ const Logo = styled(Link)`
   position: relative;
   z-index: 3;
   padding: 0;
+  font-Size: 16px;
   }
 `;
 const Wrapper = styled.div`

@@ -15,6 +15,7 @@ const StyledHeader = styled.header`
     height: 210px;
     background-color: #222;
     color:#fff;
+    font-Size: 16px;
   }
 `;
 const Logo = styled(Link)`
@@ -106,7 +107,7 @@ export default function Header() {
           
                    
       </div>
-      <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"40px"}}>
+      <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"50px"}}>
             <span>Todos los derechos reservados - COPYRIGHT tiendagolden.com 2024</span>
       </div>
     </StyledHeader>
