@@ -268,7 +268,7 @@ useEffect(() => {
                      value={country}
                      name="country"
                      onChange={ev => setCountry(ev.target.value)}/>
-              <Button black block
+              <Button primary block
                       type="submit" value="submit"
                       // onClick={goToPaymentMP}
                       >

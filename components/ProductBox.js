@@ -79,8 +79,8 @@ export default function ProductBox({_id,title,description,price,images}) {
           <Price>
             ${price}
           </Price>
-          <Button block onClick={() => title!=="Sin STOCK"?addProduct(_id):null} primary outline>
-            Agregar
+          <Button outline primary block onClick={() => title!=="Sin STOCK"?addProduct(_id):null} >
+          <CartIcon />Agregar
           </Button>
         </PriceRow>
       </ProductInfoBox>
