@@ -63,7 +63,7 @@ export default function CategoriesPage({products,categories}) {
       <Center>
         <Title>Categorias</Title>
       <div style={{display:"flex", gap:"15px" , alignItems:"center" }}>
-        <label>Filrar </label>
+        <label>Filtro </label>
         <select style={{backgroundColor:"#fafaf3", borderRadius:"5px" , padding:"1px"}}
           value ={selected}
           onChange={e=>(
