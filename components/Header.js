@@ -82,7 +82,7 @@ export default function Header() {
           <Logo href={'/'}>Tienda Quetop !
             Donde encontraras las mejores Carteras
           </Logo>
-            <StyledNav mobileNavActive={mobileNavActive}>
+            <StyledNav mobileNavActive={mobileNavActive}style={{fontFamily:"serif" }}>
             <NavLink href={'/'}>Inicio</NavLink>
             <NavLink href={'/products'}>Productos</NavLink>
             <NavLink href={'/categories'}>Categorias</NavLink>

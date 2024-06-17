@@ -13,7 +13,7 @@ export default function ProductsPage({products}) {
     <>
       <Header />
       <Center>
-        <Title>Todos los Productos </Title>
+        <Title style={{fontStyle:"italic",fontFamily:"serif" , marginTop:"55px"}}>Listado de "Todos los Productos" </Title>
         <ProductsGrid products={products} />
       </Center>
       <Footer />
