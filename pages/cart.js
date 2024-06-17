@@ -69,14 +69,14 @@ img{
   `;
   
   export default function CartPage() {
-    const {cartProducts,addProduct,removeProduct,clearCart} = useContext(CartContext);
+    const {cartProducts,addProduct,removeProduct,clearCart,addClient,dataClient} = useContext(CartContext);
     const [products,setProducts] = useState([]);
-    const [name,setName] = useState('');
-    const [email,setEmail] = useState('');
-    const [city,setCity] = useState('');
-    const [postalCode,setPostalCode] = useState('');
-    const [streetAddress,setStreetAddress] = useState('');
-    const [country,setCountry] = useState('');
+    const [name,setName] =  useState(dataClient[0]) || ('');
+    const [email,setEmail] = useState(dataClient[1]) || ('');
+    const [city,setCity] = useState(dataClient[2]) || ('');
+    const [postalCode,setPostalCode] = useState(dataClient[3]) || ('');
+    const [streetAddress,setStreetAddress] =useState(dataClient[4]) || ('');
+    const [country,setCountry] = useState('Argentina');
     const [isSuccess,setIsSuccess] = useState(false);
     const [mpReference,setMPreference] = useState(false);
     const [loading,setLoading] = useState(false)
@@ -93,6 +93,13 @@ img{
       setProducts([]);
     }
     setLoading(false)
+    if(dataClient.length>0){
+      setName(dataClient[0])
+      setEmail(dataClient[1])
+      setCity(dataClient[2]) 
+      setPostalCode(dataClient[3])
+      setStreetAddress(dataClient[4])
+    }
   }, [cartProducts]);
   
 useEffect(() => {
@@ -110,6 +117,7 @@ useEffect(() => {
       clearCart();
     }
   }, [clearCart]);
+  
 
    function moreOfThisProduct(id) {
     addProduct(id);
@@ -140,7 +148,16 @@ useEffect(() => {
 } else {
   setMPreference(null);
 }
-  }
+  const dataClientTosend=[
+    name,
+    email,
+    city,
+    postalCode,
+    streetAddress,
+  ]
+  addClient(dataClientTosend)
+
+}
   async function pagar(){
     href=mpReference
   }
@@ -223,8 +240,14 @@ useEffect(() => {
                       </td>
                     </tr>
                   ))}
-                  <tr>
-                    <td></td>
+                  <tr style={{height:"15px"}}>
+                    
+                    
+                    
+                    
+                  </tr>
+                  <tr style={{height:"50px"}}>
+                    <td >Total</td>
                     <td></td>
                     <td>${total}</td>
                   </tr>
@@ -240,34 +263,34 @@ useEffect(() => {
                      placeholder="Name"
                      value={name}
                      name="name"
-                     onChange={ev => setName(ev.target.value)} />
+                     onChange={ev => setName(ev.target.value)} required/>
               <Input type="text"
                      placeholder="Email"
                      value={email}
                      name="email"
-                     onChange={ev => setEmail(ev.target.value)}/>
+                     onChange={ev => setEmail(ev.target.value)}required/>
               <CityHolder>
                 <Input type="text"
                        placeholder="City"
                        value={city}
                        name="city"
-                       onChange={ev => setCity(ev.target.value)}/>
+                       onChange={ev => setCity(ev.target.value)}required/>
                 <Input type="text"
                        placeholder="Postal Code"
                        value={postalCode}
                        name="postalCode"
-                       onChange={ev => setPostalCode(ev.target.value)}/>
+                       onChange={ev => setPostalCode(ev.target.value)}required/>
               </CityHolder>
               <Input type="text" 
                      placeholder="Street Address"
                      value={streetAddress}
                      name="streetAddress"
-                     onChange={ev => setStreetAddress(ev.target.value)}/>
+                     onChange={ev => setStreetAddress(ev.target.value)}required/>
               <Input type="text"
-                     placeholder="Country"
+                     placeholder="Argentina"
                      value={country}
                      name="country"
-                     onChange={ev => setCountry(ev.target.value)}/>
+                      onChange={ev => setCountry(ev.target.value)} required/>
               <Button primary block
                       type="submit" value="submit"
                       // onClick={goToPaymentMP}
