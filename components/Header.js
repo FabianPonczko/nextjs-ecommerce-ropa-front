@@ -31,6 +31,7 @@ const Wrapper = styled.div`
 const StyledNav = styled.nav`
   ${props => props.mobileNavActive ? `
     display: block;
+    z-index: 3;
   ` : `
     display: none;
   `}

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {useState} from "react";
+import ZoomOnHoverImage from "@/components/ZoomOnHoverImage";
 
 const Image = styled.img`
     max-width: 100%;
@@ -31,12 +32,14 @@ const BigImageWrapper = styled.div`
   text-align: center;
 `;
 
+
 export default function ProductImages({images}) {
   const [activeImage,setActiveImage] = useState(images?.[0]);
   return (
     <>
       <BigImageWrapper>
-        <BigImage src={activeImage} />
+        {/* <BigImage src={activeImage} />  */}
+        <ZoomOnHoverImage src={activeImage} alt="Descripción de la imagen" />
       </BigImageWrapper>
       <ImageButtons>
         {images.map(image => (
