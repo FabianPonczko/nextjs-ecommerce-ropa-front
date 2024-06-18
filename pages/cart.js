@@ -8,6 +8,8 @@ import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
 import Footer from "@/components/Footer"
+import { Router, useRouter } from "next/router";
+
 
 const ColumnsWrapper = styled.div`
 display: grid;
@@ -81,6 +83,7 @@ img{
     const [mpReference,setMPreference] = useState(false);
     const [loading,setLoading] = useState(false)
     
+    const router = useRouter()    
 
     useEffect(() => {
       setLoading(true)
@@ -91,6 +94,9 @@ img{
         })
     } else {
       setProducts([]);
+      setTimeout(() => {
+      router.push("/")
+      }, 4000);
     }
     setLoading(false)
     if(dataClient.length>0){
