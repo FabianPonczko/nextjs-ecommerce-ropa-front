@@ -11,6 +11,7 @@ import CartIcon from "@/components/icons/CartIcon";
 import {useContext} from "react";
 import {CartContext} from "@/components/CartContext";
 
+
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -45,6 +46,7 @@ const Price = styled.span`
 
 export default function ProductPage({product}) {
   const {addProduct} = useContext(CartContext);
+  
   return (
     <>
       <Header />

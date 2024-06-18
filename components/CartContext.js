@@ -1,4 +1,5 @@
 import {createContext, useEffect, useState} from "react";
+import showAlert from "./Alert";
 
 export const CartContext = createContext({});
 
@@ -25,6 +26,7 @@ export function CartContextProvider({children}) {
     ls.setItem('client', JSON.stringify(dataClient));
   }
   function addProduct(productId) {
+    showAlert('Agregado al carrito');
     setCartProducts(prev => [...prev,productId]);
   }
   function removeProduct(productId) {
