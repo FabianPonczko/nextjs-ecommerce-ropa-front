@@ -61,7 +61,7 @@ export default function CategoriesPage({products,categories}) {
     <>
       <Header />
       <Center>
-        <Title>Categorias</Title>
+        <Title style={{fontStyle:"italic",fontFamily:"serif"}}>Categorias</Title>
       <div style={{display:"flex", gap:"15px" , alignItems:"center" }}>
         <label>Filtro </label>
         <select style={{backgroundColor:"#fafaf3", borderRadius:"5px" , padding:"1px"}}
