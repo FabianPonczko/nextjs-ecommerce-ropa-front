@@ -80,7 +80,6 @@ export default function Featured({product}) {
           </Column>
           <Column>
             <img src={product.images[0]} alt={product.title} style={{borderRadius:"10px",border:"5px solid white"}}/>
-            <img src={product.images[2]} alt={product.title} style={{borderRadius:"10px",border:"5px solid white"}}/>
           </Column>
         </ColumnsWrapper>
       </Center>
