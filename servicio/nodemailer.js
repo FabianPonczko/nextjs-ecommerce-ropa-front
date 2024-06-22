@@ -10,26 +10,27 @@ const transporter = createTransport({
      tls : { rejectUnauthorized: false }
 })
 
-const emailNuevaVenta=async({email, name,adress,city,zipcode})=>{
+const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id})=>{
     const mailOptions ={
         from:"Qtop! servicio de mensajes",
         to: "fabianponczko@live.com.ar",
         subject:"Nueva compra registrada",
         html:`
         <h1 style="color:blue;">El siguiente usuario realizo una compra</h1>
+        <h3>Id de compra: ${id} </h3>
         <h3>Nombre: ${name} </h3>
         <h3>Email: ${email} </h3>
         <h3>Ciudad: ${city} </h3>
-        <h3>Dirección: ${adress} </h3>
-        <h3>Codigo postal: ${zipcode} </h3>
+        <h3>Dirección: ${streetAddress} </h3>
+        <h3>Codigo postal: ${postalCode} </h3>
         `
     }
 
     try {
         const info= await transporter.sendMail(mailOptions)
-        console.log(info)
+        console.log({info})
     } catch (error) {
-        console.log(error)
+        console.log({error})
     }
 }
 
