@@ -1,6 +1,8 @@
 import crypto from 'crypto';
 import {Order} from "@/models/Order";
 
+import emailNuevaVenta from "@/servicio/nodemailer"
+
 
 
 // SDK de Mercado Pago
@@ -77,9 +79,10 @@ if (sha === hash) {
         const payment = await new Payment(client).get({id:dataID["data.id"]})
             const id = payment.external_reference
             console.log("encontro data: ", id)
-             await Order.findByIdAndUpdate({_id:id},{
+             const resp = await Order.findByIdAndUpdate({_id:id},{
                 paid:true,
             })
+            emailNuevaVenta(...resp)
     }
     res.status(200).end("Hello HMAC verification passed");
     
