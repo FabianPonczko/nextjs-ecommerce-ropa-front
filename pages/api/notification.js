@@ -82,8 +82,7 @@ if (sha === hash) {
              const resp = await Order.findByIdAndUpdate({_id:id},{
                 paid:true,
             })
-            console.log({resp})
-            emailNuevaVenta(resp)
+            await emailNuevaVenta(resp)
     }
     res.status(200).end("Hello HMAC verification passed");
     
