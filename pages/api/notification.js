@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import {Order} from "@/models/Order";
 
-import emailNuevaVenta from "@/servicio/nodemailer"
+import {emailNuevaVenta} from "@/servicio/nodemailer"
 
 
 
