@@ -10,7 +10,7 @@ const transporter = createTransport({
      tls : { rejectUnauthorized: false }
 })
 
-const emailNuevaVenta=async(email, name,adress,city,zipcode)=>{
+const emailNuevaVenta=async({email, name,adress,city,zipcode})=>{
     const mailOptions ={
         from:"Qtop! servicio de mensajes",
         to: "fabianponczko@live.com.ar",
