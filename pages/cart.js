@@ -81,7 +81,7 @@ img{
     const [country,setCountry] = useState('Argentina');
     const [isSuccess,setIsSuccess] = useState(false);
     const [mpReference,setMPreference] = useState(false);
-    const [loading,setLoading] = useState(false)
+    const [loading,setLoading] = useState(true)
     
     const router = useRouter()    
 
