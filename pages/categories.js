@@ -69,7 +69,7 @@ export default function CategoriesPage({products,categories}) {
           onChange={e=>(
             setSelected(e.target.value)
             )}>
-        <option value="All" >All</option>
+        <option value="All">Todas</option>
             {categories.length > 0 && categories.map(category => (
               <option key={category._id} value={category._id}>{category.name}</option>))}
        </select>
@@ -93,11 +93,11 @@ export default function CategoriesPage({products,categories}) {
              {Object.entries(groupedValues).map(([key, values], innerIndex) => (
                <div key={key} style={{ display: "flex", gap: "5px", alignItems:"center" }}>
                  <label>{key}</label>
-                 <select style={{backgroundColor:"#fafaf3", borderRadius:"5px", padding:"1px"}}
+                 <select style={{backgroundColor:"#fafaf3", borderRadius:"5px", padding:"1px",maxWidth:"150px"}}
                    onChange={ev => setPropertiesfound([ev.target.value])}
                    value={propertiesfound[0]}
                  >
-                   <option value="All">All</option>
+                   <option value="All">Todos</option>
                    {values.map((value, valueIndex) => (
                      <option key={valueIndex} value={value}>{value}</option>
                    ))}
