@@ -13,10 +13,10 @@ const transporter = createTransport({
 const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id})=>{
     const mailOptions ={
         from:"Qtop! servicio de mensajes",
-        to: "fabianponczko@live.com.ar",
+        to: "qtopq@gmail.com",
         subject:"Nueva compra registrada",
         html:`
-        <h1 style="color:blue;">El siguiente usuario realizo una compra</h1>
+        <h1 style="color:red;">El usuario ${name} realizo una compra</h1>
         <h3>Id de compra: ${id} </h3>
         <h3>Nombre: ${name} </h3>
         <h3>Email: ${email} </h3>
