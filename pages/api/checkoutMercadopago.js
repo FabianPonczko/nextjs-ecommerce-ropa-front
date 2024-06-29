@@ -61,7 +61,7 @@ console.log({MPitem})
 // MERCADO PAGO 
 const orderDoc = await Order.create({
     line_items,name,email,city,postalCode,
-    streetAddress,country,paid:false,
+    streetAddress,country,paid:false,dataid:false
   });
 
 
