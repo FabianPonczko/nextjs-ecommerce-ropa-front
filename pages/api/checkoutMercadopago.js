@@ -93,7 +93,6 @@ const preference = new Preference(client);
     .catch(console.log);
 
 
-
   // ---------------------
 
   // const session = await stripe.checkout.sessions.create({
