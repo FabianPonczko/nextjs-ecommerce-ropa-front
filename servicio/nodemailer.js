@@ -10,14 +10,15 @@ const transporter = createTransport({
      tls : { rejectUnauthorized: false }
 })
 
-const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id})=>{
+const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id,dataid})=>{
     const mailOptions ={
         from:process.env.EMAILUSER,
-        to: "qtopq@gmail.com",
+        to: "quetopq@gmail.com",
         subject:"Nueva compra registrada",
         html:`
         <h1 style="color:red;">El usuario ${name} realizo una compra</h1>
         <h3>Id de compra: ${id} </h3>
+        <h3>Codigo de compra MP: ${dataid} </h3>
         <h3>Nombre: ${name} </h3>
         <h3>Email: ${email} </h3>
         <h3>Ciudad: ${city} </h3>
@@ -33,15 +34,16 @@ const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id})=>{
         console.log({error})
     }
 }
-const emailAvisoCliente=async({email, name,city,postalCode,streetAddress,id})=>{
+const emailAvisoCliente=async({email, name,city,postalCode,streetAddress,id,dataid})=>{
     const mailOptions ={
         from:process.env.EMAILUSER,
         to: email,
         subject:"Nueva compra registrada",
         html:`
-        <h1 style="color:red;">Hola ${name} gracias por confiar en QueTop!, se registro tu compra</h1>
+        <h1 style="color:blue;">Hola ${name} gracias por confiar en QueTop!, se registro tu compra</h1>
         <h2>Te avisaremos cuando tu producto este en camino!</h1>
         <h3>Codigo de compra: ${id} </h3>
+        <h3>Codigo de compra MP: ${dataid} </h3>
         <h3>Nombre: ${name} </h3>
         <h3>Email: ${email} </h3>
         <h3>Ciudad: ${city} </h3>

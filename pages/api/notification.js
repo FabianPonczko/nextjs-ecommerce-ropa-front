@@ -83,8 +83,8 @@ if (sha === hash) {
                 paid:true,
                 dataid:dataID["data.id"]
             })
-            await emailNuevaVenta(resp,id)
-            await emailAvisoCliente(resp,id)
+            await emailNuevaVenta(resp,id,{dataid:dataID["data.id"]})
+            await emailAvisoCliente(resp,id,{dataid:dataID["data.id"]})
     }
     res.status(200).end("Hello HMAC verification passed");
     
