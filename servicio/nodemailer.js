@@ -18,7 +18,7 @@ const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id,dataid
         html:`
         <h1 style="color:red;">El usuario ${name} realizo una compra</h1>
         <h3>Id de compra: ${id} </h3>
-        <h3>Codigo de compra MP: ${dataid} </h3>
+        <h3>Codigo de compra MP: ${{dataid}} </h3>
         <h3>Nombre: ${name} </h3>
         <h3>Email: ${email} </h3>
         <h3>Ciudad: ${city} </h3>
