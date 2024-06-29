@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import {Order} from "@/models/Order";
 
-import {emailNuevaVenta} from "@/servicio/nodemailer"
+import {emailNuevaVenta,emailAvisoCliente} from "@/servicio/nodemailer"
 
 
 
@@ -83,6 +83,7 @@ if (sha === hash) {
                 paid:true,
             })
             await emailNuevaVenta(resp,id)
+            await emailAvisoCliente(resp,id)
     }
     res.status(200).end("Hello HMAC verification passed");
     

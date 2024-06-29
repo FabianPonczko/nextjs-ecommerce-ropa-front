@@ -12,7 +12,7 @@ const transporter = createTransport({
 
 const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id})=>{
     const mailOptions ={
-        from:"backendponczko@gmail.com",
+        from:"qtopq@gmail.com",
         to: "qtopq@gmail.com",
         subject:"Nueva compra registrada",
         html:`
@@ -33,7 +33,30 @@ const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id})=>{
         console.log({error})
     }
 }
+const emailAvisoCliente=async({email, name,city,postalCode,streetAddress,id})=>{
+    const mailOptions ={
+        from:"quetopq@gmail.com",
+        to: {email},
+        subject:"Nueva compra registrada",
+        html:`
+        <h1 style="color:red;">Hola ${name} gracias por confiar en QueTop!, se registro tu compra</h1>
+        <h2>Te avisaremos cuando tu producto este en camino!</h1>
+        <h3>Codigo de compra: ${id} </h3>
+        <h3>Nombre: ${name} </h3>
+        <h3>Email: ${email} </h3>
+        <h3>Ciudad: ${city} </h3>
+        <h3>Dirección: ${streetAddress} </h3>
+        <h3>Codigo postal: ${postalCode} </h3>
+        `
+    }
 
+    try {
+        const info= await transporter.sendMail(mailOptions)
+        console.log({info})
+    } catch (error) {
+        console.log({error})
+    }
+}
 // const emailNuevoOrder=async(datosUser,total,email)=>{
 //     const data = datosUser.map(element =>{
 //             return `<h3>Articulo:  ${element.products.title}, valor:  $${element.products.price}, Cantidad: ${element.quantity} </h3>
@@ -57,4 +80,4 @@ const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id})=>{
 //     }
 // }
 
-module.exports ={emailNuevaVenta}
+module.exports ={emailNuevaVenta,emailAvisoCliente}
