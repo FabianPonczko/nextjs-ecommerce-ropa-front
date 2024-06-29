@@ -25,6 +25,8 @@ const xRequestId = headers['x-request-id']; // Assuming headers is an object con
 
 const dataID = req.query
 
+const id_mp=""
+
 console.log({dataID})
 // Separating the x-signature into parts
 const parts = xSignature?.split(',');
@@ -76,7 +78,7 @@ if (sha === hash) {
     if (dataID.type==="payment"){
         console.log("pagado, buscando pago")
         console.log("id de pago",dataID["data.id"])
-        const id_mp = dataID["data.id"]
+        id_mp = dataID["data.id"]
         const payment = await new Payment(client).get({id:dataID["data.id"]})
             const id = payment.external_reference
             console.log("encontro data: ", id)
