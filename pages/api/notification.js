@@ -16,9 +16,9 @@ const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN });
 
 
 export default async function Dandler(req, res) {
-const [mp,setMp]=useState(null)
-const [respuesta,setRespuesta]=useState(null)
-const [respuestaId,setRespuestaId]=useState(null)
+const [mp,setMp]=useState("")
+const [respuesta,setRespuesta]=useState("")
+const [respuestaId,setRespuestaId]=useState("")
 
 
 
