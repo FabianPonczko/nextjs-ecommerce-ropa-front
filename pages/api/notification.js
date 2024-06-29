@@ -26,7 +26,6 @@ const xRequestId = headers['x-request-id']; // Assuming headers is an object con
 
 const dataID = req.query
 
-console.log({dataID})
 // Separating the x-signature into parts
 const parts = xSignature?.split(',');
 
@@ -72,23 +71,26 @@ const sha = hmac.digest('hex');
 // }
 
 if (sha === hash) {
-    console.log("en inicio verification passed")
+    console.log("verification passed")
     // HMAC verification passed
     if (dataID.type==="payment"){
-        console.log("pagado, buscando pago")
-        console.log("id de pago",dataID["data.id"])
+        console.log("id de pago encontrado",dataID["data.id"])
+        const id_mp = dataID["data.id"]
         
         const payment = await new Payment(client).get({id:dataID["data.id"]})
             const id = payment.external_reference
             console.log("encontro data: ", id)
-            const id_mp = dataID["data.id"]
             console.log("id_mp :",id_mp)
-             const resp = await Order.findByIdAndUpdate({_id:id},{
-                paid:true,
-                dataid:dataID["data.id"]
-            })
-            await emailNuevaVenta(resp,id,id_mp)
-            await emailAvisoCliente(resp,id,id_mp)
+            console.log("status del pago :",payment.status)
+            if (payment.status==="approved"){
+                const resp = await Order.findByIdAndUpdate({_id:id},{
+                    paid:true,
+                    dataid:dataID["data.id"]
+                })
+                await emailNuevaVenta(resp,id,id_mp)
+                await emailAvisoCliente(resp,id,id_mp)
+            }
+             
     }
     res.status(200).end("Hello HMAC verification passed");
     
