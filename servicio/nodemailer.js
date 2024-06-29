@@ -12,7 +12,7 @@ const transporter = createTransport({
 
 const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id})=>{
     const mailOptions ={
-        from:"qtopq@gmail.com",
+        from:process.env.EMAILUSER,
         to: "qtopq@gmail.com",
         subject:"Nueva compra registrada",
         html:`
@@ -35,8 +35,8 @@ const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id})=>{
 }
 const emailAvisoCliente=async({email, name,city,postalCode,streetAddress,id})=>{
     const mailOptions ={
-        from:"quetopq@gmail.com",
-        to: {email},
+        from:process.env.EMAILUSER,
+        to: email,
         subject:"Nueva compra registrada",
         html:`
         <h1 style="color:red;">Hola ${name} gracias por confiar en QueTop!, se registro tu compra</h1>
@@ -51,7 +51,7 @@ const emailAvisoCliente=async({email, name,city,postalCode,streetAddress,id})=>{
     }
 
     try {
-        const info= await transporter.sendMail(mailOptions)
+        const info=  transporter.sendMail(mailOptions)
         console.log({info})
     } catch (error) {
         console.log({error})
