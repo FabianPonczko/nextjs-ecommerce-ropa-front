@@ -51,7 +51,7 @@ const emailAvisoCliente=async({email, name,city,postalCode,streetAddress,id})=>{
     }
 
     try {
-        const info=  transporter.sendMail(mailOptions)
+        const info= await transporter.sendMail(mailOptions)
         console.log({info})
     } catch (error) {
         console.log({error})
