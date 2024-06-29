@@ -76,6 +76,7 @@ if (sha === hash) {
     if (dataID.type==="payment"){
         console.log("pagado, buscando pago")
         console.log("id de pago",dataID["data.id"])
+        const id_mp = dataID["data.id"]
         const payment = await new Payment(client).get({id:dataID["data.id"]})
             const id = payment.external_reference
             console.log("encontro data: ", id)
@@ -83,8 +84,8 @@ if (sha === hash) {
                 paid:true,
                 dataid:dataID["data.id"]
             })
-            await emailNuevaVenta(resp,id,{dataid:dataID["data.id"]})
-            await emailAvisoCliente(resp,id,{dataid:dataID["data.id"]})
+            await emailNuevaVenta(resp,id,id_mp)
+            await emailAvisoCliente(resp,id,id_mp)
     }
     res.status(200).end("Hello HMAC verification passed");
     
