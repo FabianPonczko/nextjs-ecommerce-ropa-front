@@ -62,7 +62,7 @@ export default function ProductPage({product}) {
             </Title>
             <p>{product.description}</p>
             <PriceRow>
-              <div style={{display:"flex",alignContent:"center",alignItems:"center",gap:"5px"}}>
+              <div style={{display:"flex",justifyContent:"center",gap:"20px"}}>
 
               <div style={{fontFamily:"serif",fontWeight:"bold"}}>
                 <Price>${product.price}</Price>
