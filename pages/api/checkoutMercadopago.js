@@ -86,7 +86,8 @@ const preference = new Preference(client);
     }
   })
   .then((e)=>{
-    res.json(e.sandbox_init_point)
+    // res.json(e.sandbox_init_point)
+    res.json(e.init_point)
     
     // res.json({respuesta:e.body.init_point})
     })    
