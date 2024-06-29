@@ -8,27 +8,14 @@ import {emailNuevaVenta,emailAvisoCliente} from "@/servicio/nodemailer"
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Payment } from 'mercadopago';
-import { useState ,useEffect} from 'react';
 
 
 // Agrega credenciales
 const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN });
 
 
-export default async function Dandler(req, res) {
-const [mp,setMp]=useState("")
-const [respuesta,setRespuesta]=useState("")
-const [respuestaId,setRespuestaId]=useState("")
+export default async function handler(req, res) {
 
-
-
-async function mandamail () {
-    await emailNuevaVenta(respuesta,respuestaId,mp)
-    await emailAvisoCliente(respuesta,respuestaId,mp)
-}
-useEffect(()=>{
-    mandamail()
-},[mp])
 const headers = req.headers
 
    // Obtain the x-signature value from the header
@@ -90,17 +77,18 @@ if (sha === hash) {
     if (dataID.type==="payment"){
         console.log("pagado, buscando pago")
         console.log("id de pago",dataID["data.id"])
-        console.log("id_mp :",id_mp)
+        
         const payment = await new Payment(client).get({id:dataID["data.id"]})
             const id = payment.external_reference
             console.log("encontro data: ", id)
+            const id_mp = dataID["data.id"]
+            console.log("id_mp :",id_mp)
              const resp = await Order.findByIdAndUpdate({_id:id},{
                 paid:true,
                 dataid:dataID["data.id"]
             })
-            setRespuestaId(id)
-            setRespuesta(resp)
-            setMp(dataID["data.id"])
+            await emailNuevaVenta(resp,id,id_mp)
+            await emailAvisoCliente(resp,id,id_mp)
     }
     res.status(200).end("Hello HMAC verification passed");
     
