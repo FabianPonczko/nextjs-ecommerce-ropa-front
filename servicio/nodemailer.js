@@ -12,7 +12,7 @@ const transporter = createTransport({
 
 const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id})=>{
     const mailOptions ={
-        from:"Qtop! servicio de mensajes",
+        from:"backendponczko@gmail.com",
         to: "qtopq@gmail.com",
         subject:"Nueva compra registrada",
         html:`
