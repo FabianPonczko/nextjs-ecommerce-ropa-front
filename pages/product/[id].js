@@ -10,6 +10,7 @@ import Button from "@/components/Button";
 import CartIcon from "@/components/icons/CartIcon";
 import {useContext} from "react";
 import {CartContext} from "@/components/CartContext";
+import Sidebar from "@/components/sidebar";
 
 
 const ColWrapper = styled.div`
@@ -43,9 +44,23 @@ const PriceRow = styled.div`
 const Price = styled.span`
   font-size: 1.4rem;
 `;
-
+const PriceTachado = styled.div`
+  font-size: 1.5rem;
+  font-weight:600;
+  text-align: right;
+  text-decoration: line-through;
+  color: #EF8281; /* Color gris para simular que está descontado */
+  @media screen and (min-width: 768px) {
+    font-size: 1.2rem;
+    font-weight:600;
+    text-align: left;
+      text-decoration: line-through;
+  color: #EF8281; /* Color gris para simular que está descontado */
+  }
+`;
 export default function ProductPage({product}) {
-  const {addProduct} = useContext(CartContext);
+  const {cartProducts,addProduct} = useContext(CartContext);
+  
   
   return (
     <>
@@ -63,7 +78,9 @@ export default function ProductPage({product}) {
             <p>{product.description}</p>
             <PriceRow>
               <div style={{display:"flex",justifyContent:"center",gap:"20px"}}>
-
+              <PriceTachado>
+                ${product.price * 1.3}
+              </PriceTachado>
               <div style={{fontFamily:"serif",fontWeight:"bold"}}>
                 <Price>${product.price}</Price>
               </div>
@@ -123,6 +140,7 @@ export default function ProductPage({product}) {
           {/* </div> */}
           </Banner>
       </Center>
+      <Sidebar itemCount={cartProducts.length}/>
     </>
   );
 }

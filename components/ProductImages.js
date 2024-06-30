@@ -29,7 +29,23 @@ const ImageButton = styled.div`
     border-radius: 5px;
   `;
 const BigImageWrapper = styled.div`
+position:relative;
   text-align: center;
+`;
+
+const Descuento = styled.div`
+  position: absolute;
+  top: 15px; /* Ajusta la posición verticalmente */
+  right: 220px; /* Ajusta la posición horizontalmente */
+  background-color: #E53232; /* Color de fondo del texto */
+  color: white; /* Color del texto */
+  padding: 2px; /* Espacio alrededor del texto */
+  font-size: 14px; /* Tamaño de fuente */
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    top: 10px; /* Ajusta la posición verticalmente */
+    right: 360px; /* Ajusta la posición horizontalmente */
+  }
 `;
 
 
@@ -40,6 +56,7 @@ export default function ProductImages({images}) {
       <BigImageWrapper>
         {/* <BigImage src={activeImage} />  */}
         <ZoomOnHoverImage src={activeImage} alt="Descripción de la imagen" />
+        <Descuento>30% OFF</Descuento>
       </BigImageWrapper>
       <ImageButtons>
         {images.map(image => (

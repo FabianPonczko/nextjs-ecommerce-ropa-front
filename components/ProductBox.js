@@ -10,9 +10,10 @@ const ProductWrapper = styled.div`
 `;
 
 const WhiteBox = styled(Link)`
+  position: relative;
   background-color: #fff;
-  padding: 10px ;
-  height: 210px;
+  padding: 5px ;
+  height: 170px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -20,9 +21,18 @@ const WhiteBox = styled(Link)`
   border-radius: 10px;
     img{
     max-width: 100%;
-    max-height: 200px;
+    max-height: 150px;
     border-radius: 10px;
   }
+  @media screen and (min-width: 768px) {
+  height: 270px;  
+    img{
+      max-width: 100%;
+      max-height: 250px;
+      border-radius: 10px;
+    }
+  }
+    
 `;
 
 const Title = styled(Link)`
@@ -41,7 +51,7 @@ const PriceRow = styled.div`
   display: block;
   @media screen and (min-width: 768px) {
     display: flex;
-    gap: 5px;
+    gap: 10px;
   }
   align-items: center;
   justify-content:space-between;
@@ -58,6 +68,34 @@ const Price = styled.div`
     text-align: left;
   }
 `;
+const PriceTachado = styled.div`
+  font-size: 1rem;
+  font-weight:400;
+  text-align: right;
+  text-decoration: line-through;
+  color: #EF8281; /* Color gris para simular que está descontado */
+  @media screen and (min-width: 768px) {
+    font-size: 1.2rem;
+    font-weight:600;
+    text-align: left;
+      text-decoration: line-through;
+  color: #EF8281; /* Color gris para simular que está descontado */
+  }
+`;
+const Descuento = styled.div`
+  position: absolute;
+  top: 25px; /* Ajusta la posición verticalmente */
+  right: 85px; /* Ajusta la posición horizontalmente */
+  background-color: #E53232; /* Color de fondo del texto */
+  color: white; /* Color del texto */
+  padding: 2px; /* Espacio alrededor del texto */
+  font-size: 14px; /* Tamaño de fuente */
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    top: 25px; /* Ajusta la posición verticalmente */
+    right: 195px; /* Ajusta la posición horizontalmente */
+  }
+`;
 
 export default function ProductBox({_id,title,description,price,images}) {
   const {addProduct} = useContext(CartContext);
@@ -65,6 +103,7 @@ export default function ProductBox({_id,title,description,price,images}) {
   return (
     <ProductWrapper>
       <WhiteBox href={url}>
+        <Descuento>30% OFF</Descuento>          
         <div key={_id}>
           <img src={images?.[0]}  alt="imagen"/>
         </div>
@@ -76,6 +115,9 @@ export default function ProductBox({_id,title,description,price,images}) {
         :<Title href={url}>{title}</Title>}
         
         <PriceRow>
+          <PriceTachado>
+            ${price * 1.3}
+          </PriceTachado>
           <Price>
             ${price}
           </Price>
