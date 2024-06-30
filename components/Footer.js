@@ -108,7 +108,7 @@ export default function Header() {
                    
       </div>
       <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"50px"}}>
-            <span>Todos los derechos reservados - COPYRIGHT tiendagolden.com 2024</span>
+            <span>Todos los derechos reservados - COPYRIGHT Tienda Qtop Carteras - 2024</span>
       </div>
     </StyledHeader>
   );
