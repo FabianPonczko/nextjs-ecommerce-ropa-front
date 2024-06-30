@@ -80,10 +80,10 @@ if (sha === hash) {
             if (payment.status==="approved"){
                 const resp = await Order.findByIdAndUpdate({_id:id},{
                     paid:true,
-                    dataid:dataID["data.id"]
+                    dataid: dataID["data.id"],
                 })
-                await emailNuevaVenta(resp,id)
-                await emailAvisoCliente(resp,id)
+                await emailNuevaVenta(resp,id,{dataid:dataID["data.id"]})
+                await emailAvisoCliente(resp,id,{dataid:dataID["data.id"]})
             }
              
     }
