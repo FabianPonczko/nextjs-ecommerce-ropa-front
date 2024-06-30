@@ -88,8 +88,8 @@ if (sha === hash) {
                 dataid:dataID["data.id"]
             })
                 const id_mp = payment.id
-                await emailNuevaVenta(resp,id,{id_mp})
-                await emailAvisoCliente(resp,id,{id_mp})
+                await emailNuevaVenta(resp,id,id_mp)
+                await emailAvisoCliente(resp,id,id_mp)
             }
              
     }
