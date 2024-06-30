@@ -254,13 +254,13 @@ console.log(products.length)
                   ))}
                   <tr style={{height:"15px"}}>
                   </tr>
-                  <tr style={{height:"50px"}}>
-                    {costoEnvio>0?<td style={{color:"red"}}>Envio por correo</td>:<td style={{color:"green",fontSize:"18px"}}>Envio gratis!!!</td>}
+                  <tr style={{height:"35px"}}>
+                    {costoEnvio>0?<td style={{color:"red"}}>Envio por correo</td>:<td style={{color:"gray",fontSize:"20px"}}>Envio gratis!!!</td>}
                     <td></td>
-                    <td>${costoEnvio}</td>
+                    {costoEnvio>0?<td> ${costoEnvio}</td>:<td></td>}
                   </tr>
-                    {costoEnvio>0?<tr style={{fontSize:"10px",color:"green"}}>Envio Gratis !!! Comprando 2 o mas </tr>:null}
-                  <tr style={{height:"15px"}}>
+                    {costoEnvio>0?<tr style={{fontSize:"10px",color:"green"}}>Envio Gratis !!! Comprando 2 o mas productos</tr>:null}
+                  <tr style={{height:"5px"}}>
                   </tr>
                   <tr style={{height:"50px",fontSize:"20px"}}>
                     <td >Total</td>
