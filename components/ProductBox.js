@@ -85,7 +85,7 @@ const PriceTachado = styled.div`
 const Descuento = styled.div`
   position: absolute;
   top: 25px; /* Ajusta la posición verticalmente */
-  right: 85px; /* Ajusta la posición horizontalmente */
+  right: 95px; /* Ajusta la posición horizontalmente */
   background-color: #E53232; /* Color de fondo del texto */
   color: white; /* Color del texto */
   padding: 2px; /* Espacio alrededor del texto */
