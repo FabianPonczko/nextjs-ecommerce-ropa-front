@@ -1,18 +1,13 @@
 import crypto from 'crypto';
 import {Order} from "@/models/Order";
 
-
 import {emailNuevaVenta,emailAvisoCliente} from "@/servicio/nodemailer"
-
-
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Payment } from 'mercadopago';
 
-
 // Agrega credenciales
 const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN });
-
 
 export default async function handler(req, res) {
 
@@ -80,7 +75,7 @@ if (sha === hash) {
             const id = payment.external_reference
             
             console.log("encontro data: ", id)
-            console.log("id_mp :",id_mp)
+
             console.log("status del pago :",payment.status)
             if (payment.status==="approved"){
                 const resp = await Order.findByIdAndUpdate({_id:id},{
