@@ -88,8 +88,8 @@ if (sha === hash) {
                     paid:true,
                     dataid:dataID["data.id"]
                 })
-                await emailNuevaVenta(resp,id,id_mp)
-                await emailAvisoCliente(resp,id,id_mp)
+                await emailNuevaVenta(resp,id)
+                await emailAvisoCliente(resp,id)
             }
              
     }
