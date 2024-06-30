@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const SidebarContainer = styled.div`
   position: fixed;
-  bottom: 50%; /* Ajusta la distancia desde abajo según sea necesario */
+  bottom: 50vh; /* Ajusta la distancia desde abajo según sea necesario */
   left: 90%;
   transform: translateX(-40%);
   background-color: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente blanco */

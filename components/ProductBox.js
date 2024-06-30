@@ -86,8 +86,7 @@ const Descuento = styled.div`
   position: absolute;
   top: 20px; /* Ajusta la posición verticalmente */
   border-radius: 5px;
-  
-  right: 100px; /* Ajusta la posición horizontalmente */
+  right: 95px; /* Ajusta la posición horizontalmente */
   background-color: #E53232; /* Color de fondo del texto */
   color: white; /* Color del texto */
   padding: 3px; /* Espacio alrededor del texto */
