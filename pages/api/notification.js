@@ -75,8 +75,7 @@ if (sha === hash) {
     // HMAC verification passed
     if (dataID.type==="payment"){
         console.log("id de pago encontrado",dataID["data.id"])
-        const id_mp = dataID["data.id"]
-        
+               
         const payment = await new Payment(client).get({id:dataID["data.id"]})
             const id = payment.external_reference
             

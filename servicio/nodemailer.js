@@ -10,7 +10,7 @@ const transporter = createTransport({
      tls : { rejectUnauthorized: false }
 })
 
-const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id,dataid})=>{
+const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id,paid,dataid})=>{
     
     const mailOptions ={
         from:process.env.EMAILUSER,
@@ -20,6 +20,7 @@ const emailNuevaVenta=async({email, name,city,postalCode,streetAddress,id,dataid
         <h1 style="color:red;">El usuario ${name} realizo una compra</h1>
         <h3>Id de compra: ${id} </h3>
         <h3>Codigo de compra MP: ${dataid}} </h3>
+        <h3>paid: ${paid} </h3>
         <h3>Nombre: ${name} </h3>
         <h3>Email: ${email} </h3>
         <h3>Ciudad: ${city} </h3>
