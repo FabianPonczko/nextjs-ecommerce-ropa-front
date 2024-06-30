@@ -9,9 +9,12 @@ import Title from "@/components/Title";
 import Input from "@/components/Input";
 import { useEffect, useState } from "react";
 import Footer from "@/components/Footer"
-
+import Sidebar from "@/components/sidebar";
+import { useContext } from "react";
+import {CartContext} from "@/components/CartContext";
 
 export default function CategoriesPage({products,categories}) {
+  const {cartProducts} = useContext(CartContext);
     const[selected,setSelected]=useState("All")
     const[filtrados,setFiltrados]=useState(products)
     const[catfiltrados,setCatFiltrados]=useState("")
@@ -108,6 +111,7 @@ export default function CategoriesPage({products,categories}) {
       </div>  
       <ProductsGrid  products= {filtrados.length ? filtrados: propertiesfound ==="All" || selected==="All" ? products :[{_id:"",title:"Sin STOCK",description:"",price:"",images:["img/logo.jpg"]}]}/>
       </Center>
+      <Sidebar itemCount={cartProducts.length}/>
       <Footer />
     </>
   );

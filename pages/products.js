@@ -7,8 +7,12 @@ import ProductsGrid from "@/components/ProductsGrid";
 import Title from "@/components/Title";
 
 import Footer from "@/components/Footer"
+import Sidebar from "@/components/sidebar";
+import { useContext } from "react";
+import {CartContext} from "@/components/CartContext";
 
 export default function ProductsPage({products}) {
+  const {cartProducts} = useContext(CartContext);
   return (
     <>
       <Header />
@@ -16,6 +20,7 @@ export default function ProductsPage({products}) {
         <Title style={{fontStyle:"italic",fontFamily:"serif" , marginTop:"55px"}}>Listado de Todos los Productos </Title>
         <ProductsGrid products={products} />
       </Center>
+      <Sidebar itemCount={cartProducts.length}/>
       <Footer />
     </>
   );

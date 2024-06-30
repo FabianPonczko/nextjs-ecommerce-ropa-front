@@ -4,12 +4,18 @@ import {Product} from "@/models/Product";
 import {mongooseConnect} from "@/lib/mongoose";
 import NewProducts from "@/components/NewProducts";
 import Footer from "@/components/Footer"
+import Sidebar from "@/components/sidebar";
+import { useContext } from "react";
+import {CartContext} from "@/components/CartContext";
+
 export default function HomePage({featuredProduct,newProducts}) {
+  const {cartProducts} = useContext(CartContext);
   return (
     <div>
       <Header />
       <Featured product={featuredProduct} />
       <NewProducts products={newProducts} />
+      <Sidebar itemCount={cartProducts.length}/>
       <Footer />
     </div>
   );
