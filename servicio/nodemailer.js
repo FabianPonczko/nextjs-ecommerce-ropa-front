@@ -42,8 +42,8 @@ const emailAvisoCliente=async({email, name,city,postalCode,streetAddress,id,data
         to: email,
         subject:"Nueva compra registrada",
         html:`
-        <h1 style="color:blue">Hola ${name} gracias por confiar en QueTop!, se registro tu compra.</h1>
-        <h2>Te avisaremos cuando tu producto este en camino!</h1>
+        <h1 style="color:blue">Hola ${name}, gracias por confiar en QueTop!</h1>
+        <h2>Te avisaremos cuando tu compra este en camino!</h1>
         <h3>Codigo de compra: ${id} </h3>
         <h3>Codigo de compra MP: ${dataid} </h3>
         <h2 style="color:red">Datos de envío:</h2>
@@ -52,6 +52,8 @@ const emailAvisoCliente=async({email, name,city,postalCode,streetAddress,id,data
         <h3>Ciudad: ${city} </h3>
         <h3>Dirección: ${streetAddress} </h3>
         <h3>Codigo postal: ${postalCode} </h3>
+        <h4>**********************************</h4>
+        <h5>Mail automatico! no responda este email</h5>
         `
     }
 

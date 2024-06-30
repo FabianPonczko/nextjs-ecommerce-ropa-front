@@ -58,6 +58,13 @@ export default async function Mp(req,res) {
   // });
 console.log({MPitem})
 
+let costoEnvio 
+    if (cartProducts.length > 1){
+        costoEnvio = 0
+    }else{
+      costoEnvio = 7300
+}
+
 // MERCADO PAGO 
 const orderDoc = await Order.create({
     line_items,name,email,city,postalCode,
@@ -83,6 +90,10 @@ const preference = new Preference(client);
       },
       auto_return:"approved",
       notification_url: process.env.PUBLIC_URL + "/api/notification",
+      shipments:{
+        "cost": costoEnvio,
+        "mode": "not_specified",
+      }
     }
   })
   .then((e)=>{

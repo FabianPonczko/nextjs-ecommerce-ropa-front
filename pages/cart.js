@@ -172,7 +172,13 @@ useEffect(() => {
     const price = products.find(p => p._id === productId)?.price || 0;
     total += price;
   }
-
+  let costoEnvio 
+    if (cartProducts.length > 1){
+        costoEnvio = 0
+    }else{
+      costoEnvio = 7300
+}
+console.log(products.length)
   if (loading) {
     return (
       <>
@@ -247,15 +253,19 @@ useEffect(() => {
                     </tr>
                   ))}
                   <tr style={{height:"15px"}}>
-                    
-                    
-                    
-                    
                   </tr>
                   <tr style={{height:"50px"}}>
+                    {costoEnvio>0?<td style={{color:"red"}}>Envio por correo</td>:<td style={{color:"green",fontSize:"18px"}}>Envio gratis!!!</td>}
+                    <td></td>
+                    <td>${costoEnvio}</td>
+                  </tr>
+                    {costoEnvio>0?<tr style={{fontSize:"10px",color:"green"}}>Envio Gratis !!! Comprando 2 o mas </tr>:null}
+                  <tr style={{height:"15px"}}>
+                  </tr>
+                  <tr style={{height:"50px",fontSize:"20px"}}>
                     <td >Total</td>
                     <td></td>
-                    <td>${total}</td>
+                    <td>${total+costoEnvio}</td>
                   </tr>
                 </tbody>
               </Table>
