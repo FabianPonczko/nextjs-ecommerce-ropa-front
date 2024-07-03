@@ -11,17 +11,18 @@ import Footer from "@/components/Footer"
 import { Router, useRouter } from "next/router";
 import Title from "@/components/Title";
 import Link from "next/link";
+import Carousel from "@/components/Carrusel";
 
 const ColumnsWrapper = styled.div`
 display: grid;
 grid-template-columns: 1fr;
-min-height: 55vh;
+min-height: 20vh;
 @media screen and (min-width: 768px) {
   grid-template-columns: 1.2fr .8fr;
   min-height: 400px
 }
-gap: 40px;
-margin-top: 40px;
+gap: 30px;
+margin-top: 20px;
 `;
 
 const Box = styled.div`
@@ -216,8 +217,9 @@ console.log(products.length)
   return (
     <>
       <Header />
+      <Carousel/>
       <Center>
-      <Title style={{color:"#345",fontStyle:"italic",fontFamily:"serif" , marginTop:"30px" , fontSize:"18px"}}><Link style={{textDecoration:"none",color:"#345",marginLeft:"5px"}} href={'/'}>Inicio </Link>/ <Link style={{textDecoration:"none",color:"#345"}} href={'/products'}> Productos </Link>/ Carrito</Title>
+      <Title style={{color:"#345",fontStyle:"italic",fontFamily:"serif" , marginTop:"40px" , fontSize:"18px",marginLeft:"8px"}}><Link style={{textDecoration:"none",color:"#345",marginLeft:"2px"}} href={'/'}>Inicio </Link>/ <Link style={{textDecoration:"none",color:"#345"}} href={'/products'}> Productos </Link>/ Carrito</Title>
         <ColumnsWrapper>
           <Box>
             <h2>Carrito de compras</h2>
