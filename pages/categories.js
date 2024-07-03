@@ -68,7 +68,7 @@ export default function CategoriesPage({products,categories}) {
       <Carousel/>
       <Center>
         {/* <Title style={{fontStyle:"italic",fontFamily:"serif"}}>Categorias</Title> */}
-        <Title style={{color:"#345",fontStyle:"italic",fontFamily:"serif" , marginTop:"40px" , fontSize:"16px",marginLeft:"10px"}}><Link style={{textDecoration:"none",color:"#345"}} href={'/'}>Inicio </Link>/ <Link style={{textDecoration:"none",color:"#345"}} href={'/products'}> Productos </Link>/ Categorias</Title>
+        <Title style={{color:"#345",fontStyle:"italic",fontFamily:"serif" , marginTop:"40px" , fontSize:"14px",marginLeft:"10px"}}><Link style={{textDecoration:"none",color:"#345"}} href={'/'}>Inicio </Link>/ <Link style={{textDecoration:"none",color:"#345"}} href={'/products'}> Productos </Link>/ Categorias</Title>
       <div style={{display:"flex", gap:"15px" , alignItems:"center",marginLeft:"10px"}}>
         <label>Filtro </label>
         <select style={{backgroundColor:"#fafaf3", borderRadius:"5px" , padding:"1px"}}
