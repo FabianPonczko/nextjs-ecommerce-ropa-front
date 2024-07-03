@@ -109,9 +109,7 @@ img{
       setPostalCode(dataClient[3])
       setStreetAddress(dataClient[4])
     }
-    setTimeout(() => {
       setLoading(false)
-  }, 1000)
   }, [cartProducts]);
   
 useEffect(() => {
@@ -138,16 +136,7 @@ useEffect(() => {
     removeProduct(id);
   }
   
-  async function goToPayment() {
-    const response = await axios.post('/api/checkout', {
-      name,email,city,postalCode,streetAddress,country,
-      cartProducts,
-    });
-    if (response.data.url) {
-      window.location = response.data.url;
-    }
-  }
-  async function goToPaymentMP(e) {
+async function goToPaymentMP(e) {
     e.preventDefault()
     if (cartProducts.length > 0) {
       axios.post('/api/checkoutMercadopago', {
@@ -170,9 +159,6 @@ useEffect(() => {
   addClient(dataClientTosend)
 
 }
-  async function pagar(){
-    href=mpReference
-  }
   let total = 0;
   for (const productId of cartProducts) {
     const price = products.find(p => p._id === productId)?.price || 0;
@@ -184,7 +170,7 @@ useEffect(() => {
     }else{
       costoEnvio = 7300
 }
-console.log(products.length)
+
   if (loading) {
     return (
       <>
@@ -195,9 +181,7 @@ console.log(products.length)
           <ColumnsWrapper>
             <Box>
                <h2>Carrito de compras</h2>
-              
               <Table>
-
               <thead>
                   <tr>
                     <th>Product</th>
@@ -220,7 +204,6 @@ console.log(products.length)
                 </tbody>
               </Table>
             </Box>
-            
           </ColumnsWrapper>
         </Center>
       </>
