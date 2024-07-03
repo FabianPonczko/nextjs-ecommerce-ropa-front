@@ -10,7 +10,7 @@ import Footer from "@/components/Footer"
 import Sidebar from "@/components/sidebar";
 import { useContext } from "react";
 import {CartContext} from "@/components/CartContext";
-import Carousel from "@/components/carrusel";
+import Carousel from "@/components/Carrusel";
 
 export default function ProductsPage({products}) {
   const {cartProducts} = useContext(CartContext);
