@@ -95,14 +95,13 @@ img{
         axios.post('/api/cart', {ids:cartProducts})
         .then(response => {
           setProducts(response.data);
-        })
+        })         
     } else {
       setProducts([]);
       setTimeout(() => {
       router.push("/")
-      }, 4000);
+      }, 5000);
     }
-    setLoading(false)
     if(dataClient.length>0){
       setName(dataClient[0])
       setEmail(dataClient[1])
@@ -110,6 +109,9 @@ img{
       setPostalCode(dataClient[3])
       setStreetAddress(dataClient[4])
     }
+    setTimeout(() => {
+      setLoading(false)
+  }, 1000)
   }, [cartProducts]);
   
 useEffect(() => {
@@ -187,12 +189,38 @@ console.log(products.length)
     return (
       <>
         <Header />
+        <Carousel/>
         <Center>
+          <Title style={{color:"#345",fontStyle:"italic",fontFamily:"serif" , marginTop:"40px" , fontSize:"18px",marginLeft:"8px"}}><Link style={{textDecoration:"none",color:"#345",marginLeft:"2px"}} href={'/'}>Inicio </Link>/ <Link style={{textDecoration:"none",color:"#345"}} href={'/products'}> Productos </Link>/ Carrito</Title>
           <ColumnsWrapper>
             <Box>
-              <h1>Cargando valores</h1>
-              <p>Por favor espere,</p>
+               <h2>Carrito de compras</h2>
+              
+              <Table>
+
+              <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                    <td>
+                      <div style={{width: "70px",height: "70px",backgroundColor:"#2222",borderRadius:"5px",marginTop:"5px"}}></div>
+                    </td>
+                    <td>
+                      <div style={{width:"55px",height:"50px",marginLeft:"20px",backgroundColor:"#2222",borderRadius:"5px",marginTop:"5px"}}></div>
+                    </td>
+                    <td>
+                      <div style={{width:"55px",height:"50px",backgroundColor:"#2222",borderRadius:"5px",marginTop:"5px"}}></div>
+                    </td>
+                   </tr>
+                </tbody>
+              </Table>
             </Box>
+            
           </ColumnsWrapper>
         </Center>
       </>
@@ -202,6 +230,7 @@ console.log(products.length)
     return (
       <>
         <Header />
+        <Carousel/>
         <Center>
           <ColumnsWrapper>
             <Box>
