@@ -6,6 +6,11 @@ import {CartContext} from "@/components/CartContext";
 import BarsIcon from "@/components/icons/Bars";
 
 const StyledHeader = styled.header`
+position:sticky;
+  left:10px;
+  botton:0px;
+  
+  background-color: #1111;
   display: block;
   font-Size: 10px;
   justify-content: space-between;

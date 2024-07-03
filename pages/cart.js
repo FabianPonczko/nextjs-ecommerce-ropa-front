@@ -9,11 +9,13 @@ import Table from "@/components/Table";
 import Input from "@/components/Input";
 import Footer from "@/components/Footer"
 import { Router, useRouter } from "next/router";
-
+import Title from "@/components/Title";
+import Link from "next/link";
 
 const ColumnsWrapper = styled.div`
 display: grid;
 grid-template-columns: 1fr;
+min-height: 55vh;
 @media screen and (min-width: 768px) {
   grid-template-columns: 1.2fr .8fr;
   min-height: 400px
@@ -69,6 +71,7 @@ img{
   display:flex;
   gap: 5px;
   `;
+   
   
   export default function CartPage() {
     const {cartProducts,addProduct,removeProduct,clearCart,addClient,dataClient} = useContext(CartContext);
@@ -214,6 +217,7 @@ console.log(products.length)
     <>
       <Header />
       <Center>
+      <Title style={{color:"#345",fontStyle:"italic",fontFamily:"serif" , marginTop:"30px" , fontSize:"18px"}}><Link style={{textDecoration:"none",color:"#345",marginLeft:"5px"}} href={'/'}>Inicio </Link>/ <Link style={{textDecoration:"none",color:"#345"}} href={'/products'}> Productos </Link>/ Carrito</Title>
         <ColumnsWrapper>
           <Box>
             <h2>Carrito de compras</h2>
@@ -328,7 +332,7 @@ console.log(products.length)
         
         </ColumnsWrapper>
       </Center>
-      <Footer />
+        <Footer />
     </>
   );
 }
