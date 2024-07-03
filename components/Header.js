@@ -6,18 +6,28 @@ import {CartContext} from "@/components/CartContext";
 import BarsIcon from "@/components/icons/Bars";
 
 const StyledHeader = styled.header`
-  background-color: #222;
+  position: sticky;
+  top: 0px;
+  z-index:20;
+  background-color: white;
+  border: 1px solid #2222;
+
 `;
 const Logo = styled(Link)`
   text-decoration:none;
-   color:#fff;
+    margin:auto;
+   color:white;
+   background-color:red;
+
    font-Size: 12px;
    position: relative;
-   padding: 5px 0;
+   padding: 5px 10px;
   @media screen and (min-width: 768px) {
    color:#fff;
   text-decoration:none;
   position: relative;
+  display :flex;
+  justify-content: center;
   z-index: 3;
   padding: 0;
   font-Size: 16px;
@@ -26,7 +36,7 @@ const Logo = styled(Link)`
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 5px 0;
 `;
 const StyledNav = styled.nav`
   ${props => props.mobileNavActive ? `
@@ -35,14 +45,14 @@ const StyledNav = styled.nav`
   ` : `
     display: none;
   `}
-  gap: 15px;
+  gap: 25px;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   padding: 70px 20px 20px;
-  background-color: #222;
+  background-color: white;
   @media screen and (min-width: 768px) {
     display: flex;
     position: static;
@@ -51,11 +61,11 @@ const StyledNav = styled.nav`
 `;
 const NavLink = styled(Link)`
   display: block;
-  color:#aaa;
+  color:#333;
   text-decoration:none;
-  padding: 10px 0;
+  padding: 5px 0px;
   @media screen and (min-width: 768px) {
-    padding:0;
+    padding:0px;
   }
 `;
 const NavButton = styled.button`
@@ -63,7 +73,7 @@ const NavButton = styled.button`
   width: 30px;
   height: 30px;
   border:0;
-  color: white;
+  color: #333;
   cursor: pointer;
   position: relative;
   z-index: 3;
@@ -79,8 +89,7 @@ export default function Header() {
     <StyledHeader>
       <Center>
         <Wrapper>
-          <Logo href={'/'}>Tienda Quetop !
-            Donde encontraras las mejores Carteras
+          <Logo href={'/'}>Este mes 30% de descuento 
           </Logo>
             <StyledNav mobileNavActive={mobileNavActive}style={{fontFamily:"serif" }}>
             <NavLink href={'/'}>Inicio</NavLink>

@@ -7,13 +7,19 @@ import Footer from "@/components/Footer"
 import Sidebar from "@/components/sidebar";
 import { useContext } from "react";
 import {CartContext} from "@/components/CartContext";
+import Carousel from "@/components/carrusel";
+
+
+
+
 
 export default function HomePage({featuredProduct,newProducts}) {
   const {cartProducts} = useContext(CartContext);
   return (
     <div>
       <Header />
-      <Featured product={featuredProduct} />
+      {/* <Featured product={featuredProduct} /> */}
+      <Carousel/>
       <NewProducts products={newProducts} />
       <Sidebar itemCount={cartProducts.length}/>
       <Footer />

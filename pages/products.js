@@ -10,12 +10,14 @@ import Footer from "@/components/Footer"
 import Sidebar from "@/components/sidebar";
 import { useContext } from "react";
 import {CartContext} from "@/components/CartContext";
+import Carousel from "@/components/carrusel";
 
 export default function ProductsPage({products}) {
   const {cartProducts} = useContext(CartContext);
   return (
     <>
       <Header />
+      <Carousel/>
       <Center>
         <Title style={{fontStyle:"italic",fontFamily:"serif" , marginTop:"55px"}}>Listado de Todos los Productos </Title>
         <ProductsGrid products={products} />
