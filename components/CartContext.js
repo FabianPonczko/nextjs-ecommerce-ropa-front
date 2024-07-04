@@ -25,7 +25,8 @@ export function CartContextProvider({children}) {
   function addClient(dataClient) {
     ls.setItem('client', JSON.stringify(dataClient));
   }
-  function addProduct(productId) {
+  function addProduct(productId,quantity) {
+    console.log({productId},{quantity})
     showAlert('Agregado al carrito');
     setCartProducts(prev => [...prev,productId]);
   }

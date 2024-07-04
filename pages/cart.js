@@ -129,8 +129,9 @@ useEffect(() => {
   }, [clearCart]);
   
 
-   function moreOfThisProduct(id) {
-    addProduct(id);
+   function moreOfThisProduct(id,{quantity}) {
+
+    addProduct(id,quantity);
   }
   function lessOfThisProduct(id) {
     removeProduct(id);
@@ -262,8 +263,11 @@ async function goToPaymentMP(e) {
                         <QuantityLabel>
                           {cartProducts.filter(id => id === product._id).length}
                         </QuantityLabel>
+                        
+
+                        
                         <Button
-                          onClick={() => moreOfThisProduct(product._id)}>+</Button>
+                          onClick={() =>cartProducts.filter(id => id === product._id).length < product.stock && moreOfThisProduct(product._id,{quantity:cartProducts.filter(id => id === product._id).length})}>+</Button>
                       </td>
                       <td>
                         ${cartProducts.filter(id => id === product._id).length * product.price}

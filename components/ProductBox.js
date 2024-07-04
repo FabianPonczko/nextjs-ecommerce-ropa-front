@@ -98,8 +98,8 @@ const Descuento = styled.div`
   }
 `;
 
-export default function ProductBox({_id,title,description,price,images}) {
-  const {addProduct} = useContext(CartContext);
+export default function ProductBox({_id,stock,title,description,price,images}) {
+  const {cartProducts,addProduct} = useContext(CartContext);
   const url = title!=="Sin STOCK"? '/product/'+_id:"";
   return (
     <ProductWrapper>
@@ -122,9 +122,17 @@ export default function ProductBox({_id,title,description,price,images}) {
           <Price>
             ${price}
           </Price>
+          
+          {cartProducts.filter(id => id === _id).length < stock 
+          ?
           <Button outline primary block onClick={() => title!=="Sin STOCK"?addProduct(_id):null} >
             <CartIcon />Agregar
           </Button>
+          :
+          <Button outline primary block onClick={() => null} >
+            <CartIcon />Sin stock
+          </Button>
+          }
         </PriceRow>
       </ProductInfoBox>
     </ProductWrapper>
