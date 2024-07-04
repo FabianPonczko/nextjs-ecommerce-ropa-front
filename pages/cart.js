@@ -100,7 +100,7 @@ img{
       setProducts([]);
       setTimeout(() => {
       router.push("/")
-      }, 5000);
+      }, 3000);
     }
     if(dataClient.length>0){
       setName(dataClient[0])
@@ -130,7 +130,6 @@ useEffect(() => {
   
 
    function moreOfThisProduct(id,{quantity}) {
-
     addProduct(id,quantity);
   }
   function lessOfThisProduct(id) {
@@ -263,8 +262,6 @@ async function goToPaymentMP(e) {
                         <QuantityLabel>
                           {cartProducts.filter(id => id === product._id).length}
                         </QuantityLabel>
-                        
-
                         
                         <Button
                           onClick={() =>cartProducts.filter(id => id === product._id).length < product.stock && moreOfThisProduct(product._id,{quantity:cartProducts.filter(id => id === product._id).length})}>+</Button>

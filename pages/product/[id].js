@@ -11,7 +11,7 @@ import CartIcon from "@/components/icons/CartIcon";
 import {useContext} from "react";
 import {CartContext} from "@/components/CartContext";
 import Sidebar from "@/components/sidebar";
-
+import Link from "next/link";
 
 const ColWrapper = styled.div`
   display: grid;
@@ -61,11 +61,15 @@ const PriceTachado = styled.div`
 export default function ProductPage({product}) {
   const {cartProducts,addProduct} = useContext(CartContext);
   
-  
+  function moreOfThisProduct(id,{quantity}) {
+    addProduct(id,quantity);
+  }
+
   return (
     <>
       <Header />
       <Center>
+      <Title style={{color:"#345",fontStyle:"italic",fontFamily:"serif",fontSize:"18px",marginLeft:"10px",marginBottom:"-20px"}}><Link style={{textDecoration:"none",color:"#345"}} href={'/'}>Inicio </Link>/<Link style={{textDecoration:"none",color:"#345"}} href={'/products'}> Productos </Link>/ Detalles</Title>
         <ColWrapper>
           <WhiteBox>
             <ProductImages images={product.images} />
@@ -77,17 +81,25 @@ export default function ProductPage({product}) {
             </Title>
             <p>{product.description}</p>
             <PriceRow>
-              <div style={{display:"flex",justifyContent:"center",gap:"20px"}}>
+              <div style={{display:"flex",justifyContent:"center",alignItems:"center",gap:"15px"}}>
               <PriceTachado>
                 ${product.price * 1.3}
               </PriceTachado>
+              /
               <div style={{fontFamily:"serif",fontWeight:"bold"}}>
                 <Price>${product.price}</Price>
               </div>
               <div>
-                <Button primary onClick={() => addProduct(product._id)}>
+              {cartProducts.filter(id => id === product._id).length < product.stock 
+                ?
+                <Button white onClick={() =>cartProducts.filter(id => id === product._id).length < product.stock && moreOfThisProduct(product._id,{quantity:cartProducts.filter(id => id === product._id).length})}>
                   <CartIcon />Agregar al carrito
                 </Button>
+                :
+                <Button yellow onClick={() =>null}>
+                  <CartIcon />Sin Stock
+                </Button>
+              }
               </div>
               </div>
             </PriceRow>
