@@ -83,7 +83,6 @@ if (sha === hash) {
                     paid:true,
                     dataid: dataID["data.id"],
                 })
-                
                 const products = await Order.findById({_id:id})
                 for (const object of products.line_items){
                    const product = await Product.findById({_id:object.product_data.id})
@@ -92,8 +91,6 @@ if (sha === hash) {
                             stock:nuevoStock,
                         })
                 }
-                }
-                
                 const dataMP = await Order.findById({_id:id})
                 
                 await emailNuevaVenta(dataMP)
