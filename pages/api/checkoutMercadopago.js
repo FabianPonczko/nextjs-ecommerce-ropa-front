@@ -25,7 +25,7 @@ export default async function Mp(req,res) {
       const uniqueIds = [...new Set(productsIds)];
       const productsInfos = await Product.find({_id:uniqueIds});
       
-      let line_items = [];
+      const line_items = [];
       const MPitem=[];
       let MP_id=null;
       const id_mp=[]
@@ -33,14 +33,15 @@ export default async function Mp(req,res) {
         const productInfo = productsInfos.find(p => p._id.toString() === productId);
         const quantity = productsIds.filter(id => id === productId)?.length || 0;
         if (quantity > 0 && productInfo) {
-      line_items.push({
-        quantity,
-        price_data: {
-          currency: 'AR',
-          product_data: {name:productInfo.title},
-          unit_amount: quantity * productInfo.price,
-          },
-          });
+          line_items.push({
+            product_data: {
+              id:productId,
+              title:productInfo.title,
+              price:productInfo.price,
+              quantity:quantity,
+              amount:quantity * productInfo.price,
+              },
+              });
           }
           if (quantity > 0 && productInfo) {
             MPitem.push({
