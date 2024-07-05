@@ -1,5 +1,5 @@
 import {createContext, useEffect, useState} from "react";
-import showAlert from "./Alert";
+import {showAlert} from "./Alert";
 
 export const CartContext = createContext({});
 

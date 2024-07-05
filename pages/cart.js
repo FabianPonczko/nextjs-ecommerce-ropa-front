@@ -12,6 +12,9 @@ import { Router, useRouter } from "next/router";
 import Title from "@/components/Title";
 import Link from "next/link";
 import Carousel from "@/components/Carrusel";
+import {showAlert,showError} from "@/components/Alert";
+
+
 
 const ColumnsWrapper = styled.div`
 display: grid;
@@ -264,7 +267,11 @@ async function goToPaymentMP(e) {
                         </QuantityLabel>
                         
                         <Button
-                          onClick={() =>cartProducts.filter(id => id === product._id).length < product.stock && moreOfThisProduct(product._id,{quantity:cartProducts.filter(id => id === product._id).length})}>+</Button>
+                          onClick={() =>cartProducts.filter(id => id === product._id).length < product.stock 
+                            ?
+                             moreOfThisProduct(product._id,{quantity:cartProducts.filter(id => id === product._id).length})
+                             :
+                             showError('Ultimas en stock')}>+</Button>
                       </td>
                       <td>
                         ${cartProducts.filter(id => id === product._id).length * product.price}
