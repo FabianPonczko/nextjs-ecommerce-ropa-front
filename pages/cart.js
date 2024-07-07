@@ -349,9 +349,9 @@ async function goToPaymentMP(e) {
                 </a>
               }
               {!mpReference &&
-              <div style={{display:"flex", justifyContent:"center", marginTop:"30px"}}>
+              <div style={{display:"flex", justifyContent:"center", marginTop:"60px"}}>
                 <Link href={"/products"}>
-                  <button style={{backgroundColor:"#F8C471",minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"5px",fontFamily:"sans-serif",color:"#255589"}}>Seguir Comprando</button>
+                  <button style={{minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"10px",fontFamily:"sans-serif",color:"#255589"}}>Seguir Comprando</button>
                 </Link>
               </div>
               }
