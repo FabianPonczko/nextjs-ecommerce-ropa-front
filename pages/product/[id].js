@@ -37,7 +37,7 @@ const Banner = styled.div`
   margin: 10px 0px;
 `;
 const PriceRow = styled.div`
-max-width: 300px;
+max-width: 320px;
 @media screen and (min-width: 768px) {
 }
 `;
