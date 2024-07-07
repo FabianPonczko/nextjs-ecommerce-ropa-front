@@ -19,6 +19,12 @@ export const ButtonStyle = css`
     display: block;
     width: 100%;
   `}
+  ${props => props.flex && css`
+    display: flex;
+    justify-content:center;
+    color: ${primary};
+    width: 100%;
+  `}
   ${props => props.white && !props.outline && css`
     background-color: #004400;
     color: white;
@@ -55,6 +61,7 @@ export const ButtonStyle = css`
     background-color: transparent;
     border: 1px solid ${primary};
     color:${primary};
+    
   `}
   ${props => props.size === 'l' && css`
     font-size:1.2rem;

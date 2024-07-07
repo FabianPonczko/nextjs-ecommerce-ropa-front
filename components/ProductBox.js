@@ -126,16 +126,17 @@ export default function ProductBox({_id,stock,title,description,price,images}) {
             </Price>
           </div>
           
-          {cartProducts.filter(id => id === _id).length < stock 
-          ?
-          <Button outline primary block onClick={() => title!=="Sin STOCK"?addProduct(_id):null} >
-            <CartIcon />Agregar
-          </Button>
-          :
-          <Button outline primary block onClick={() => null} >
-            <CartIcon />Sin stock
-          </Button>
-          }
+            {cartProducts.filter(id => id === _id).length < stock 
+            ?
+            <Button outline primary flex onClick={() => title!=="Sin STOCK"?addProduct(_id):null} >
+              <CartIcon count={cartProducts.filter(id => id === _id).length} tono="black"/>Agregar 
+            </Button>
+            :
+            <Button outline primary flex onClick={() => null} >
+              <CartIcon count={cartProducts.filter(id => id === _id).length} tono="black"/>Sin stock
+            </Button>
+            }
+          
         </PriceRow>
       </ProductInfoBox>
     </ProductWrapper>

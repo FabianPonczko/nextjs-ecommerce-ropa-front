@@ -245,9 +245,9 @@ async function goToPaymentMP(e) {
               <Table>
                 <thead>
                   <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -257,7 +257,7 @@ async function goToPaymentMP(e) {
                         <ProductImageBox>
                           <img src={product.images[0]} alt="immage"/>
                         </ProductImageBox>
-                        {product.title}
+                      {product.title}
                       </ProductInfoCell>
                       <td>
                         <Button
@@ -281,14 +281,13 @@ async function goToPaymentMP(e) {
                   <tr style={{height:"15px"}}>
                   </tr>
                   <tr style={{height:"35px"}}>
-                    {costoEnvio>0?<td style={{color:"red"}}>Envio por correo</td>:<td style={{color:"gray",fontSize:"20px"}}>Envio gratis!!!</td>}
+                    {costoEnvio>0?<td>Envio</td>:<td style={{color:"green",fontSize:"18px", fontWeight:"bold"}}>Envio gratis!!!</td>}
                     <td></td>
                     {costoEnvio>0?<td> ${costoEnvio}</td>:<td></td>}
                   </tr>
-                    {costoEnvio>0?<tr style={{fontSize:"10px",color:"green"}}>Envio Gratis !!! Comprando 2 o mas productos</tr>:null}
                   <tr style={{height:"5px"}}>
                   </tr>
-                  <tr style={{height:"50px",fontSize:"20px"}}>
+                  <tr style={{height:"50px",fontSize:"20px",fontWeight:"bold"}}>
                     <td >Total</td>
                     <td></td>
                     <td>${total+costoEnvio}</td>
@@ -296,6 +295,7 @@ async function goToPaymentMP(e) {
                 </tbody>
               </Table>
             )}
+            {costoEnvio>0 && cartProducts?.length ?<tr style={{fontSize:"14px",color:"green"}}>* Comprando 2 o mas productos Envio Gratis !!! </tr>:null}
           </Box>
           {!!cartProducts?.length && (
             <Box>

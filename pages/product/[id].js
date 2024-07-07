@@ -12,6 +12,7 @@ import {useContext} from "react";
 import {CartContext} from "@/components/CartContext";
 import Sidebar from "@/components/sidebar";
 import Link from "next/link";
+import {showError} from "@/components/Alert";
 
 const ColWrapper = styled.div`
   display: grid;
@@ -93,11 +94,11 @@ export default function ProductPage({product}) {
               {cartProducts.filter(id => id === product._id).length < product.stock 
                 ?
                 <Button white onClick={() =>cartProducts.filter(id => id === product._id).length < product.stock && moreOfThisProduct(product._id,{quantity:cartProducts.filter(id => id === product._id).length})}>
-                  <CartIcon />Agregar al carrito
+                  <CartIcon count={cartProducts.filter(id => id === product._id).length} tono="white"/>Agregar al carrito
                 </Button>
                 :
-                <Button yellow onClick={() =>null}>
-                  <CartIcon />Sin Stock
+                <Button white onClick={() =>showError('Ultimas en stock')}>
+                  <CartIcon count={cartProducts.filter(id => id === product._id).length} tono="white"/>Agregar al carrito
                 </Button>
               }
               </div>
