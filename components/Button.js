@@ -28,7 +28,7 @@ export const ButtonStyle = css`
     background-color: #ffd300;
     color: #000;
     border: 1px solid #4545;
-    padding: 10px 45px;
+    padding: 10px 5px;
   `}
   ${props => props.black && !props.outline && css`
     background-color: #000;
