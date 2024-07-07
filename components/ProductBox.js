@@ -13,7 +13,7 @@ const WhiteBox = styled(Link)`
   position: relative;
   background-color: #fff;
   padding: 5px ;
-  height: 170px;
+  height: 130px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -21,7 +21,7 @@ const WhiteBox = styled(Link)`
   border-radius: 10px;
     img{
     max-width: 100%;
-    max-height: 150px;
+    max-height: 120px;
     border-radius: 10px;
   }
   @media screen and (min-width: 768px) {
@@ -86,7 +86,7 @@ const Descuento = styled.div`
   position: absolute;
   top: 20px; /* Ajusta la posición verticalmente */
   border-radius: 5px;
-  right: 85px; /* Ajusta la posición horizontalmente */
+  left: 25px; /* Ajusta la posición horizontalmente */
   background-color: #E53232; /* Color de fondo del texto */
   color: white; /* Color del texto */
   padding: 2px; /* Espacio alrededor del texto */
@@ -94,7 +94,7 @@ const Descuento = styled.div`
   @media screen and (min-width: 768px) {
     position: absolute;
     top: 25px; /* Ajusta la posición verticalmente */
-    right: 195px; /* Ajusta la posición horizontalmente */
+    left: 25px; /* Ajusta la posición horizontalmente */
   }
 `;
 
@@ -116,12 +116,15 @@ export default function ProductBox({_id,stock,title,description,price,images}) {
         :<Title href={url}>{title}</Title>}
         
         <PriceRow>
-          <PriceTachado>
-            ${price * 1.3}
-          </PriceTachado>
-          <Price>
-            ${price}
-          </Price>
+          <div style={{display:"flex",justifyContent:"center",gap:"5px"}}>
+            <PriceTachado>
+              ${price * 1.3}
+            </PriceTachado>
+            /
+            <Price>
+              ${price}
+            </Price>
+          </div>
           
           {cartProducts.filter(id => id === _id).length < stock 
           ?

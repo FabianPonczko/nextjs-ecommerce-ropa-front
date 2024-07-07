@@ -22,19 +22,13 @@ export const ButtonStyle = css`
   ${props => props.white && !props.outline && css`
     background-color: #004400;
     color: white;
-    border: 1px solid #4545;
-    padding: 10px 20px;
+    padding: 10px 5px;
   `}
   ${props => props.yellow && !props.outline && css`
     background-color: #ffd300;
     color: #000;
     border: 1px solid #4545;
     padding: 10px 45px;
-  `}
-  ${props => props.white && props.outline && css`
-    background-color: transparent;
-    color: #fff;
-    border: 1px solid #fff;
   `}
   ${props => props.black && !props.outline && css`
     background-color: #000;
