@@ -28,7 +28,8 @@ export const ButtonStyle = css`
   ${props => props.white && !props.outline && css`
     background-color: #004400;
     color: white;
-    padding: 10px 5px;
+    padding: 10px 15px;
+    margin-top:10px
   `}
   ${props => props.yellow && !props.outline && css`
     background-color: #ffd300;
@@ -61,7 +62,6 @@ export const ButtonStyle = css`
     background-color: transparent;
     border: 1px solid ${primary};
     color:${primary};
-    
   `}
   ${props => props.size === 'l' && css`
     font-size:1.2rem;

@@ -11,10 +11,10 @@ const showAlert = (message) => {
 };
 const showError = (message) => {
 Swal.fire({
-   text: 'Maximo Stock',
+  text: message,
   icon: 'error',
   showConfirmButton: false,
-  timer: 1000
+  timer: 1500
 })
 }
 export  {showAlert,showError};
