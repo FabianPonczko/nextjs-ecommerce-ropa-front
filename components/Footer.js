@@ -93,11 +93,25 @@ export default function Header() {
            </div>
           <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
             <p>Medios de pago</p>
-            <img src="img/mercadopago@2x.png" style={{width:"50px"}}></img>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",backgroundColor:"white"}}>
+
+            <img src="img/mercadopago@2x.png" style={{width:"30px"}}></img>
+            <img src="../img/agro.png" alt="tarjeta agro" style={{width:"30px"}}/>
+                  <img src="../img/american.png" alt="tarjeta american" style={{width:"30px"}}/>
+                  <img src="../img/argend.png" alt="tarjeta argend" style={{width:"30px"}}/>
+                  <img src="../img/cabal.png" alt="tarjeta cabal" style={{width:"30px"}}/>
+                  <img src="../img/cmr.png" alt="tarjeta cmr"style={{width:"30px"}} />
+                  <img src="../img/cordobeza.png" alt="tarjeta cordobeza" style={{width:"30px"}}/>
+                  <img src="../img/diners.png" alt="tarjeta diners" style={{width:"30px"}}/>
+                  <img src="../img/naranja.png" alt="tarjeta naranja" style={{width:"30px"}}/>
+                  <img src="../img/nativa.png" alt="tarjeta nativa" style={{width:"30px"}}/>
+                  <img src="../img/shoping.png" alt="tarjeta shoping" style={{width:"30px"}}/>
+                  <img src="../img/visa.png" alt="tarjeta visa" style={{width:"30px"}}/>
+            </div>
           </div>
           <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
             <p>Formas de envío</p>
-            <img src="img/correo.png" style={{width:"40px"}}></img>
+            <img src="img/correo.png" style={{width:"65px"}}></img>
           </div>
           
           <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>

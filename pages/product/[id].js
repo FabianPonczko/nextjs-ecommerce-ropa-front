@@ -29,17 +29,19 @@ const Banner = styled.div`
   grid-template-columns: 1fr;
   gap:20px;
   font-size: 12px;
+  justify-items: center;
+  
+
   @media screen and (min-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr ;
-    justify-items: center;
-    align-items: center;
-    gap: 5px;
+    display:none
+    
   }
-  margin: 10px 0px;
+  
 `;
 const PriceRow = styled.div`
-max-width: 300px;
+max-width: 90vw;
 @media screen and (min-width: 768px) {
+max-width: 440px;
 }
 `;
 const Price = styled.span`
@@ -68,6 +70,7 @@ background-color: white;
 }
 justify-items: center;
 align-items: center;
+
 `;
 const Servicios= styled.div`
 display:grid;
@@ -114,8 +117,7 @@ export default function ProductPage({product}) {
               <div style={{fontFamily:"serif",fontWeight:"bold"}}>
                 <Price>${product.price}</Price>
               </div>
-              <div>
-              </div>
+              
               </div>
               <div >
                 {cartProducts.filter(id => id === product._id).length < product.stock 
@@ -143,7 +145,7 @@ export default function ProductPage({product}) {
                   <img src="../img/shoping.png" alt="tarjeta shoping" />
                   <img src="../img/visa.png" alt="tarjeta visa" />
                 </Tarjetas>
-                  <img  style={{maxWidth:"300px",marginTop:"20px"}} src="../img/MP.jpg" alt="mercado pago protegido" />
+                  <img  style={{maxWidth:"90vw",marginTop:"20px"}} src="../img/MP.jpg" alt="mercado pago protegido" />
             </PriceRow>
            
           </div>
@@ -152,6 +154,8 @@ export default function ProductPage({product}) {
 
         
         <Banner>
+          <div style={{display:"flex",flexDirection:"column",gap:"25px",marginBottom:"25px"}}>
+
           
           {/* <div style={{display:"flex",gap:"50px",justifyContent:"space-around", marginTop:"80px"}}> */}
             <div style={{display:"flex",alignItems:"center",gap:"20px"}}>
@@ -159,10 +163,10 @@ export default function ProductPage({product}) {
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
               </svg>
                 <div>
-                  <div style={{fontFamily:"sans-serif",fontWeight:"bold" , fontSize:"12px"}}>
-                    COMPRÁ CON SEGURIDAD
-                  </div>
                   <div>
+                  <div style={{fontFamily:"sans-serif",fontWeight:"bold" , fontSize:"12px"}}>
+                    Comprá con seguridad
+                  </div>
                     Tus datos siempre protegidos
                   </div>
                 </div>
@@ -173,7 +177,7 @@ export default function ProductPage({product}) {
               </svg>
               <div>
                 <div style={{fontFamily:"sans-serif",fontWeight:"bold" , fontSize:"12px"}}>
-                  POLITICA DE DEVOLUCIÓN
+                  Politica de devolución
                 </div>
                 <div>
                   No se aceptan cambios ni devoluciones
@@ -187,7 +191,7 @@ export default function ProductPage({product}) {
               </svg>
               <div>
                 <div style={{fontFamily:"sans-serif",fontWeight:"bold" , fontSize:"12px"}}>
-                  ENVIAMOS TU COMPRA
+                  Enviamos tu pedido
                 </div>
                 <div>
                   Entregas a todo el país
@@ -197,6 +201,7 @@ export default function ProductPage({product}) {
             </div>
           
           {/* </div> */}
+          </div>
           </Banner>
       </Center>
       <Sidebar itemCount={cartProducts.length}/>
