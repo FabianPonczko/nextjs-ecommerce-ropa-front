@@ -127,7 +127,6 @@ export default function Header() {
               </div>
             </div>
           </div>
-          
                    
       </div>
       <div style={{display:"flex",flexDirection:"column",alignItems:"center",marginTop:"50px"}}>
