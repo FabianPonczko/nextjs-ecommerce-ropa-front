@@ -158,7 +158,7 @@ export default function ProductPage({product}) {
                     </Tarjetas>
                     <div style={{display:"flex",justifyContent:"center",marginTop:"45px"}}>
                       <Link href={"/cart"}>
-                        <button style={{border:"1px solid #0D3D29",minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"5px",fontFamily:"Poppins",color:"#0D3D29"}}>Cariito de compras</button>
+                        <button style={{border:"1px solid #0D3D29",minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"5px",fontFamily:"Poppins",color:"#0D3D29"}}>Carrito de compras</button>
                       </Link>
                     </div>
             </PriceRow>
