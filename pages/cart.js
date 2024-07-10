@@ -237,7 +237,7 @@ async function goToPaymentMP(e) {
       <Title style={{color:"#345",fontStyle:"italic",fontFamily:"serif" , marginTop:"40px" , fontSize:"18px",marginLeft:"8px"}}><Link style={{textDecoration:"none",color:"#345",marginLeft:"2px"}} href={'/'}>Inicio </Link>/ <Link style={{textDecoration:"none",color:"#345"}} href={'/products'}> Productos </Link>/ Carrito</Title>
         <ColumnsWrapper>
           <Box>
-            <h2>Carrito de compras</h2>
+            <h3>Carrito de compras</h3>
             {!cartProducts?.length && (
               <div>Su carrito esta vacio!</div>
             )}
@@ -299,10 +299,10 @@ async function goToPaymentMP(e) {
           </Box>
           {!!cartProducts?.length && (
             <Box>
-              <h2>Información para el pedido</h2>
+              <h3>Información para el pedido</h3>
               <form onSubmit={goToPaymentMP}>
               <Input type="text"
-                     placeholder="Name"
+                     placeholder="Nombre"
                      value={name}
                      name="name"
                      onChange={ev => setName(ev.target.value)} required/>
@@ -313,18 +313,18 @@ async function goToPaymentMP(e) {
                      onChange={ev => setEmail(ev.target.value)}required/>
               <CityHolder>
                 <Input type="text"
-                       placeholder="City"
+                       placeholder="Ciudad"
                        value={city}
                        name="city"
                        onChange={ev => setCity(ev.target.value)}required/>
                 <Input type="text"
-                       placeholder="Postal Code"
+                       placeholder="Codigo Postal"
                        value={postalCode}
                        name="postalCode"
                        onChange={ev => setPostalCode(ev.target.value)}required/>
               </CityHolder>
               <Input type="text" 
-                     placeholder="Street Address"
+                     placeholder="Calle"
                      value={streetAddress}
                      name="streetAddress"
                      onChange={ev => setStreetAddress(ev.target.value)}required/>
@@ -333,12 +333,13 @@ async function goToPaymentMP(e) {
                      value={country}
                      name="country"
                       onChange={ev => setCountry(ev.target.value)} required/>
+              {!mpReference && 
               <Button primary block
                       type="submit" value="submit"
                       // onClick={goToPaymentMP}
                       >
                 Continuar con el pago
-              </Button>
+              </Button>}
             </form>
               
               {mpReference && 
@@ -351,7 +352,7 @@ async function goToPaymentMP(e) {
               {!mpReference &&
               <div style={{display:"flex", justifyContent:"center", marginTop:"60px"}}>
                 <Link href={"/products"}>
-                  <button style={{minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"10px",fontFamily:"sans-serif",color:"#255589"}}>Seguir Comprando</button>
+                  <button style={{border:"1px solid #0D3D29",minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"5px",fontFamily:"Poppins",color:"#0D3D29"}}>Seguir Comprando</button>
                 </Link>
               </div>
               }

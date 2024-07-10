@@ -18,7 +18,7 @@ export default function NewProducts({products}) {
       <ProductsGrid products={products} />
       <div style={{display:"flex", justifyContent:"center", marginTop:"60px"}}>
         <Link href={"/products"}>
-          <button style={{minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"5px",fontFamily:"Poppins",color:"#0D3D29"}}>Todos los productos</button>
+          <button style={{border:"1px solid #0D3D29",minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"5px",fontFamily:"Poppins",color:"#0D3D29"}}>Todos los productos</button>
         </Link>
       </div>
     </Center>

@@ -67,6 +67,7 @@ grid-Template-Columns: 1fr 1fr;
 background-color: white;
 @media screen and (min-width: 768px) {
   grid-Template-Columns: 1fr 1fr 1fr 1fr;
+  
 }
 justify-items: center;
 align-items: center;
@@ -146,6 +147,20 @@ export default function ProductPage({product}) {
                   <img src="../img/visa.png" alt="tarjeta visa" />
                 </Tarjetas>
                   <img  style={{maxWidth:"90vw",marginTop:"20px"}} src="../img/MP.jpg" alt="mercado pago protegido" />
+                  <Title style={{marginTop:"30px",fontSize:"30px"}}>Métodos de envío</Title>
+                    <Tarjetas style={{display:"flex",gap:"10px",padding:"10px"}}>
+                    <div>
+                      <img src="../img/correo.png" alt="tarjeta visa" style={{width:"80px"}} />      
+                    </div>
+                    <div>
+                      <p>Envios a todo el país a través de correo argentino</p>
+                    </div>
+                    </Tarjetas>
+                    <div style={{display:"flex",justifyContent:"center",marginTop:"45px"}}>
+                      <Link href={"/cart"}>
+                        <button style={{border:"1px solid #0D3D29",minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"5px",fontFamily:"Poppins",color:"#0D3D29"}}>Cariito de compras</button>
+                      </Link>
+                    </div>
             </PriceRow>
            
           </div>

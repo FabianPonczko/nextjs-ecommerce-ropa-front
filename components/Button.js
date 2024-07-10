@@ -18,6 +18,10 @@ export const ButtonStyle = css`
   ${props => props.block && css`
     display: block;
     width: 100%;
+    padding:15px;
+    margin-top:5px;
+    font-Family: Poppins;
+    font-size: 16px;
   `}
   ${props => props.flex && css`
     display: flex;
