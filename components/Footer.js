@@ -118,7 +118,7 @@ export default function Header() {
             <p>Contactos</p>
             <div style={{display:"flex",flexDirection:"column"}}>
               <div>
-              <img style={{width:"20px",height:"20px",margin:"1px"}} src="../img/email.png" alt="icono email" />
+              <img style={{width:"20px",height:"20px",margin:"1px"}} src="../img/email1.png" alt="icono email" />
                 quetop@gmail.com
               </div>
               <div>
