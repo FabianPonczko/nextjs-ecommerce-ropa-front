@@ -25,11 +25,15 @@ const CartIcon = styled(FaShoppingCart)`
   color: rgba(0, 0, 0, .2); /* Fondo semi-transparente blanco */
 `;
 const ItemCount = styled.span`
-position:absolute;  
+position:absolute; 
+width:15px;
 font-size: 16px;
-margin-top: -5px;
-margin-left: -2px;
-color:red;
+margin-top: -22px;
+margin-left: -10px;
+color:white;
+background-color:red;
+border-radius:50%;
+padding:2px
   
 `;
 
@@ -39,7 +43,11 @@ const Sidebar = ({ itemCount }) => {
         <SidebarContainer>
            <Link href={'/cart'}>
             <CartIcon />
-            <ItemCount>{itemCount}</ItemCount>
+            <ItemCount>
+              <div style={{display:"flex",justifyContent:"center"}}>
+                {itemCount}
+              </div>
+            </ItemCount>
            </Link>
         </SidebarContainer>
   );

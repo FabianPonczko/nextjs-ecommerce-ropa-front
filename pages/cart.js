@@ -281,7 +281,7 @@ async function goToPaymentMP(e) {
                   <tr style={{height:"15px"}}>
                   </tr>
                   <tr style={{height:"35px"}}>
-                    {costoEnvio>0?<td>Envio</td>:<td style={{color:"green",fontSize:"18px", fontWeight:"bold"}}>Envio gratis!!!</td>}
+                    {costoEnvio>0?<td>Envio</td>:<td style={{color:"green",fontSize:"16px", fontWeight:"bold"}}>Envío gratis!</td>}
                     <td></td>
                     {costoEnvio>0?<td> ${costoEnvio}</td>:<td></td>}
                   </tr>
