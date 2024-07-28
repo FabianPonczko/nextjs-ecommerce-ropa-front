@@ -153,6 +153,7 @@ async function goToPaymentMP(e) {
     }).then(response => {
       console.log({response})
       setMPreference(response.data);
+      window.location.href = response.data;
     })
 } else {
   setMPreference(null);
@@ -314,8 +315,6 @@ async function goToPaymentMP(e) {
                             onChange={handleMetodoEnvioChange}
                             />
                             <label>Punto de Entrega</label>
-                            <spam>(Av. Alem)</spam>
-                              
                           </td>
                           <td> $ 0</td>
                         </tr>
@@ -439,21 +438,25 @@ async function goToPaymentMP(e) {
                      name="country"
                       onChange={ev => setCountry(ev.target.value)} required/>
               {!mpReference && metodoEnvio &&
-              <Button primary block
+              <>
+              <Button azulMP block
                       type="submit" value="submit"
                       // onClick={goToPaymentMP}
                       >
-                Continuar con el pago
-              </Button>}
+                Comprar ahora
+              </Button>
+                <img src="../img/mercadopago@2x.png" alt="mercado pago" style={{width:"100%"}}/>
+                <img src="../img/MP.jpg" alt="protección mercado pago" style={{width:"100%",marginTop:"10px"}} />
+                        </>
+              }
             </form>
-              
-              {mpReference && 
+              {/* {mpReference && 
                 <a href ={mpReference} style={{textDecoration:"none"}}>
                   <Button azulMP block >
                     Pagar con Mercado Pago
                 </Button>
                 </a>
-              }
+              } */}
               {!mpReference &&
               <div style={{display:"flex", justifyContent:"center", marginTop:"60px"}}>
                 <Link href={"/products"}>

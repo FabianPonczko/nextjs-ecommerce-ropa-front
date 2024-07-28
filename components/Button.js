@@ -60,7 +60,8 @@ export const ButtonStyle = css`
     border: 1px solid ${primary};
     color:#fff;
     margin-top:10px;
-    height: 60px;
+    font-family: arial;
+    height: 50px;
   `}
   ${props => props.primary && props.outline && css`
     background-color: transparent;
