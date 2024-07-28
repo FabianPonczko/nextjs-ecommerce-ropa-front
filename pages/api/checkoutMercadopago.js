@@ -18,7 +18,7 @@ export default async function Mp(req,res) {
     const {
       name,email,city,
       postalCode,streetAddress,country,
-      cartProducts,
+      cartProducts,metodoEnvio
       } = req.body;
       await mongooseConnect();
       const productsIds = cartProducts;
@@ -60,7 +60,7 @@ export default async function Mp(req,res) {
 console.log({MPitem})
 
 let costoEnvio 
-    if (cartProducts.length > 1){
+    if (cartProducts.length > 1 || metodoEnvio ==="entrega"){
         costoEnvio = 0
     }else{
       costoEnvio = 7300
@@ -69,7 +69,8 @@ let costoEnvio
 // MERCADO PAGO 
 const orderDoc = await Order.create({
     line_items,name,email,city,postalCode,
-    streetAddress,country,paid:false,dataid:""
+    streetAddress,country,paid:false,dataid:"",
+    metodoEnvio
   });
 
 
@@ -83,6 +84,10 @@ const preference = new Preference(client);
           unit_price:item.price
         })
       ),
+      shipments:{
+            "cost": {costoEnvio},
+            "mode": "not_specified",
+          },
       external_reference: orderDoc._id.toString(),
       back_urls:{
         success: process.env.PUBLIC_URL + '/cart?success=1',

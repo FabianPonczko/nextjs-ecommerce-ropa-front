@@ -89,6 +89,7 @@ img{
     const [isSuccess,setIsSuccess] = useState(false);
     const [mpReference,setMPreference] = useState(false);
     const [loading,setLoading] = useState(true)
+    const [metodoEnvio, setMetodoEnvio] = useState('');
     
     const router = useRouter()    
 
@@ -139,12 +140,16 @@ useEffect(() => {
     removeProduct(id);
   }
   
+  const handleMetodoEnvioChange = (event) => {
+    setMetodoEnvio(event.target.value);
+  };
+
 async function goToPaymentMP(e) {
     e.preventDefault()
     if (cartProducts.length > 0) {
       axios.post('/api/checkoutMercadopago', {
       name,email,city,postalCode,streetAddress,country,
-      cartProducts,
+      cartProducts,metodoEnvio
     }).then(response => {
       console.log({response})
       setMPreference(response.data);
@@ -280,18 +285,99 @@ async function goToPaymentMP(e) {
                   ))}
                   <tr style={{height:"15px"}}>
                   </tr>
-                  <tr style={{height:"35px"}}>
-                    {costoEnvio>0?<td>Envio</td>:<td style={{color:"green",fontSize:"16px", fontWeight:"bold"}}>Envío gratis!</td>}
-                    <td></td>
-                    {costoEnvio>0?<td> ${costoEnvio}</td>:<td></td>}
-                  </tr>
+
+                    {costoEnvio>0
+                      ?
+                      <>
+                        <tr style={{height:"50px"}}> 
+                          <td colspan="2">
+                            <input
+                            type="radio"
+                            id="envio"
+                            name="metodoEnvio"
+                            value="envio"
+                            checked={metodoEnvio === 'envio'}
+                            onChange={handleMetodoEnvioChange}
+                            />
+                            <label>Envío a domicilio</label>
+                          </td>
+                          {costoEnvio>0?<td> ${costoEnvio}</td>:<td></td>}
+                        </tr>
+                        <tr style={{height:"50px"}}> 
+                          <td colspan="2">
+                            <input
+                            type="radio"
+                            id="entrega"
+                            name="metodoEnvio"
+                            value="entrega"
+                            checked={metodoEnvio === 'entrega'}
+                            onChange={handleMetodoEnvioChange}
+                            />
+                            <label>Punto de Entrega</label>
+                            <spam>(Av. Alem)</spam>
+                              
+                          </td>
+                          <td> $ 0</td>
+                        </tr>
+                      </>
+                      :
+                      <>
+                      <td colspan="3" style={{height:"45px"}}>
+                        <input
+                          type="radio"
+                          id="envio"
+                          name="metodoEnvio"
+                          value="envio"
+                          checked={metodoEnvio === 'envio'}
+                          onChange={handleMetodoEnvioChange}
+                          />
+                          Envío a domicilio gratis
+                      </td>
+                      <tr style={{height:"50px"}}> 
+                          <td colspan="2">
+                            <input
+                            type="radio"
+                            id="retiroPuntoEntrega"
+                            name="metodoEnvio"
+                            value="entrega"
+                            checked={metodoEnvio === 'entrega'}
+                            onChange={handleMetodoEnvioChange}
+                            />
+                            <label>Punto de Entrega</label>
+                          </td>
+                      </tr>
+                      </>
+                      // <td style={{color:"green",fontSize:"16px", fontWeight:"bold"}}>
+                      //   Envío gratis!
+                      //   </td>} 
+                     
+                      }
+                 
+                      
+                    
+                  
                   <tr style={{height:"5px"}}>
                   </tr>
-                  <tr style={{height:"50px",fontSize:"20px",fontWeight:"bold"}}>
-                    <td >Total</td>
-                    <td></td>
-                    <td>${total+costoEnvio}</td>
-                  </tr>
+                  {metodoEnvio===""
+                    ?
+                      <tr style={{height:"50px",color:"red"}}>
+                        <td colSpan="3">
+                          Seleccione un metodo de envio
+                        </td>
+                      </tr>
+                    :
+                      <tr style={{height:"50px",fontSize:"20px",fontWeight:"bold"}}>
+                      <td >Total</td>
+                      <td></td>
+                      {metodoEnvio==="envio"
+                        ?
+                          <td>${total + costoEnvio}</td>
+                        :
+                          <td>${total}</td>
+                      }
+                      </tr>
+                  }
+
                 </tbody>
               </Table>
             )}
@@ -299,7 +385,26 @@ async function goToPaymentMP(e) {
           </Box>
           {!!cartProducts?.length && (
             <Box>
-              <h3>Información para el pedido</h3>
+              {metodoEnvio==="envio"
+              ?
+              <>
+              {metodoEnvio!=="" && <><h1 style={{color:"green"}}>Envío a domilicio</h1>
+              <h6>
+                Se notificara por mail el despacho de los productos
+              </h6></>
+              }
+              <h3>Datos de usuario</h3>
+              </>
+              :
+              <>
+               {metodoEnvio!=="" && <><h1 style={{color:"green"}}>Punto de entrega </h1>
+               <h6>
+                Se notificara por mail el punto de entrega sobre(Av. Alem)
+              </h6></>
+              }
+              <h3>Datos de usuario</h3>
+              </>
+              }
               <form onSubmit={goToPaymentMP}>
               <Input type="text"
                      placeholder="Nombre"
@@ -333,7 +438,7 @@ async function goToPaymentMP(e) {
                      value={country}
                      name="country"
                       onChange={ev => setCountry(ev.target.value)} required/>
-              {!mpReference && 
+              {!mpReference && metodoEnvio &&
               <Button primary block
                       type="submit" value="submit"
                       // onClick={goToPaymentMP}
