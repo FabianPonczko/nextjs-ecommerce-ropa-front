@@ -97,6 +97,16 @@ const Descuento = styled.div`
     left: 25px; /* Ajusta la posición horizontalmente */
   }
 `;
+const Rotar = styled.div`
+position:absolute;
+transform: rotate(-15deg);
+color :white;
+background-color:#E53232 ;
+width: 100%;
+padding:1px;
+border: 1px solid white;
+border-radius:3px
+`
 
 export default function ProductBox({_id,stock,title,description,price,images}) {
   const {cartProducts,addProduct} = useContext(CartContext);
@@ -104,21 +114,25 @@ export default function ProductBox({_id,stock,title,description,price,images}) {
   return (
     <ProductWrapper>
       <WhiteBox href={url}>
-        <Descuento>30% OFF</Descuento>          
+      {stock!==0 &&<Descuento>30% OFF</Descuento>}
         <div key={_id}>
           <img src={images?.[0]}  alt="imagen"/>
         </div>
+        {stock==0 && <Rotar>Agotado</Rotar>}
+        
+
       </WhiteBox>
       <ProductInfoBox>
         
-        {title==="Sin STOCK"
+        {stock==0
         ?<Title href={url} style={{color: "#FF0000"}}>{title}</Title>
+
         :<Title href={url}>{title}</Title>}
         
         <PriceRow>
           <div style={{display:"flex",justifyContent:"center",gap:"5px"}}>
             <PriceTachado>
-              ${price * 1.3}
+              ${Math.round( price * 1.427) }
             </PriceTachado>
             /
             <Price>

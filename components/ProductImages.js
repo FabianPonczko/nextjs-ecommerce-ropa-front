@@ -48,16 +48,28 @@ const Descuento = styled.div`
     right: 360px; /* Ajusta la posición horizontalmente */
   }
 `;
+const Rotar = styled.div`
+position:absolute;
+top:50%;
+transform: rotate(-15deg);
+color :white;
+background-color:#E53232 ;
+width: 100%;
+padding:1px;
+border: 1px solid white;
+border-radius:3px
+`
 
 
-export default function ProductImages({images}) {
+export default function ProductImages({images,stock}) {
   const [activeImage,setActiveImage] = useState(images?.[0]);
   return (
     <>
       <BigImageWrapper>
         {/* <BigImage src={activeImage} />  */}
         <ZoomOnHoverImage src={activeImage} alt="Descripción de la imagen" />
-        <Descuento>30% OFF</Descuento>
+        {stock!==0 &&<Descuento>30% OFF</Descuento>}
+        {stock==0 &&<Rotar>Agotado</Rotar>}
       </BigImageWrapper>
       <ImageButtons>
         {images.map(image => (

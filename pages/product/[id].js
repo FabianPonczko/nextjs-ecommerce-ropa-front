@@ -83,9 +83,8 @@ grid-Template-columns: 1fr 1fr 1fr;
 justify-Content: center;
 gap:30px;
 }
-
-
 `;
+
 export default function ProductPage({product}) {
   const {cartProducts,addProduct} = useContext(CartContext);
   
@@ -100,7 +99,7 @@ export default function ProductPage({product}) {
       <Title style={{color:"#345",fontStyle:"italic",fontFamily:"serif",fontSize:"18px",marginLeft:"10px",marginBottom:"-20px"}}><Link style={{textDecoration:"none",color:"#345"}} href={'/'}>Inicio </Link>/<Link style={{textDecoration:"none",color:"#345"}} href={'/products'}> Productos </Link>/ Detalles</Title>
         <ColWrapper>
           <WhiteBox>
-            <ProductImages images={product.images} />
+            <ProductImages images={product.images} stock={product.stock} />
           </WhiteBox>
           <div>
             <Title style={{display:"flex",flexDirection:"column",alignContent:"center", fontFamily:"", fontSize:"40px"}}>
@@ -127,7 +126,7 @@ export default function ProductPage({product}) {
                     <CartIcon count={cartProducts.filter(id => id === product._id).length} tono="white"/>Agregar al carrito
                   </Button>
                   :
-                  <Button white onClick={() =>showError('Ultimas unidades en stock')}>
+                  <Button white onClick={() => product.stock==0? showError('Producto Agotado'):showError('Ultimas unidades en stock')}>
                     <CartIcon count={cartProducts.filter(id => id === product._id).length} tono="white"/>Agregar al carrito
                   </Button>
                 }
