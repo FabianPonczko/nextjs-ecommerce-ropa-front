@@ -99,8 +99,9 @@ img{
         axios.post('/api/cart', {ids:cartProducts})
         .then(response => {
           setProducts(response.data);
-        })         
+        }).finally(setLoading(false))
     } else {
+      setLoading(false)
       setProducts([]);
       setTimeout(() => {
       router.push("/")
@@ -113,7 +114,7 @@ img{
       setPostalCode(dataClient[3])
       setStreetAddress(dataClient[4])
     }
-      setLoading(false)
+      
   }, [cartProducts]);
   
 useEffect(() => {
