@@ -115,7 +115,7 @@ img{
       setStreetAddress(dataClient[4])
     }
       
-  }, []);
+  }, [cartProducts]);
   
 useEffect(() => {
   return () => {
