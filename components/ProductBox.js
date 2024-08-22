@@ -128,7 +128,7 @@ export default function ProductBox({_id,stock,title,description,price,images,pro
        suma = suma + productRates[index].rate
     }
    if (suma)  
-     return  (suma/productRates?.length).toFixed(2)
+     return  (suma/productRates?.length).toFixed(1)
    return 0
   } 
   return (
@@ -172,7 +172,7 @@ export default function ProductBox({_id,stock,title,description,price,images,pro
             }
         </PriceRow>
 
-            <div style={{fontSize:"10px",display:"flex",alignItems:"center"}}>
+            <div style={{fontSize:"12px",display:"flex",alignItems:"center"}}>
               <StarRating totalStars={5} onRate={promedioRates()} isDisabled = {true}/>
               ({promedioRates()})
             </div>

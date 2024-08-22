@@ -126,7 +126,7 @@ function promedioRates(){
      suma = suma + ratingData[index].rate
   }
  if (suma)  
-   return  (suma/ratingData.length).toFixed(2)
+   return  (suma/ratingData.length).toFixed(1)
  return 0
 } 
 
@@ -195,7 +195,7 @@ function promedioRates(){
                     </div>
                     </Tarjetas>
                     
-                    <div style={{marginTop:"20px",display:"flex",justifyContent:"space-around"}}>
+                    <div style={{marginTop:"20px",display:"flex",justifyContent:"space-between"}}>
                       <div style={{display:"flex",alignItems:"center"}}>
                         <div style={{display:"flex",alignItems:"center",fontFamily:"fantasy",color:"gray"}}>
                             <span>{ promedioRates()}</span>
@@ -208,7 +208,9 @@ function promedioRates(){
                         Agregar una opinión
                       </Button>
                     </div>
-                      (Basado en {ratingData.length} opiniones)
+                      <div style={{fontSize:"12px",marginBottom:"30px"}}>
+                        (Basado en {ratingData.length} opiniones)
+                      </div>
                     {opinar ? 
                       <form onSubmit={sendOpinion}
                         style={{display:"flex",flexDirection:"column",marginTop:"40px",gap:"2px"}}>
