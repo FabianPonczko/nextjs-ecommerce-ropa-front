@@ -10,12 +10,12 @@ const Title = styled.h2`
   font-weight: normal;
 `;
 
-export default function NewProducts({products}) {
+export default function NewProducts({products,productRating}) {
   return (
     <Center>
       {/* <Title style={{fontStyle:"italic",fontFamily:"serif",display:"flex",justifyContent:"center"}}>Nuevos Ingresos</Title> */}
       <Title style={{color:"#345",fontStyle:"italic",fontFamily:"serif",fontSize:"18px",marginLeft:"10px"}}>Inicio /<Link style={{textDecoration:"none",color:"#345"}} href={'/products'}> Productos </Link>/ Últimos Ingresos</Title>
-      <ProductsGrid products={products} />
+      <ProductsGrid products={products} productRating={productRating}/>
       <div style={{display:"flex", justifyContent:"center", marginTop:"60px"}}>
         <Link href={"/products"}>
           <button style={{border:"1px solid #0D3D29",minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"5px",fontFamily:"Poppins",color:"#0D3D29"}}>Todos los productos</button>

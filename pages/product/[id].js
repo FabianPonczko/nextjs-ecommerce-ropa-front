@@ -2,17 +2,24 @@ import Center from "@/components/Center";
 import Header from "@/components/Header";
 import Title from "@/components/Title";
 import {mongooseConnect} from "@/lib/mongoose";
-import {Product} from "@/models/Product";
 import styled from "styled-components";
 import WhiteBox from "@/components/WhiteBox";
 import ProductImages from "@/components/ProductImages";
 import Button from "@/components/Button";
 import CartIcon from "@/components/icons/CartIcon";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {CartContext} from "@/components/CartContext";
 import Sidebar from "@/components/sidebar";
 import Link from "next/link";
 import {showError} from "@/components/Alert";
+import StarRating from "@/components/StartRating";
+import axios from "axios";
+import {Product} from "@/models/Product";
+import { Rating } from "@/models/Rating";
+
+
+
+
 
 const ColWrapper = styled.div`
   display: grid;
@@ -85,12 +92,43 @@ gap:30px;
 }
 `;
 
-export default function ProductPage({product}) {
+export default function ProductPage({product,ratingData}) {
   const {cartProducts,addProduct} = useContext(CartContext);
-  
+  const [opinar,setOpinar] = useState(false)
+  const [titulo,setTitulo] = useState('')
+  const [nombre,setNombre] = useState('')
+  const [email,setEmail] = useState('')
+  const [observacion,setObservacion] = useState('')
+  const [puntaje,setPuntaje] = useState(0)
+
   function moreOfThisProduct(id,{quantity}) {
     addProduct(id,quantity);
   }
+  
+  const handleRate = (rating) => {
+    console.log('Rating selected:', rating);
+    setPuntaje(rating)
+  };
+
+  const sendOpinion = (e)=>{
+    // e.preventDefault()
+      console.log("llegan datos:", nombre,email,observacion,titulo,puntaje, )
+      axios.post('/api/rating', {
+        nombre,email,observacion,titulo,puntaje,productId:product._id
+      }).then(response => {
+        console.log({response})
+      })
+  }
+
+function promedioRates(){
+  let suma = 0
+  for (let index = 0; index < ratingData.length; index++) {
+     suma = suma + ratingData[index].rate
+  }
+ if (suma)  
+   return  (suma/ratingData.length).toFixed(2)
+ return 0
+} 
 
   return (
     <>
@@ -145,7 +183,8 @@ export default function ProductPage({product}) {
                   <img src="../img/shoping.png" alt="tarjeta shoping" />
                   <img src="../img/visa.png" alt="tarjeta visa" />
                 </Tarjetas>
-                  <img  style={{maxWidth:"90vw",marginTop:"20px"}} src="../img/MP.jpg" alt="mercado pago protegido" />
+                  <Title style={{marginTop:"30px",fontSize:"30px"}}>Seguridad</Title>
+                  <img  style={{maxWidth:"90vw"}} src="../img/MP.jpg" alt="mercado pago protegido" />
                   <Title style={{marginTop:"30px",fontSize:"30px"}}>Métodos de envío</Title>
                     <Tarjetas style={{display:"flex",gap:"10px",padding:"10px"}}>
                     <div>
@@ -155,6 +194,61 @@ export default function ProductPage({product}) {
                       <p>Envios a todo el país a través de correo argentino</p>
                     </div>
                     </Tarjetas>
+                    
+                    <div style={{marginTop:"20px",display:"flex",justifyContent:"space-around"}}>
+                      <div style={{display:"flex",alignItems:"center"}}>
+                        <div style={{display:"flex",alignItems:"center",fontFamily:"fantasy",color:"gray"}}>
+                            <span>{ promedioRates()}</span>
+                            <StarRating totalStars={5} onRate={promedioRates()} isDisabled = {true}/>
+                        </div>
+                      </div>
+                      <Button 
+                      onClick={()=>(setOpinar((set)=>!set))}
+                      > 
+                        Agregar una opinión
+                      </Button>
+                    </div>
+                      (Basado en {ratingData.length} opiniones)
+                    {opinar ? 
+                      <form onSubmit={sendOpinion}
+                        style={{display:"flex",flexDirection:"column",marginTop:"40px",gap:"2px"}}>
+                        <input type="text" name="titulo" placeholder="Titulo" 
+                          value={titulo}
+                          onChange={ev => setTitulo(ev.target.value)} required/>
+                        <StarRating totalStars={5} onRate={handleRate} required/>
+                        {/* <Button 
+                          onClick={()=>SetStartRating((set)=>!set)}
+                        > 
+                        </Button> */}
+                        <textarea type="text" name="observacion" placeholder="Descripcion" maxlength="100" rows={4}
+                        
+                        onChange={ev => setObservacion(ev.target.value)} required/>
+                        <input type="text" name="nombre" placeholder="Tu nombre" 
+                        
+                         onChange={ev => setNombre(ev.target.value)} required/>
+                        <input type="text" name="email" placeholder="Tu email (opcional)" 
+                        
+                        onChange={ev => setEmail(ev.target.value)} />
+                        {puntaje && <input style={{marginTop:"10px"}} type="submit" value="Enviar" />}
+
+                      </form>
+                    :
+                      ratingData?.map(item=>(
+                        <div key={item._id}>
+                          <div style={{display:"flex",borderBottom:"1px solid #5683",marginTop:"15px"}}></div>
+                          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                            <StarRating totalStars={5} onRate= {item.rate} isDisabled = {true}/>
+                            <span style={{fontSize:"10px"}}>por {(item.name).charAt(0).toUpperCase()+(item.name).slice(1) }</span>
+                          </div>
+                          <div style={{display:"flex",flexDirection:"column"}}>
+                            <span style={{color:"#0e6655"}}>{item.title}</span>
+                            <span>{item.text}</span>
+                          </div>
+                        </div>
+                      ))
+                    
+                    }
+
                     <div style={{display:"flex",justifyContent:"center",marginTop:"45px"}}>
                       <Link href={"/cart"}>
                         <button style={{border:"1px solid #0D3D29",minWidthwidth:"60px",width:"240px",borderRadius:"5px",padding:"5px",fontFamily:"Poppins",color:"#0D3D29"}}>Carrito de compras</button>
@@ -227,9 +321,11 @@ export async function getServerSideProps(context) {
   await mongooseConnect();
   const {id} = context.query;
   const product = await Product.findById(id);
+  const ratingData = await Rating.find({productId:product._id})
   return {
     props: {
       product: JSON.parse(JSON.stringify(product)),
+      ratingData: JSON.parse(JSON.stringify(ratingData)),
     }
   }
 }

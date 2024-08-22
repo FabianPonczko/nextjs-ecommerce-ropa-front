@@ -2,8 +2,9 @@ import styled from "styled-components";
 import Button from "@/components/Button";
 import CartIcon from "@/components/icons/CartIcon";
 import Link from "next/link";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {CartContext} from "@/components/CartContext";
+import StarRating from "@/components/StartRating";
 
 const ProductWrapper = styled.div`
   
@@ -108,9 +109,28 @@ border: 1px solid white;
 border-radius:3px
 `
 
-export default function ProductBox({_id,stock,title,description,price,images}) {
+export default function ProductBox({_id,stock,title,description,price,images,productRating}) {
   const {cartProducts,addProduct} = useContext(CartContext);
+  const [productRates,setProductRates] = useState('')
   const url = title!=="Sin STOCK"? '/product/'+_id:"";
+
+  useEffect(()=>{
+    setProductRates(productRating.filter(item=> item.productId === _id))
+  },[])
+  
+  const handleRate = (productRating) => {
+    console.log('Rating selected:', productRating?.rate);
+  };
+  
+  function promedioRates(){
+    let suma = 0
+    for (let index = 0; index < productRates?.length; index++) {
+       suma = suma + productRates[index].rate
+    }
+   if (suma)  
+     return  (suma/productRates?.length).toFixed(2)
+   return 0
+  } 
   return (
     <ProductWrapper>
       <WhiteBox href={url}>
@@ -150,8 +170,13 @@ export default function ProductBox({_id,stock,title,description,price,images}) {
               <CartIcon count={cartProducts.filter(id => id === _id).length} tono="black"/>Sin stock
             </Button>
             }
-          
         </PriceRow>
+
+            <div style={{fontSize:"10px",display:"flex",alignItems:"center"}}>
+              <StarRating totalStars={5} onRate={promedioRates()} isDisabled = {true}/>
+              ({promedioRates()})
+            </div>
+
       </ProductInfoBox>
     </ProductWrapper>
   );
