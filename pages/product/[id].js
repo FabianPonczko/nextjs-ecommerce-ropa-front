@@ -16,6 +16,7 @@ import StarRating from "@/components/StartRating";
 import axios from "axios";
 import {Product} from "@/models/Product";
 import { Rating } from "@/models/Rating";
+import StarRatingPorcent from "@/components/StartRatingPorcent";
 
 
 
@@ -195,11 +196,12 @@ function promedioRates(){
                     </div>
                     </Tarjetas>
                     
-                    <div style={{marginTop:"20px",display:"flex",justifyContent:"space-between"}}>
+                    <div style={{marginTop:"40px",display:"flex",justifyContent:"space-between"}}>
                       <div style={{display:"flex",alignItems:"center"}}>
-                        <div style={{display:"flex",alignItems:"center",fontFamily:"fantasy",color:"gray"}}>
+                        <div style={{display:"flex",alignItems:"center",fontFamily:"fantasy",color:"gray",gap:"5px"}}>
                             <span>{ promedioRates()}</span>
-                            <StarRating totalStars={5} onRate={promedioRates()} isDisabled = {true}/>
+                            {/* <StarRating totalStars={5} onRate={promedioRates()} isDisabled = {true}/> */}
+                            <StarRatingPorcent percentage={promedioRates()} />
                         </div>
                       </div>
                       <Button 
@@ -217,7 +219,12 @@ function promedioRates(){
                         <input type="text" name="titulo" placeholder="Titulo" 
                           value={titulo}
                           onChange={ev => setTitulo(ev.target.value)} required/>
-                        <StarRating totalStars={5} onRate={handleRate} required/>
+                        <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
+                          <StarRating totalStars={5} onRate={handleRate} required/>
+                          {!puntaje &&
+                            <span style={{color:"#c5c6c7"}}>valorar con estrellas</span>
+                          }
+                        </div>
                         {/* <Button 
                           onClick={()=>SetStartRating((set)=>!set)}
                         > 
@@ -237,9 +244,10 @@ function promedioRates(){
                     :
                       ratingData?.map(item=>(
                         <div key={item._id}>
-                          <div style={{display:"flex",borderBottom:"1px solid #5683",marginTop:"15px"}}></div>
+                          <div style={{display:"flex",borderBottom:"1px solid #5683",marginTop:"15px",marginBottom:"10px"}}></div>
                           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-                            <StarRating totalStars={5} onRate= {item.rate} isDisabled = {true}/>
+                            {/* <StarRating totalStars={5} onRate= {item.rate} isDisabled = {true}/> */}
+                            <StarRatingPorcent percentage={item.rate} />
                             <span style={{fontSize:"10px"}}>por {(item.name).charAt(0).toUpperCase()+(item.name).slice(1) }</span>
                           </div>
                           <div style={{display:"flex",flexDirection:"column"}}>
@@ -248,8 +256,9 @@ function promedioRates(){
                           </div>
                         </div>
                       ))
-                    
+                      
                     }
+                    {!opinar && <div style={{display:"flex",borderBottom:"1px solid #5683",marginTop:"15px",marginBottom:"10px"}}></div>}
 
                     <div style={{display:"flex",justifyContent:"center",marginTop:"45px"}}>
                       <Link href={"/cart"}>

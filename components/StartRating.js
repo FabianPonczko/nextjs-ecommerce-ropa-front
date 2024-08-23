@@ -9,7 +9,7 @@ const StarRatingWrapper = styled.div`
   
   const Star = styled.span`
   font-size: 1.5rem;
-  color: ${(props) => (props.filled ? 'orange' : '#ccc')};
+  color: ${(props) => (props.filled ? '#ffc107' : '#ccc')};
   transition: color 0.2s;
 `;
 

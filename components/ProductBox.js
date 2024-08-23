@@ -5,6 +5,7 @@ import Link from "next/link";
 import {useContext, useEffect, useState} from "react";
 import {CartContext} from "@/components/CartContext";
 import StarRating from "@/components/StartRating";
+import StarRatingPorcent from "./StartRatingPorcent";
 
 const ProductWrapper = styled.div`
   
@@ -172,8 +173,9 @@ export default function ProductBox({_id,stock,title,description,price,images,pro
             }
         </PriceRow>
 
-            <div style={{fontSize:"12px",display:"flex",alignItems:"center"}}>
-              <StarRating totalStars={5} onRate={promedioRates()} isDisabled = {true}/>
+            <div style={{fontSize:"12px",display:"flex",alignItems:"center",marginTop:"5px"}}>
+              {/* <StarRating totalStars={5} onRate={promedioRates()} isDisabled = {true}/> */}
+              <StarRatingPorcent percentage={promedioRates()} />
               ({promedioRates()})
             </div>
 
