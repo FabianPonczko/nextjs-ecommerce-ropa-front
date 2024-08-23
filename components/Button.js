@@ -76,8 +76,9 @@ export const ButtonStyle = css`
     }
   `}
   ${props => props.gray && !props.outline && css`
-    background-color: #c5c6c7;
-    color: white;
+    background-color: ;
+    text-Decoration: underline ;
+    color: gray;
     padding: 1px 15px;
     margin-top:5px
   `}

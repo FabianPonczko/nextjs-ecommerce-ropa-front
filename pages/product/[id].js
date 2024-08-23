@@ -201,7 +201,7 @@ function promedioRates(){
                             <StarRating totalStars={5} onRate={promedioRates()} isDisabled = {true}/>
                         </div>
                       </div>
-                      <Button gray
+                      <Button gray 
                       onClick={()=>(setOpinar((set)=>!set))}
                       > 
                         Agregar una opinión
