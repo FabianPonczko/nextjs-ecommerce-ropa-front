@@ -112,7 +112,6 @@ export default function ProductPage({product,ratingData}) {
 
   const sendOpinion = (e)=>{
     // e.preventDefault()
-      console.log("llegan datos:", nombre,email,observacion,titulo,puntaje, )
       axios.post('/api/rating', {
         nombre,email,observacion,titulo,puntaje,productId:product._id
       }).then(response => {
@@ -195,14 +194,14 @@ function promedioRates(){
                     </div>
                     </Tarjetas>
                     
-                    <div style={{marginTop:"20px",display:"flex",justifyContent:"space-between"}}>
+                    <div style={{marginTop:"50px",display:"flex",justifyContent:"space-between"}}>
                       <div style={{display:"flex",alignItems:"center"}}>
                         <div style={{display:"flex",alignItems:"center",fontFamily:"fantasy",color:"gray"}}>
                             <span>{ promedioRates()}</span>
                             <StarRating totalStars={5} onRate={promedioRates()} isDisabled = {true}/>
                         </div>
                       </div>
-                      <Button 
+                      <Button gray
                       onClick={()=>(setOpinar((set)=>!set))}
                       > 
                         Agregar una opinión
@@ -217,12 +216,15 @@ function promedioRates(){
                         <input type="text" name="titulo" placeholder="Titulo" 
                           value={titulo}
                           onChange={ev => setTitulo(ev.target.value)} required/>
-                        <StarRating totalStars={5} onRate={handleRate} required/>
+                        <div style={{display:"flex",alignItems:"center",gap:"5px"}}>
+                        <StarRating totalStars={5} onRate={handleRate} /> 
+                        {!puntaje   && <span style={{color:"#c5c6c7"}}>seleccionar puntuación</span>}
+                        </div>
                         {/* <Button 
                           onClick={()=>SetStartRating((set)=>!set)}
                         > 
                         </Button> */}
-                        <textarea type="text" name="observacion" placeholder="Descripcion" maxlength="100" rows={4}
+                        <textarea type="text" name="observacion" placeholder="Descripción" maxlength="100" rows={4}
                         
                         onChange={ev => setObservacion(ev.target.value)} required/>
                         <input type="text" name="nombre" placeholder="Tu nombre" 
@@ -248,8 +250,8 @@ function promedioRates(){
                           </div>
                         </div>
                       ))
-                    
                     }
+                    <div style={{display:"flex",borderBottom:"1px solid #5683",marginTop:"15px"}}></div>
 
                     <div style={{display:"flex",justifyContent:"center",marginTop:"45px"}}>
                       <Link href={"/cart"}>

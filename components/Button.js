@@ -75,6 +75,12 @@ export const ButtonStyle = css`
       height: 20px;
     }
   `}
+  ${props => props.gray && !props.outline && css`
+    background-color: #c5c6c7;
+    color: white;
+    padding: 1px 15px;
+    margin-top:5px
+  `}
 `;
 
 const StyledButton = styled.button`
