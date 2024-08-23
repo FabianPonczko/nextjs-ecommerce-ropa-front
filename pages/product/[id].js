@@ -113,7 +113,6 @@ export default function ProductPage({product,ratingData}) {
 
   const sendOpinion = (e)=>{
     // e.preventDefault()
-      console.log("llegan datos:", nombre,email,observacion,titulo,puntaje, )
       axios.post('/api/rating', {
         nombre,email,observacion,titulo,puntaje,productId:product._id
       }).then(response => {
@@ -204,7 +203,7 @@ function promedioRates(){
                             <StarRatingPorcent percentage={promedioRates()} />
                         </div>
                       </div>
-                      <Button 
+                      <Button gray 
                       onClick={()=>(setOpinar((set)=>!set))}
                       > 
                         Agregar una opinión
@@ -229,7 +228,7 @@ function promedioRates(){
                           onClick={()=>SetStartRating((set)=>!set)}
                         > 
                         </Button> */}
-                        <textarea type="text" name="observacion" placeholder="Descripcion" maxlength="100" rows={4}
+                        <textarea type="text" name="observacion" placeholder="Descripción" maxlength="100" rows={4}
                         
                         onChange={ev => setObservacion(ev.target.value)} required/>
                         <input type="text" name="nombre" placeholder="Tu nombre" 

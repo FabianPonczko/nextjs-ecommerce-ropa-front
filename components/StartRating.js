@@ -14,7 +14,7 @@ const StarRatingWrapper = styled.div`
 `;
 
 const StarRating = ({ totalStars = 5, onRate ,isDisabled} ) => {
-  console.log({onRate})
+  
   const [rating, setRating] = useState(onRate);
   const [hover, setHover] = useState(null);
   const [disabled, setDisabled] = useState(isDisabled);
