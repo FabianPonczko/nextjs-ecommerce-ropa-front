@@ -116,7 +116,7 @@ export default function ProductBox({_id,stock,title,description,price,images,pro
   const url = title!=="Sin STOCK"? '/product/'+_id:"";
 
   useEffect(()=>{
-    setProductRates(productRating.filter(item=> item.productId === _id))
+    setProductRates(productRating?.filter(item=> item.productId === _id))
   },[])
   
   const handleRate = (productRating) => {

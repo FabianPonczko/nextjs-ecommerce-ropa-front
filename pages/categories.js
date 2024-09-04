@@ -4,6 +4,7 @@ import Center from "@/components/Center";
 import {mongooseConnect} from "@/lib/mongoose";
 import {Product} from "@/models/Product";
 import {Categories} from "@/models/Categories";
+import {Rating} from "@/models/Rating"
 import ProductsGrid from "@/components/ProductsGrid";
 import Title from "@/components/Title";
 import Input from "@/components/Input";
@@ -15,7 +16,7 @@ import {CartContext} from "@/components/CartContext";
 import Link from "next/link";
 import Carousel from "@/components/Carrusel";
 
-export default function CategoriesPage({products,categories}) {
+export default function CategoriesPage({products,categories,productRating}) {
   const {cartProducts} = useContext(CartContext);
     const[selected,setSelected]=useState("All")
     const[filtrados,setFiltrados]=useState(products)
@@ -113,7 +114,7 @@ export default function CategoriesPage({products,categories}) {
              ))}
            </div>
       </div>  
-      <ProductsGrid  products= {filtrados.length ? filtrados: propertiesfound ==="All" || selected==="All" ? products :[{_id:"",title:"Sin STOCK",description:"",price:"",images:["img/logo.jpg"]}]}/>
+      <ProductsGrid productRating={productRating} products= {filtrados.length ? filtrados: propertiesfound ==="All" || selected==="All" ? products :[{_id:"",title:"Sin STOCK",description:"",price:"",images:["img/logo.jpg"]}]}/>
       </Center>
       <Sidebar itemCount={cartProducts.length}/>
       <Footer />
@@ -125,12 +126,13 @@ export default function CategoriesPage({products,categories}) {
 export async function getServerSideProps() {
     await mongooseConnect();
     const products = await Product.find({}, null, {sort:{'_id':-1}});
-     const category = await Categories.find({}, null, {sort:{'_id':-1}})
-    
+     const category = await Categories.find({}, null, {sort:{'_id':-1}});
+     const productRating = await Rating.find({}, null, {sort: {'_id':-1}});
     return {
     props:{
       products: JSON.parse(JSON.stringify(products)),
       categories: JSON.parse(JSON.stringify(category)),
+      productRating: JSON.parse(JSON.stringify(productRating)),
     }
 };
 }
