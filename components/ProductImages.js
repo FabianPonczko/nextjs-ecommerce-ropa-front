@@ -68,7 +68,7 @@ export default function ProductImages({images,stock}) {
       <BigImageWrapper>
         {/* <BigImage src={activeImage} />  */}
         <ZoomOnHoverImage src={activeImage} alt="Descripción de la imagen" />
-        {stock!==0 &&<Descuento>30% OFF</Descuento>}
+        {stock!==0 &&<Descuento>40% OFF</Descuento>}
         {stock==0 &&<Rotar>Agotado</Rotar>}
       </BigImageWrapper>
       <ImageButtons>

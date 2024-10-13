@@ -178,7 +178,7 @@ async function goToPaymentMP(e) {
     if (cartProducts.length > 1){
         costoEnvio = 0
     }else{
-      costoEnvio = 7300
+      costoEnvio = 8500
 }
 
   if (loading) {
@@ -446,8 +446,8 @@ async function goToPaymentMP(e) {
                       >
                 Comprar ahora
               </Button>
-                <img src="../img/mercadopago@2x.png" alt="mercado pago" style={{width:"100%"}}/>
-                <img src="../img/MP.jpg" alt="protección mercado pago" style={{width:"100%",marginTop:"10px"}} />
+                {/* <img src="../img/mercadopago@2x.png" alt="mercado pago" style={{width:"100%"}}/> */}
+                <img src="../img/MP.jpg" alt="protección mercado pago" style={{width:"100%",marginTop:"20px"}} />
                         </>
               }
             </form>

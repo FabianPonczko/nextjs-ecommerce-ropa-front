@@ -135,7 +135,7 @@ export default function ProductBox({_id,stock,title,description,price,images,pro
   return (
     <ProductWrapper>
       <WhiteBox href={url}>
-      {stock!==0 &&<Descuento>30% OFF</Descuento>}
+      {stock!==0 &&<Descuento>40% OFF</Descuento>}
         <div key={_id}>
           <img src={images?.[0]}  alt="imagen"/>
         </div>
@@ -153,7 +153,7 @@ export default function ProductBox({_id,stock,title,description,price,images,pro
         <PriceRow>
           <div style={{display:"flex",justifyContent:"center",gap:"5px"}}>
             <PriceTachado>
-              ${Math.round( price * 1.427) }
+              ${Math.round( price * 1.665) }
             </PriceTachado>
             /
             <Price>

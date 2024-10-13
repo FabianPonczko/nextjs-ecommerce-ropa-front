@@ -89,7 +89,7 @@ export default function Header() {
     <StyledHeader>
       <Center>
         <Wrapper>
-          <Logo href={'/'}>Este mes 30% de descuento 
+          <Logo href={'/'}>En el mes de Mamá! 40% de descuento 
           </Logo>
             <StyledNav mobileNavActive={mobileNavActive}style={{fontFamily:"serif" }}>
             <NavLink href={'/'}>Inicio</NavLink>
