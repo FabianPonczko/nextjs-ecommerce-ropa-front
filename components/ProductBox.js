@@ -154,7 +154,7 @@ export default function ProductBox({_id,stock,title,description,price,images,pro
         <PriceRow>
           <div style={{display:"flex",justifyContent:"center",gap:"5px"}}>
             <PriceTachado>
-              ${Math.round( price * 1.335) }
+              ${Math.ceil( price * 1.335) }
             </PriceTachado>
             /
             <Price>
