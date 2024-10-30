@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useState} from "react";
 import ZoomOnHoverImage from "@/components/ZoomOnHoverImage";
+import { desc } from "@/lib/descuento";
 
 const Image = styled.img`
     max-width: 100%;
@@ -68,7 +69,7 @@ export default function ProductImages({images,stock}) {
       <BigImageWrapper>
         {/* <BigImage src={activeImage} />  */}
         <ZoomOnHoverImage src={activeImage} alt="Descripción de la imagen" />
-        {stock!==0 &&<Descuento>40% OFF</Descuento>}
+        {stock!==0 &&<Descuento>{desc}% OFF</Descuento>}
         {stock==0 &&<Rotar>Agotado</Rotar>}
       </BigImageWrapper>
       <ImageButtons>

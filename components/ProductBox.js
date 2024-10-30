@@ -6,6 +6,7 @@ import {useContext, useEffect, useState} from "react";
 import {CartContext} from "@/components/CartContext";
 import StarRating from "@/components/StartRating";
 import StarRatingPorcent from "./StartRatingPorcent";
+import { desc } from "@/lib/descuento";
 
 const ProductWrapper = styled.div`
   
@@ -135,7 +136,7 @@ export default function ProductBox({_id,stock,title,description,price,images,pro
   return (
     <ProductWrapper>
       <WhiteBox href={url}>
-      {stock!==0 &&<Descuento>40% OFF</Descuento>}
+      {stock!==0 &&<Descuento>{desc}% OFF</Descuento>}
         <div key={_id}>
           <img src={images?.[0]}  alt="imagen"/>
         </div>
@@ -153,7 +154,7 @@ export default function ProductBox({_id,stock,title,description,price,images,pro
         <PriceRow>
           <div style={{display:"flex",justifyContent:"center",gap:"5px"}}>
             <PriceTachado>
-              ${Math.round( price * 1.665) }
+              ${Math.round( price * 1.335) }
             </PriceTachado>
             /
             <Price>

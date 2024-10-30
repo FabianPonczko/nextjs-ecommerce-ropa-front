@@ -4,6 +4,7 @@ import Center from "@/components/Center";
 import {useContext, useState} from "react";
 import {CartContext} from "@/components/CartContext";
 import BarsIcon from "@/components/icons/Bars";
+import { desc } from "@/lib/descuento";
 
 const StyledHeader = styled.header`
   position: sticky;
@@ -89,7 +90,7 @@ export default function Header() {
     <StyledHeader>
       <Center>
         <Wrapper>
-          <Logo href={'/'}>En el mes de Mamá! 40% de descuento 
+          <Logo href={'/'}>Promo {desc}% de descuento en todos los productos
           </Logo>
             <StyledNav mobileNavActive={mobileNavActive}style={{fontFamily:"serif" }}>
             <NavLink href={'/'}>Inicio</NavLink>
